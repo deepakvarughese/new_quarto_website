@@ -1,0 +1,162 @@
+---
+title: "An Introduction to Programming and R for Academics"
+author: "Dr Deepak Thomas Varughese , MBBS, MD , PGDFM"
+format: revealjs
+editor: visual
+---
+
+## How do computers work ?
+
+\
+Computers are made up of billions of transistors that can either be in a state of being open or closed. They decide on whether to be open or closed depending on a series of commands that are written as 0 and 1.\
+\
+A series of 0s and 1s often tell the computer what to do.\
+\
+*For example*
+
+`0000110000000001000011010000000100000010000011000001101`
+
+This may possibly be a series of binary code that can tell the computer to add 1+1.
+
+## Talking to a computer. What happens behind the scenes.
+
+A *high-level* programming language is usually used by a developer to tell the computer what to do.\
+\
+**High-Level Programming languages** are written in English but still need to follow a particular syntax. These are relatively easier to write.\
+\
+A High Level Programming language is converted to a what is called ***assembly code*** by a **compiler**. Assembly code is usually never written directly since it depends on the type of processor one is using.\
+\
+The assembly code is then assembled to **binary code** by an **assembler.** This is a series of 1s and 0s.\
+\
+Binary code is then converted to **electric signals** which are used by the processor to do the actual computing.\
+\
+
+## I don't write any code. Why does this matter to me?
+
+Most users use **Graphic User Interfaces (GUIs)** to interact with the computer. (This is FINE)\
+
+GUIs are about visual elements like Icons, Windows , Menus and Buttons. GUIs allow the user to use a mouse to point and click to execute functions that run at the backend without the user having to worry about it.\
+\
+The GUIs are themselves written in a high-level programming language like Java , C++ , Python or R.
+
+For example - Microsoft Excel or SPSS is written in a combination of languages like C++, Java and FORTRAN . So everytime a button is clicked a function in that respective language is executed at the backend without the user having to worry about it.
+
+# So why am I explaining this?
+
+## What is R
+
+R is a high level programming language
+
+Built with a **focus** on
+
+-   Statistics
+
+-   Data Visualizations
+
+It has hence grown to have **many other applications\
+**
+
+-   Interactive App Development
+
+-   AI and Machine Learning
+
+-   Presentations (This presentation is written in R!)
+
+-   Reports
+
+-   Website Development
+
+## Website made in R ![](website%20screenshot.png)
+
+## Dashboard made in R ![](dashboard%20screenshot.png)
+
+## **Presentation made in R**
+
+\
+(This presentation is made in R !)
+
+## Visualizations made in R
+
+![](Viz_Screenshots.png){width="1806"}
+
+Source : [https://www.tanyashapiro.com/gallery?itemId=pj2874o8w5jtncinvwp665lxr78hkp-htnaf-gyhmhhttps://www.tanyashapiro.com/gallery?itemId=pj2874o8w5jtncinvwp665lxr78hkp-htnaf-gyhmh](https://www.tanyashapiro.com/gallery?itemId=pj2874o8w5jtncinvwp665lxr78hkp-htnaf-gyhmh)
+
+## **Maps Using R**
+
+![](Thiruvalla_Mallapally.jpg)
+
+## Advantages of Using R
+
+-   Free
+
+-   Open Source
+
+-   Reproducible
+
+-   Very Flexible (Talk DIRECTLY to the computer without a GUI)
+
+-   Very Powerful
+
+    \
+
+## Barriers to Using R
+
+-   Steep-Learning Curve with Mental Blocks ( CAN BE OVERCOME)
+
+## Other Considerations
+
+**Have Lots of Funding?**\
+
+-   SPSS / STATA for Analysis
+
+-   ArcGIS for Mapping
+
+-   Hire a Web-Developer and Outsource work
+
+## Other Considerations
+
+**Want a Graphical User Interface ?**
+
+-   Paid Tools as above
+
+-   Microsoft Office (Excel , Powerpoint)
+
+-   Google Sheets , Google Slides
+
+-   Free Tools
+
+    -   Only for Statistics - Consider JAMOVI (Which is a GUI for easy access to R)
+
+    -   Only for Mapping - Consider QGIS
+
+    -   Only for Visualization - Consider Canva for basic visualization that is not data-intensive.
+
+## Want Free , Flexible, Reproducible, Possibility of Automation?
+
+-   Consider R (or Python)
+
+### R / Julia
+
+-   if working in academia , statistics
+
+### Python
+
+-   If working in web-development , more general purpose coding
+
+## Want to go one step further ?
+
+Consider combining R for statistics, Python for Web Development and SQL for Database Management.\
+\
+Learning your first language is the hardest! Get a grasp of one language it becomes easier to pivot to other languages.
+
+## TAKEHOME MESSAGES
+
+-   Pick your tool for the job you want to do.
+
+-   Use a combination of tools if the need be.
+
+-   R is a language , not a straight replacement for STATA or SPSS.
+
+-   It offers flexibility, reproducibility, open source and possibilty to automate
+
+-   IT CAN BE LEARNT. WE WILL DO THIS

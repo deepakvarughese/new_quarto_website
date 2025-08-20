@@ -1,0 +1,20 @@
+---
+title: "What is Evidence Based Medicine? Why Study Research Methods?"
+author: "Deepak Varughese"
+---
+
+Modern Medicine is Evidence Based Medicine. Medical Practitioners have used research data to critically evaluate the best way forward. Best practices change with time depending on new evidence. Yet EBM is not ONLY about data. It is equally about clinical experience as well as Patient Values and Expectations.
+
+## Evidence Based Medicine
+
+Evidence-based medicine (EBM) uses the scientific method to organize and apply current data to improve healthcare decisions. Thus, the best available science is combined with the healthcare professional's clinical experience and the patient's values to arrive at the best medical decision for the patient. 
+
+![](https://www.aapmr.org/images/default-source/quality-practice-images/ebm-triad.png?sfvrsn=a8fe507c_2){width="300"}
+
+Sackett described Evidence Based Medicine as " the conscienctious, explicit and judicial use of current best evidence in making decisions about the care of the patient. "
+
+Note how by this definition EBM does not mean throwing common sense of the clinician out of the window. EBM values Clinical Expertise. It values Patient Values. Yet , it is rooted in science and all decisions need to be backed by solid research data.
+
+## Why Study Research Methods?
+
+So why should medical students and those in health care choose to learn good research methods? Is it only to publish papers or do research? Not necessarily. All Health Care Workers may not be very interested in carrying out research but ALL will be consumers of research. Understanding good research methods helps us to critically evaluate "research findings" that are presented to us. According to the EBM model evaluating the best available research is not optional but necessary to be better at health care.

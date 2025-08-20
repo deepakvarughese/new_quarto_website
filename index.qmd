@@ -1,0 +1,27 @@
+---
+title: "Dr Deepak Varughese, MD"
+image: profile.jpg
+about:
+  template: trestles
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com
+output:
+  quarto::quarto_html:
+    css: styles.css
+---
+
+## Primary Care \| Epidemiology \| Data Science \| Data Visualization \| Geographical Information Systems
+
+I am a primary care physician and epidemiologist with experience in rural, tribal and urban settings. I have experience in research design , methodology, data analysis and visualization.
+
+I believe primary care and family medicine is a powerful piece in the health system. High Quality Primary Care can improve access to care and ensure effective follow up. My areas of clinical interest include chronic disease care, palliative medicine and rehabilitation.
+
+I love Data!! I believe that my experience in clinical medicine along with skills in epidemiology, biostatistics and programming give me a unique combination of skills to ask relevant questions, collect relevant data and convert that data into meaningful information and present it in the most engaging way. This could include dashboards , maps and other fun methods.
+
+These skills have led me to a very interesting crossroad between traditional epidemiology and newer data science techniques - with endless emerging possibilities.
+
+::: callout-note
+This website was made using Quarto and the R Programming Language with some additional html and css scripts.
+:::

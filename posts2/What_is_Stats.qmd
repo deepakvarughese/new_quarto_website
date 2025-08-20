@@ -1,0 +1,37 @@
+
+---
+title: "What is BioStatistics"
+author: "Deepak Varughese"
+---
+
+## BioStatistics
+
+Why should those of us working in the health system have an idea of Biostatistics? Does it really matter? 
+
+In a previous post we looked at what Evidence Based Medicine was. We looked at the work of David Sackett and how he defined EBM as having 3 components - Availability of Best External Evidence, Clinical Experience and Patient Values. 
+
+Notice that one of the components is referring to the best external evidence. Is this necessary? Ofcourse yes. In healthcare we want to do the best for our patients and our communities - and basing our decisions on sound foundations is crucial. This means that all healthcare workers should have an understanding of how to read and evaluate evidence - even if they are not actively generating new evidence via research. Not all of us may create new evidence but all of us will be consumers of research. 
+
+So what is Biostatistics even? 
+
+A formal definition of Biostatistics would be : 
+
+A Field of Study concerned with
+
+-   collection, organization, summarization and analysis of data (Descriptive Statistics)
+
+-   drawing of inferences about the data when only a part of the data is observed (Inferential Statistics)
+
+
+Simply put we can put the biostatistics in two broad headings.
+
+If we were to describe a particular phenomenon - for example - number of days a patient spends in a hospital - it would be pointless to list out all the individual durations of hospital stay. We would need to pick one or two numbers that could best describe and communicate this. We often use measures of central tendency to give a sense of what the most common value is (such as mean, median etc) to do this. We often also use other measures to give a sense of how spread out the data is (such as standard deviation or interquartile range). A solid understanding of which measure to use when - and selecting the most appropriate measure maybe far more important as compared to simply doing the math. 
+
+Another very important use case of statistics is to make inferences. Most people in my limited sample had an admission duration of 5 days - but can i now infer what the average duration of admission is in my entire state? Will it vary? Can i give a range of expected duration of admission? How many days will i likely to be admitted if i were to need to be admitted? These questions are likely to be answered using Inferential Statistics. Calculation of a Population Mean, Standard Errors, Confidence Intervals, Regression etc are some terms you may have heard that relate closely with inferential statistics. 
+
+## Data Science
+
+![](https://www.datascience-pm.com/wp-content/uploads/2020/09/data-science-venn-diagram.jpg)
+
+Another closely related topic is Data Science. Data Science revolves around a statistics, good domain knowledge (really understanding the field) and good programming knowledge. 
+A solid foundation in statistics is foundational for Data Science. Traditional Biostatistics also requires an understanding of domain knowledge. Data Science however places a much more heavier focus on programming skills in comparison to traditional biostatistics. There is also a more strong focus on dealing with secondary data (that has been collected for other reasons) while traditional biostatistics has usually preferred to deal with primary data( that has been collected specifically for this purpose.) Data Scientists also typically deal with tasks such as Machine Learning and Product Development when compared to traditional biostatistics. That is not to say that the skills are not transferrable. There is certainly a lot of overlap. Some of the biggest names in the Data Science Community have come from the world of biostatistics.  In fact a solid foundation in statistics can be foundational in building a strong data science profile. 

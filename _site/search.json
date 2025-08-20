@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Dr Deepak Varughese, MD",
+    "section": "",
+    "text": "I am a primary care physician and epidemiologist with experience in rural, tribal and urban settings. I have experience in research design , methodology, data analysis and visualization.\nI believe primary care and family medicine is a powerful piece in the health system. High Quality Primary Care can improve access to care and ensure effective follow up. My areas of clinical interest include chronic disease care, palliative medicine and rehabilitation.\nI love Data!! I believe that my experience in clinical medicine along with skills in epidemiology, biostatistics and programming give me a unique combination of skills to ask relevant questions, collect relevant data and convert that data into meaningful information and present it in the most engaging way. This could include dashboards , maps and other fun methods.\nThese skills have led me to a very interesting crossroad between traditional epidemiology and newer data science techniques - with endless emerging possibilities.\n\n\n\n\n\n\nNote\n\n\n\nThis website was made using Quarto and the R Programming Language with some additional html and css scripts."
+  },
+  {
+    "objectID": "index.html#primary-care-epidemiology-data-science-data-visualization-geographical-information-systems",
+    "href": "index.html#primary-care-epidemiology-data-science-data-visualization-geographical-information-systems",
+    "title": "Dr Deepak Varughese, MD",
+    "section": "",
+    "text": "I am a primary care physician and epidemiologist with experience in rural, tribal and urban settings. I have experience in research design , methodology, data analysis and visualization.\nI believe primary care and family medicine is a powerful piece in the health system. High Quality Primary Care can improve access to care and ensure effective follow up. My areas of clinical interest include chronic disease care, palliative medicine and rehabilitation.\nI love Data!! I believe that my experience in clinical medicine along with skills in epidemiology, biostatistics and programming give me a unique combination of skills to ask relevant questions, collect relevant data and convert that data into meaningful information and present it in the most engaging way. This could include dashboards , maps and other fun methods.\nThese skills have led me to a very interesting crossroad between traditional epidemiology and newer data science techniques - with endless emerging possibilities.\n\n\n\n\n\n\nNote\n\n\n\nThis website was made using Quarto and the R Programming Language with some additional html and css scripts."
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "#30DaysMapChallenge",
+    "section": "",
+    "text": "This is a quick page to display all the maps I made as part of #30DayMapChallenge in November 2023. This is a challenge across the mapping community as a way to display better mapping practices. Through this I hope to bring together my love for GIS and Data Viz in order to create better and more compelling visualizations."
+  },
+  {
+    "objectID": "posts.html#day-map-challenge",
+    "href": "posts.html#day-map-challenge",
+    "title": "#30DaysMapChallenge",
+    "section": "",
+    "text": "This is a quick page to display all the maps I made as part of #30DayMapChallenge in November 2023. This is a challenge across the mapping community as a way to display better mapping practices. Through this I hope to bring together my love for GIS and Data Viz in order to create better and more compelling visualizations."
+  },
+  {
+    "objectID": "posts/Mallapally Basic Map.html",
+    "href": "posts/Mallapally Basic Map.html",
+    "title": "A simple map of Mallapally Sub-District",
+    "section": "",
+    "text": "In this first post on Maps we look to create a very simple map using R Programming.\nFor this project i used R (as usually) and worked with various libraries including ggplot and sf predominantly. I used the Overpass API at https://overpass-turbo.eu/ to collect the shapefiles. (A shapefile is a GIS file that contains various points and polygons for a given areas. ) A lot of the polygons are crowdsourced from the OpenStreetMaps (OSM) community. I used the sf package to open the shapefiles and plot them. I used ggplot2 to create the charts. A lot of the text formatting was done using the showtext package to handle fonts.\n\nThe map is a bit busy. While I would ideally consider making it an interactive map using leaflet I wanted to maintain today’s challenge as a chart. The labels look a bit crowded but i felt the purpose of the chart was labelling today so I kept that as is. I also highlighted the Mallapally Town in the map. I referenced the color by using the same color brown in the description so that it would act as a key of sorts. I have also stuck to good basics by adding a North Arrow and a Scale. This was added using the ggspatial package.\nThis was part one of this series. I hope to build on this chart in future."
+  },
+  {
+    "objectID": "posts/Kerala Population.html",
+    "href": "posts/Kerala Population.html",
+    "title": "The Population of Kerala",
+    "section": "",
+    "text": "In the second map of this series i decided to take on a very simple chloropleth map that shows the distribution of population in the South Indian State of Kerala. A chloropleth map often shows different geographic regions that have been shaded according to particular variable.\nFor this map we obtained the administrative borders using overpass from OSM and downloaded the adm_5 layer as adm_5 usually shows the map at the level of district. We then obtained the 2011 Census Data. Yes, this is old census data - but it was the last census that was done. We will assume that overall trends in population may still be the same.\nWe then used different functions on dplyr and stringR to clean the data and finally performed a left_join to merge the population data into the shapefile.\nWe then used ggplot2 for the plotting. We experimented a little with fonts and settled on an informal handwritten type font from the googlefonts collection. The colors were handled by RColorBrewer and i picked a green palate to correlate with the lush vegetation present in Kerala. I avoided the temptation to label each and everything and focused on a simple question of “Which is the district with the highest population”. This allowed me to keep the map more clean and stick to communicating a single message.\nThis was also an exercise in speed as I tried to complete it in limited time rather than focus on the details for too long. Overall a good experience. Hope to keep this going."
+  },
+  {
+    "objectID": "posts2.html",
+    "href": "posts2.html",
+    "title": "Epidemiology",
+    "section": "",
+    "text": "This is a quick page to display blogs and teaching resources regarding Epidemiology, Research Methods and Data Science."
+  },
+  {
+    "objectID": "posts2.html#epidemiology",
+    "href": "posts2.html#epidemiology",
+    "title": "Epidemiology",
+    "section": "",
+    "text": "This is a quick page to display blogs and teaching resources regarding Epidemiology, Research Methods and Data Science."
+  },
+  {
+    "objectID": "posts2/Why Biostatistics.html#epidemiology",
+    "href": "posts2/Why Biostatistics.html#epidemiology",
+    "title": "What is Evidence Based Medicine",
+    "section": "Epidemiology",
+    "text": "Epidemiology\n” The study of the distribution and determinants of health related states or events in specified populations and the applications of this disease to control health problems”"
+  },
+  {
+    "objectID": "posts2/Why Biostatistics.html#objectives-of-epidemiology",
+    "href": "posts2/Why Biostatistics.html#objectives-of-epidemiology",
+    "title": "What is Evidence Based Medicine",
+    "section": "Objectives of Epidemiology",
+    "text": "Objectives of Epidemiology\n\nIdentifying risk factors and etiology of disease\nDetermine extent(Burden) of disease in the community\nTo study the Natural History and Prognosis of Disease\nEvaluation of existing and newly developed preventive and therapeutic measures\nProvide a foundation for the development of Health Policy"
+  },
+  {
+    "objectID": "posts2/Why Biostatistics.html#statistics",
+    "href": "posts2/Why Biostatistics.html#statistics",
+    "title": "What is Evidence Based Medicine",
+    "section": "Statistics",
+    "text": "Statistics\nField of Study concerned with\n\ncollection, organization, summarization and analysis of data (Descriptive Statistics)\ndrawing of inferences about the data when only a part of the data is observed (Inferential Statistics)"
+  },
+  {
+    "objectID": "posts2/Why Biostatistics.html#data-science",
+    "href": "posts2/Why Biostatistics.html#data-science",
+    "title": "What is Evidence Based Medicine",
+    "section": "Data Science",
+    "text": "Data Science"
+  },
+  {
+    "objectID": "posts2/Why Biostatistics.html#evidence-based-medicine",
+    "href": "posts2/Why Biostatistics.html#evidence-based-medicine",
+    "title": "What is Evidence Based Medicine? Why Study Research Methods?",
+    "section": "Evidence Based Medicine",
+    "text": "Evidence Based Medicine\nEvidence-based medicine (EBM) uses the scientific method to organize and apply current data to improve healthcare decisions. Thus, the best available science is combined with the healthcare professional’s clinical experience and the patient’s values to arrive at the best medical decision for the patient. \n\nSackett described Evidence Based Medicine as ” the conscienctious, explicit and judicial use of current best evidence in making decisions about the care of the patient. ”\nNote how by this definition EBM does not mean throwing common sense of the clinician out of the window. EBM values Clinical Expertise. It values Patient Values. Yet , it is rooted in science and all decisions need to be backed by solid research data.\nSo why should medical students and those in health care choose to learn good research methods? Is it only to publish papers or do research? Not necessarily. All Health Care Workers may not be very interested in carrying out research but ALL will be consumers of research. Understanding good research methods helps us to critically evaluate “research findings” that are presented to us. According to the EBM model evaluating the best available research is not optional but necessary to be better at health care."
+  },
+  {
+    "objectID": "posts2/Why Biostatistics.html",
+    "href": "posts2/Why Biostatistics.html",
+    "title": "What is Evidence Based Medicine? Why Study Research Methods?",
+    "section": "",
+    "text": "In this post we look at what epidemiology is and how it is of value to the health system. I also try to make am argument as to why a thorough knowledge of biostatistics and research methods actually helps us practice better medicine.\nModern Medicine is Evidence Based Medicine. Medical Practitioners have used research data to critically evaluate the best way forward. Best practices change with time depending on new evidence. Yet EBM is not ONLY about data. It is equally about clinical experience as well as Patient Values and Expectations."
+  },
+  {
+    "objectID": "posts2/EBM.html",
+    "href": "posts2/EBM.html",
+    "title": "What is Evidence Based Medicine? Why Study Research Methods?",
+    "section": "",
+    "text": "Modern Medicine is Evidence Based Medicine. Medical Practitioners have used research data to critically evaluate the best way forward. Best practices change with time depending on new evidence. Yet EBM is not ONLY about data. It is equally about clinical experience as well as Patient Values and Expectations."
+  },
+  {
+    "objectID": "posts2/EBM.html#evidence-based-medicine",
+    "href": "posts2/EBM.html#evidence-based-medicine",
+    "title": "What is Evidence Based Medicine? Why Study Research Methods?",
+    "section": "Evidence Based Medicine",
+    "text": "Evidence Based Medicine\nEvidence-based medicine (EBM) uses the scientific method to organize and apply current data to improve healthcare decisions. Thus, the best available science is combined with the healthcare professional’s clinical experience and the patient’s values to arrive at the best medical decision for the patient. \n\nSackett described Evidence Based Medicine as ” the conscienctious, explicit and judicial use of current best evidence in making decisions about the care of the patient. ”\nNote how by this definition EBM does not mean throwing common sense of the clinician out of the window. EBM values Clinical Expertise. It values Patient Values. Yet , it is rooted in science and all decisions need to be backed by solid research data."
+  },
+  {
+    "objectID": "posts2/EBM.html#why-study-research-methods",
+    "href": "posts2/EBM.html#why-study-research-methods",
+    "title": "What is Evidence Based Medicine? Why Study Research Methods?",
+    "section": "Why Study Research Methods?",
+    "text": "Why Study Research Methods?\nSo why should medical students and those in health care choose to learn good research methods? Is it only to publish papers or do research? Not necessarily. All Health Care Workers may not be very interested in carrying out research but ALL will be consumers of research. Understanding good research methods helps us to critically evaluate “research findings” that are presented to us. According to the EBM model evaluating the best available research is not optional but necessary to be better at health care."
+  },
+  {
+    "objectID": "posts2/What_is_Stats.html#biostatistics",
+    "href": "posts2/What_is_Stats.html#biostatistics",
+    "title": "What is BioStatistics",
+    "section": "",
+    "text": "Why should those of us working in the health system have an idea of Biostatistics? Does it really matter?\nIn a previous post we looked at what Evidence Based Medicine was. We looked at the work of David Sackett and how he defined EBM as having 3 components - Availability of Best External Evidence, Clinical Experience and Patient Values.\nNotice that one of the components is referring to the best external evidence. Is this necessary? Ofcourse yes. In healthcare we want to do the best for our patients and our communities - and basing our decisions on sound foundations is crucial. This means that all healthcare workers should have an understanding of how to read and evaluate evidence - even if they are not actively generating new evidence via research. Not all of us may create new evidence but all of us will be consumers of research.\nSo what is Biostatistics even?\nA formal definition of Biostatistics would be :\nA Field of Study concerned with\n\ncollection, organization, summarization and analysis of data (Descriptive Statistics)\ndrawing of inferences about the data when only a part of the data is observed (Inferential Statistics)\n\nSimply put we can put the biostatistics in two broad headings.\nIf we were to describe a particular phenomenon - for example - number of days a patient spends in a hospital - it would be pointless to list out all the individual durations of hospital stay. We would need to pick one or two numbers that could best describe and communicate this. We often use measures of central tendency to give a sense of what the most common value is (such as mean, median etc) to do this. We often also use other measures to give a sense of how spread out the data is (such as standard deviation or interquartile range). A solid understanding of which measure to use when - and selecting the most appropriate measure maybe far more important as compared to simply doing the math.\nAnother very important use case of statistics is to make inferences. Most people in my limited sample had an admission duration of 5 days - but can i now infer what the average duration of admission is in my entire state? Will it vary? Can i give a range of expected duration of admission? How many days will i likely to be admitted if i were to need to be admitted? These questions are likely to be answered using Inferential Statistics. Calculation of a Population Mean, Standard Errors, Confidence Intervals, Regression etc are some terms you may have heard that relate closely with inferential statistics."
+  },
+  {
+    "objectID": "posts2/What_is_Stats.html#data-science",
+    "href": "posts2/What_is_Stats.html#data-science",
+    "title": "What is BioStatistics",
+    "section": "Data Science",
+    "text": "Data Science\n\nAnother closely related topic is Data Science. Data Science revolves around a statistics, good domain knowledge (really understanding the field) and good programming knowledge. A solid foundation in statistics is foundational for Data Science. Traditional Biostatistics also requires an understanding of domain knowledge. Data Science however places a much more heavier focus on programming skills in comparison to traditional biostatistics. There is also a more strong focus on dealing with secondary data (that has been collected for other reasons) while traditional biostatistics has usually preferred to deal with primary data( that has been collected specifically for this purpose.) Data Scientists also typically deal with tasks such as Machine Learning and Product Development when compared to traditional biostatistics. That is not to say that the skills are not transferrable. There is certainly a lot of overlap. Some of the biggest names in the Data Science Community have come from the world of biostatistics. In fact a solid foundation in statistics can be foundational in building a strong data science profile."
+  },
+  {
+    "objectID": "posts2/What_is_Stats.html",
+    "href": "posts2/What_is_Stats.html",
+    "title": "What is BioStatistics",
+    "section": "",
+    "text": "Why should those of us working in the health system have an idea of Biostatistics? Does it really matter?\nIn a previous post we looked at what Evidence Based Medicine was. We looked at the work of David Sackett and how he defined EBM as having 3 components - Availability of Best External Evidence, Clinical Experience and Patient Values.\nNotice that one of the components is referring to the best external evidence. Is this necessary? Ofcourse yes. In healthcare we want to do the best for our patients and our communities - and basing our decisions on sound foundations is crucial. This means that all healthcare workers should have an understanding of how to read and evaluate evidence - even if they are not actively generating new evidence via research. Not all of us may create new evidence but all of us will be consumers of research.\nSo what is Biostatistics even?\nA formal definition of Biostatistics would be :\nA Field of Study concerned with\n\ncollection, organization, summarization and analysis of data (Descriptive Statistics)\ndrawing of inferences about the data when only a part of the data is observed (Inferential Statistics)\n\nSimply put we can put the biostatistics in two broad headings.\nIf we were to describe a particular phenomenon - for example - number of days a patient spends in a hospital - it would be pointless to list out all the individual durations of hospital stay. We would need to pick one or two numbers that could best describe and communicate this. We often use measures of central tendency to give a sense of what the most common value is (such as mean, median etc) to do this. We often also use other measures to give a sense of how spread out the data is (such as standard deviation or interquartile range). A solid understanding of which measure to use when - and selecting the most appropriate measure maybe far more important as compared to simply doing the math.\nAnother very important use case of statistics is to make inferences. Most people in my limited sample had an admission duration of 5 days - but can i now infer what the average duration of admission is in my entire state? Will it vary? Can i give a range of expected duration of admission? How many days will i likely to be admitted if i were to need to be admitted? These questions are likely to be answered using Inferential Statistics. Calculation of a Population Mean, Standard Errors, Confidence Intervals, Regression etc are some terms you may have heard that relate closely with inferential statistics."
+  }
+]

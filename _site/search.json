@@ -138,5 +138,250 @@
     "title": "What is BioStatistics",
     "section": "",
     "text": "Why should those of us working in the health system have an idea of Biostatistics? Does it really matter?\nIn a previous post we looked at what Evidence Based Medicine was. We looked at the work of David Sackett and how he defined EBM as having 3 components - Availability of Best External Evidence, Clinical Experience and Patient Values.\nNotice that one of the components is referring to the best external evidence. Is this necessary? Ofcourse yes. In healthcare we want to do the best for our patients and our communities - and basing our decisions on sound foundations is crucial. This means that all healthcare workers should have an understanding of how to read and evaluate evidence - even if they are not actively generating new evidence via research. Not all of us may create new evidence but all of us will be consumers of research.\nSo what is Biostatistics even?\nA formal definition of Biostatistics would be :\nA Field of Study concerned with\n\ncollection, organization, summarization and analysis of data (Descriptive Statistics)\ndrawing of inferences about the data when only a part of the data is observed (Inferential Statistics)\n\nSimply put we can put the biostatistics in two broad headings.\nIf we were to describe a particular phenomenon - for example - number of days a patient spends in a hospital - it would be pointless to list out all the individual durations of hospital stay. We would need to pick one or two numbers that could best describe and communicate this. We often use measures of central tendency to give a sense of what the most common value is (such as mean, median etc) to do this. We often also use other measures to give a sense of how spread out the data is (such as standard deviation or interquartile range). A solid understanding of which measure to use when - and selecting the most appropriate measure maybe far more important as compared to simply doing the math.\nAnother very important use case of statistics is to make inferences. Most people in my limited sample had an admission duration of 5 days - but can i now infer what the average duration of admission is in my entire state? Will it vary? Can i give a range of expected duration of admission? How many days will i likely to be admitted if i were to need to be admitted? These questions are likely to be answered using Inferential Statistics. Calculation of a Population Mean, Standard Errors, Confidence Intervals, Regression etc are some terms you may have heard that relate closely with inferential statistics."
+  },
+  {
+    "objectID": "posts3.html",
+    "href": "posts3.html",
+    "title": "R Training Material",
+    "section": "",
+    "text": "This page has slides for R Training."
+  },
+  {
+    "objectID": "posts3.html#general-practice-and-family-medicine",
+    "href": "posts3.html#general-practice-and-family-medicine",
+    "title": "General Practice and Family Medicine",
+    "section": "",
+    "text": "This is a page where we will discuss management of common diseases from a General Practice point of view in the Indian Context."
+  },
+  {
+    "objectID": "posts3.html#r-training-material",
+    "href": "posts3.html#r-training-material",
+    "title": "R Training Material",
+    "section": "",
+    "text": "This page has slides for R Training."
+  },
+  {
+    "objectID": "What is R.html#how-do-computers-work",
+    "href": "What is R.html#how-do-computers-work",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "How do computers work ?",
+    "text": "How do computers work ?\n\nComputers are made up of billions of transistors that can either be in a state of being open or closed. They decide on whether to be open or closed depending on a series of commands that are written as 0 and 1.\n\nA series of 0s and 1s often tell the computer what to do.\n\nFor example\n0000110000000001000011010000000100000010000011000001101\nThis may possibly be a series of binary code that can tell the computer to add 1+1."
+  },
+  {
+    "objectID": "What is R.html#talking-to-a-computer.-what-happens-behind-the-scenes.",
+    "href": "What is R.html#talking-to-a-computer.-what-happens-behind-the-scenes.",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Talking to a computer. What happens behind the scenes.",
+    "text": "Talking to a computer. What happens behind the scenes.\nA high-level programming language is usually used by a developer to tell the computer what to do.\n\nHigh-Level Programming languages are written in English but still need to follow a particular syntax. These are relatively easier to write.\n\nA High Level Programming language is converted to a what is called assembly code by a compiler. Assembly code is usually never written directly since it depends on the type of processor one is using.\n\nThe assembly code is then assembled to binary code by an assembler. This is a series of 1s and 0s.\n\nBinary code is then converted to electric signals which are used by the processor to do the actual computing."
+  },
+  {
+    "objectID": "What is R.html#i-dont-write-any-code.-why-does-this-matter-to-me",
+    "href": "What is R.html#i-dont-write-any-code.-why-does-this-matter-to-me",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "I don’t write any code. Why does this matter to me?",
+    "text": "I don’t write any code. Why does this matter to me?\nMost users use Graphic User Interfaces (GUIs) to interact with the computer. (This is FINE)\n\nGUIs are about visual elements like Icons, Windows , Menus and Buttons. GUIs allow the user to use a mouse to point and click to execute functions that run at the backend without the user having to worry about it.\n\nThe GUIs are themselves written in a high-level programming language like Java , C++ , Python or R.\nFor example - Microsoft Excel or SPSS is written in a combination of languages like C++, Java and FORTRAN . So everytime a button is clicked a function in that respective language is executed at the backend without the user having to worry about it."
+  },
+  {
+    "objectID": "What is R.html#what-is-r",
+    "href": "What is R.html#what-is-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "What is R",
+    "text": "What is R\nR is a high level programming language\nBuilt with a focus on\n\nStatistics\nData Visualizations\n\nIt has hence grown to have many other applications\n\n\nInteractive App Development\nAI and Machine Learning\nPresentations (This presentation is written in R!)\nReports\nWebsite Development"
+  },
+  {
+    "objectID": "What is R.html#website-made-in-r",
+    "href": "What is R.html#website-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Website made in R ",
+    "text": "Website made in R"
+  },
+  {
+    "objectID": "What is R.html#dashboard-made-in-r",
+    "href": "What is R.html#dashboard-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Dashboard made in R ",
+    "text": "Dashboard made in R"
+  },
+  {
+    "objectID": "What is R.html#presentation-made-in-r",
+    "href": "What is R.html#presentation-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Presentation made in R",
+    "text": "Presentation made in R\n\n(This presentation is made in R !)"
+  },
+  {
+    "objectID": "What is R.html#visualizations-made-in-r",
+    "href": "What is R.html#visualizations-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Visualizations made in R",
+    "text": "Visualizations made in R\n\nSource : https://www.tanyashapiro.com/gallery?itemId=pj2874o8w5jtncinvwp665lxr78hkp-htnaf-gyhmhhttps://www.tanyashapiro.com/gallery?itemId=pj2874o8w5jtncinvwp665lxr78hkp-htnaf-gyhmh"
+  },
+  {
+    "objectID": "What is R.html#maps-using-r",
+    "href": "What is R.html#maps-using-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Maps Using R",
+    "text": "Maps Using R"
+  },
+  {
+    "objectID": "What is R.html#advantages-of-using-r",
+    "href": "What is R.html#advantages-of-using-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Advantages of Using R",
+    "text": "Advantages of Using R\n\nFree\nOpen Source\nReproducible\nVery Flexible (Talk DIRECTLY to the computer without a GUI)\nVery Powerful"
+  },
+  {
+    "objectID": "What is R.html#barriers-to-using-r",
+    "href": "What is R.html#barriers-to-using-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Barriers to Using R",
+    "text": "Barriers to Using R\n\nSteep-Learning Curve with Mental Blocks ( CAN BE OVERCOME)"
+  },
+  {
+    "objectID": "What is R.html#other-considerations",
+    "href": "What is R.html#other-considerations",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Other Considerations",
+    "text": "Other Considerations\nHave Lots of Funding?\n\n\nSPSS / STATA for Analysis\nArcGIS for Mapping\nHire a Web-Developer and Outsource work"
+  },
+  {
+    "objectID": "What is R.html#other-considerations-1",
+    "href": "What is R.html#other-considerations-1",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Other Considerations",
+    "text": "Other Considerations\nWant a Graphical User Interface ?\n\nPaid Tools as above\nMicrosoft Office (Excel , Powerpoint)\nGoogle Sheets , Google Slides\nFree Tools\n\nOnly for Statistics - Consider JAMOVI (Which is a GUI for easy access to R)\nOnly for Mapping - Consider QGIS\nOnly for Visualization - Consider Canva for basic visualization that is not data-intensive."
+  },
+  {
+    "objectID": "What is R.html#want-free-flexible-reproducible-possibility-of-automation",
+    "href": "What is R.html#want-free-flexible-reproducible-possibility-of-automation",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Want Free , Flexible, Reproducible, Possibility of Automation?",
+    "text": "Want Free , Flexible, Reproducible, Possibility of Automation?\n\nConsider R (or Python)\n\nR / Julia\n\nif working in academia , statistics\n\nPython\n\nIf working in web-development , more general purpose coding"
+  },
+  {
+    "objectID": "What is R.html#want-to-go-one-step-further",
+    "href": "What is R.html#want-to-go-one-step-further",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Want to go one step further ?",
+    "text": "Want to go one step further ?\nConsider combining R for statistics, Python for Web Development and SQL for Database Management.\n\nLearning your first language is the hardest! Get a grasp of one language it becomes easier to pivot to other languages."
+  },
+  {
+    "objectID": "What is R.html#takehome-messages",
+    "href": "What is R.html#takehome-messages",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "TAKEHOME MESSAGES",
+    "text": "TAKEHOME MESSAGES\n\nPick your tool for the job you want to do.\nUse a combination of tools if the need be.\nR is a language , not a straight replacement for STATA or SPSS.\nIt offers flexibility, reproducibility, open source and possibilty to automate\nIT CAN BE LEARNT. WE WILL DO THIS"
+  },
+  {
+    "objectID": "posts3/What is R.html#how-do-computers-work",
+    "href": "posts3/What is R.html#how-do-computers-work",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "How do computers work ?",
+    "text": "How do computers work ?\n\nComputers are made up of billions of transistors that can either be in a state of being open or closed. They decide on whether to be open or closed depending on a series of commands that are written as 0 and 1.\n\nA series of 0s and 1s often tell the computer what to do.\n\nFor example\n0000110000000001000011010000000100000010000011000001101\nThis may possibly be a series of binary code that can tell the computer to add 1+1."
+  },
+  {
+    "objectID": "posts3/What is R.html#talking-to-a-computer.-what-happens-behind-the-scenes.",
+    "href": "posts3/What is R.html#talking-to-a-computer.-what-happens-behind-the-scenes.",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Talking to a computer. What happens behind the scenes.",
+    "text": "Talking to a computer. What happens behind the scenes.\nA high-level programming language is usually used by a developer to tell the computer what to do.\n\nHigh-Level Programming languages are written in English but still need to follow a particular syntax. These are relatively easier to write.\n\nA High Level Programming language is converted to a what is called assembly code by a compiler. Assembly code is usually never written directly since it depends on the type of processor one is using.\n\nThe assembly code is then assembled to binary code by an assembler. This is a series of 1s and 0s.\n\nBinary code is then converted to electric signals which are used by the processor to do the actual computing."
+  },
+  {
+    "objectID": "posts3/What is R.html#i-dont-write-any-code.-why-does-this-matter-to-me",
+    "href": "posts3/What is R.html#i-dont-write-any-code.-why-does-this-matter-to-me",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "I don’t write any code. Why does this matter to me?",
+    "text": "I don’t write any code. Why does this matter to me?\nMost users use Graphic User Interfaces (GUIs) to interact with the computer. (This is FINE)\n\nGUIs are about visual elements like Icons, Windows , Menus and Buttons. GUIs allow the user to use a mouse to point and click to execute functions that run at the backend without the user having to worry about it.\n\nThe GUIs are themselves written in a high-level programming language like Java , C++ , Python or R.\nFor example - Microsoft Excel or SPSS is written in a combination of languages like C++, Java and FORTRAN . So everytime a button is clicked a function in that respective language is executed at the backend without the user having to worry about it."
+  },
+  {
+    "objectID": "posts3/What is R.html#what-is-r",
+    "href": "posts3/What is R.html#what-is-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "What is R",
+    "text": "What is R\nR is a high level programming language\nBuilt with a focus on\n\nStatistics\nData Visualizations\n\nIt has hence grown to have many other applications\n\n\nInteractive App Development\nAI and Machine Learning\nPresentations (This presentation is written in R!)\nReports\nWebsite Development"
+  },
+  {
+    "objectID": "posts3/What is R.html#website-made-in-r",
+    "href": "posts3/What is R.html#website-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Website made in R ",
+    "text": "Website made in R"
+  },
+  {
+    "objectID": "posts3/What is R.html#dashboard-made-in-r",
+    "href": "posts3/What is R.html#dashboard-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Dashboard made in R ",
+    "text": "Dashboard made in R"
+  },
+  {
+    "objectID": "posts3/What is R.html#presentation-made-in-r",
+    "href": "posts3/What is R.html#presentation-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Presentation made in R",
+    "text": "Presentation made in R\n\n(This presentation is made in R !)"
+  },
+  {
+    "objectID": "posts3/What is R.html#visualizations-made-in-r",
+    "href": "posts3/What is R.html#visualizations-made-in-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Visualizations made in R",
+    "text": "Visualizations made in R\n\nSource : https://www.tanyashapiro.com/gallery?itemId=pj2874o8w5jtncinvwp665lxr78hkp-htnaf-gyhmhhttps://www.tanyashapiro.com/gallery?itemId=pj2874o8w5jtncinvwp665lxr78hkp-htnaf-gyhmh"
+  },
+  {
+    "objectID": "posts3/What is R.html#maps-using-r",
+    "href": "posts3/What is R.html#maps-using-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Maps Using R",
+    "text": "Maps Using R"
+  },
+  {
+    "objectID": "posts3/What is R.html#advantages-of-using-r",
+    "href": "posts3/What is R.html#advantages-of-using-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Advantages of Using R",
+    "text": "Advantages of Using R\n\nFree\nOpen Source\nReproducible\nVery Flexible (Talk DIRECTLY to the computer without a GUI)\nVery Powerful"
+  },
+  {
+    "objectID": "posts3/What is R.html#barriers-to-using-r",
+    "href": "posts3/What is R.html#barriers-to-using-r",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Barriers to Using R",
+    "text": "Barriers to Using R\n\nSteep-Learning Curve with Mental Blocks ( CAN BE OVERCOME)"
+  },
+  {
+    "objectID": "posts3/What is R.html#other-considerations",
+    "href": "posts3/What is R.html#other-considerations",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Other Considerations",
+    "text": "Other Considerations\nHave Lots of Funding?\n\n\nSPSS / STATA for Analysis\nArcGIS for Mapping\nHire a Web-Developer and Outsource work"
+  },
+  {
+    "objectID": "posts3/What is R.html#other-considerations-1",
+    "href": "posts3/What is R.html#other-considerations-1",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Other Considerations",
+    "text": "Other Considerations\nWant a Graphical User Interface ?\n\nPaid Tools as above\nMicrosoft Office (Excel , Powerpoint)\nGoogle Sheets , Google Slides\nFree Tools\n\nOnly for Statistics - Consider JAMOVI (Which is a GUI for easy access to R)\nOnly for Mapping - Consider QGIS\nOnly for Visualization - Consider Canva for basic visualization that is not data-intensive."
+  },
+  {
+    "objectID": "posts3/What is R.html#want-free-flexible-reproducible-possibility-of-automation",
+    "href": "posts3/What is R.html#want-free-flexible-reproducible-possibility-of-automation",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Want Free , Flexible, Reproducible, Possibility of Automation?",
+    "text": "Want Free , Flexible, Reproducible, Possibility of Automation?\n\nConsider R (or Python)\n\nR / Julia\n\nif working in academia , statistics\n\nPython\n\nIf working in web-development , more general purpose coding"
+  },
+  {
+    "objectID": "posts3/What is R.html#want-to-go-one-step-further",
+    "href": "posts3/What is R.html#want-to-go-one-step-further",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "Want to go one step further ?",
+    "text": "Want to go one step further ?\nConsider combining R for statistics, Python for Web Development and SQL for Database Management.\n\nLearning your first language is the hardest! Get a grasp of one language it becomes easier to pivot to other languages."
+  },
+  {
+    "objectID": "posts3/What is R.html#takehome-messages",
+    "href": "posts3/What is R.html#takehome-messages",
+    "title": "An Introduction to Programming and R for Academics",
+    "section": "TAKEHOME MESSAGES",
+    "text": "TAKEHOME MESSAGES\n\nPick your tool for the job you want to do.\nUse a combination of tools if the need be.\nR is a language , not a straight replacement for STATA or SPSS.\nIt offers flexibility, reproducibility, open source and possibilty to automate\nIT CAN BE LEARNT. WE WILL DO THIS"
   }
 ]

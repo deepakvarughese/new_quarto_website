@@ -12,7 +12,7 @@ website:
       - href: posts2.qmd
         text: Epidemiology and Research Methods
       - href: posts3.qmd
-        text: Family Medicine and General Practice
+        text: R Training Materials
       
 
 format:

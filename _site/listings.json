@@ -12,5 +12,11 @@
       "/posts2/EBM.html",
       "/posts2/What_is_Stats.html"
     ]
+  },
+  {
+    "listing": "/posts3.html",
+    "items": [
+      "/posts3/What is R.html"
+    ]
   }
 ]

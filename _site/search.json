@@ -383,5 +383,54 @@
     "title": "An Introduction to Programming and R for Academics",
     "section": "TAKEHOME MESSAGES",
     "text": "TAKEHOME MESSAGES\n\nPick your tool for the job you want to do.\nUse a combination of tools if the need be.\nR is a language , not a straight replacement for STATA or SPSS.\nIt offers flexibility, reproducibility, open source and possibilty to automate\nIT CAN BE LEARNT. WE WILL DO THIS"
+  },
+  {
+    "objectID": "posts3/Installing R on your System.html#can-i-just-download-r-and-run-it",
+    "href": "posts3/Installing R on your System.html#can-i-just-download-r-and-run-it",
+    "title": "Installing R on your System",
+    "section": "Can I just download R and run it?",
+    "text": "Can I just download R and run it?\nTechnically Yes - but usually no.\nR is a language that you need to install on your PC\nIt is usually combined with an Integrated Development Environment like RStudio\nThe IDE is used to compile and run the code."
+  },
+  {
+    "objectID": "posts3/Installing R on your System.html#integrated-development-environment",
+    "href": "posts3/Installing R on your System.html#integrated-development-environment",
+    "title": "Installing R on your System",
+    "section": "Integrated Development Environment",
+    "text": "Integrated Development Environment\nAn IDE is a tool that complies and runs the code you write. Modern IDEs can also have other features like File Browsing, Code Completion , debugging etc\nThe most commonly used IDE used with R is R Studio (from Posit)"
+  },
+  {
+    "objectID": "posts3/Installing R on your System.html#other-popular-ides",
+    "href": "posts3/Installing R on your System.html#other-popular-ides",
+    "title": "Installing R on your System",
+    "section": "Other Popular IDEs",
+    "text": "Other Popular IDEs\nOther IDEs that are gaining popularity include Positron (Also from Posit) and VS Code\nPositron and VS Code can be useful especially if one would like to combine different programming languages like Python and R in the same environment. Since RStudio is the traditional IDE used for R we will use R Studio for these tutorials.\nYou may however choose to use a different IDE and experiment with it if you like."
+  },
+  {
+    "objectID": "posts3/Installing R on your System.html#rstudio",
+    "href": "posts3/Installing R on your System.html#rstudio",
+    "title": "Installing R on your System",
+    "section": "RStudio",
+    "text": "RStudio"
+  },
+  {
+    "objectID": "posts3/Installing R on your System.html#positron",
+    "href": "posts3/Installing R on your System.html#positron",
+    "title": "Installing R on your System",
+    "section": "Positron",
+    "text": "Positron"
+  },
+  {
+    "objectID": "posts3/Installing R on your System.html#hands-on-installing-r",
+    "href": "posts3/Installing R on your System.html#hands-on-installing-r",
+    "title": "Installing R on your System",
+    "section": "Hands-on : Installing R",
+    "text": "Hands-on : Installing R\nhttps://posit.co/download/rstudio-desktop/"
+  },
+  {
+    "objectID": "posts3/Installing R on your System.html#hands-on-installing-r-1",
+    "href": "posts3/Installing R on your System.html#hands-on-installing-r-1",
+    "title": "Installing R on your System",
+    "section": "Hands-on : Installing R",
+    "text": "Hands-on : Installing R"
   }
 ]

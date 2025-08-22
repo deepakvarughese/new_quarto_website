@@ -1,0 +1,48 @@
+---
+title: "Installing R on your System"
+author: "Dr Deepak Varughese, MBBS, MD, PGDFM"
+format: revealjs
+---
+
+## **Can I just download R and run it?**
+
+Technically Yes - but usually no.
+
+R is a language that you need to install on your PC
+
+It is usually combined with an **Integrated Development Environment** like RStudio
+
+The IDE is used to compile and run the code.\
+
+##  Integrated Development Environment
+
+An IDE is a tool that complies and runs the code you write. Modern IDEs can also have other features like File Browsing, Code Completion , debugging etc
+
+The most commonly used IDE used with R is R Studio (from Posit)
+
+## Other Popular IDEs
+
+Other IDEs that are gaining popularity include Positron (Also from Posit) and VS Code
+
+Positron and VS Code can be useful especially if one would like to combine different programming languages like Python and R in the same environment. Since RStudio is the traditional IDE used for R we will use R Studio for these tutorials.
+
+You may however choose to use a different IDE and experiment with it if you like. \
+\
+
+## RStudio
+
+![](rstudio_screenshot.png)
+
+## Positron
+
+![](positron_screenshot.png)
+
+## Hands-on : Installing R 
+
+<https://posit.co/download/rstudio-desktop/>
+
+![](rstudio_download_page1.png)
+
+## Hands-on : Installing R 
+
+![](install_rstudio_2.png)

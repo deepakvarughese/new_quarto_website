@@ -1,0 +1,9 @@
+---
+title: "Initial Setup of RStudio"
+author: "Dr Deepak Varughese"
+format: revealjs
+---
+
+**Initial Setup of RStudio**
+
+Before working with RStudio for the first time, I would recommend changing the following Global Settings. While this is not strictly necessary, they are generally recommended due to certain reasons.

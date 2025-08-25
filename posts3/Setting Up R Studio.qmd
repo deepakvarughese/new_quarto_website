@@ -7,3 +7,19 @@ format: revealjs
 **Initial Setup of RStudio**
 
 Before working with RStudio for the first time, I would recommend changing the following Global Settings. While this is not strictly necessary, they are generally recommended due to certain reasons.
+
+## Changing the options
+
+![](global_options.png)
+
+## Unchecking boxes
+
+Please ensure that the following boxes are **unticked**
+
+-   Restore most recently opened project at Startup
+
+-   Restore Previously Open Source Documents at Startup
+
+-   Restore .RData into Workspace on Startup
+
+![](uncheck_boxes.png)

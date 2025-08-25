@@ -467,5 +467,19 @@
     "title": "The R Studio Interface",
     "section": "CONSOLE",
     "text": "CONSOLE\nFor the beginner level just be aware that code you run is displayed in the console. Many outputs, errors etc can be seen in the console panel. We do NOT normally type inside the console on a day to day basis. There are a few use cases where one would type into the console but this is not the normal. Usually typing is done in the scripting window and not the console. More advanced users may also access the terminal from this window. We will look at this in further modules."
+  },
+  {
+    "objectID": "posts3/Setting Up R Studio.html#changing-the-options",
+    "href": "posts3/Setting Up R Studio.html#changing-the-options",
+    "title": "Initial Setup of RStudio",
+    "section": "Changing the options",
+    "text": "Changing the options"
+  },
+  {
+    "objectID": "posts3/Setting Up R Studio.html#unchecking-boxes",
+    "href": "posts3/Setting Up R Studio.html#unchecking-boxes",
+    "title": "Initial Setup of RStudio",
+    "section": "Unchecking boxes",
+    "text": "Unchecking boxes\nPlease ensure that the following boxes are unticked\n\nRestore most recently opened project at Startup\nRestore Previously Open Source Documents at Startup\nRestore .RData into Workspace on Startup"
   }
 ]

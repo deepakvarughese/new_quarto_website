@@ -432,5 +432,40 @@
     "title": "Installing R on your System",
     "section": "Hands-on : Installing R",
     "text": "Hands-on : Installing R"
+  },
+  {
+    "objectID": "posts3/rstudio_interface.html#the-interface",
+    "href": "posts3/rstudio_interface.html#the-interface",
+    "title": "The R Studio Interface",
+    "section": "The Interface",
+    "text": "The Interface"
+  },
+  {
+    "objectID": "posts3/rstudio_interface.html#scripting-window",
+    "href": "posts3/rstudio_interface.html#scripting-window",
+    "title": "The R Studio Interface",
+    "section": "SCRIPTING WINDOW",
+    "text": "SCRIPTING WINDOW\nThis is your workhorse. This is where you actually write code.\nCode you write here can be saved as a script and can be used later.\n\nNOTE\nENTER merely goes to the next line in the scripting window.\nIn order to run the code you need to highlight the code you want to run and click Cntrl+Enter (Or use the mouse to click “run”."
+  },
+  {
+    "objectID": "posts3/rstudio_interface.html#environment",
+    "href": "posts3/rstudio_interface.html#environment",
+    "title": "The R Studio Interface",
+    "section": "ENVIRONMENT",
+    "text": "ENVIRONMENT\nAll the datasets and variables you load into R can be found from the Environment Tab. We will discuss this in length further. For now remember that you can see your datasets and variables inside this window."
+  },
+  {
+    "objectID": "posts3/rstudio_interface.html#files",
+    "href": "posts3/rstudio_interface.html#files",
+    "title": "The R Studio Interface",
+    "section": "FILES",
+    "text": "FILES\nThis window can be toggled to show you the different files available on your PC similar to a browser. You can also view any plots or figures in this tab."
+  },
+  {
+    "objectID": "posts3/rstudio_interface.html#console",
+    "href": "posts3/rstudio_interface.html#console",
+    "title": "The R Studio Interface",
+    "section": "CONSOLE",
+    "text": "CONSOLE\nFor the beginner level just be aware that code you run is displayed in the console. Many outputs, errors etc can be seen in the console panel. We do NOT normally type inside the console on a day to day basis. There are a few use cases where one would type into the console but this is not the normal. Usually typing is done in the scripting window and not the console. More advanced users may also access the terminal from this window. We will look at this in further modules."
   }
 ]

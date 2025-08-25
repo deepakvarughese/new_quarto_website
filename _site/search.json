@@ -481,5 +481,12 @@
     "title": "Initial Setup of RStudio",
     "section": "Unchecking boxes",
     "text": "Unchecking boxes\nPlease ensure that the following boxes are unticked\n\nRestore most recently opened project at Startup\nRestore Previously Open Source Documents at Startup\nRestore .RData into Workspace on Startup"
+  },
+  {
+    "objectID": "posts3/staying_organized_with_projects.html#why-use-projects",
+    "href": "posts3/staying_organized_with_projects.html#why-use-projects",
+    "title": "Getting Organized with Projects",
+    "section": "Why use Projects?",
+    "text": "Why use Projects?\nOne of the challenges in any project especially with data is staying organized.\nManuscripts, Datasets, Images etc are all usually saved in multiple locations slowing down efficiency in a big way.\nR Projects is a neat way to force one to remain organized.\nWorking with projects improves the ease of use of R signinificantly and is HIGHLY RECOMMENDED.\nFor the purpose of this course we will be using projects and highly recommend you do the same for all your projects."
   }
 ]

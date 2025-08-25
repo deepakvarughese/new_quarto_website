@@ -1,0 +1,27 @@
+---
+title: "Getting Organized with Projects"
+author: "Deepak Varughese"
+format: revealjs
+---
+
+## Why use Projects?
+
+One of the challenges in any project especially with data is staying organized.\
+Manuscripts, Datasets, Images etc are all usually saved in multiple locations slowing down efficiency in a big way.\
+R Projects is a neat way to force one to remain organized.
+
+Working with projects improves the ease of use of R signinificantly and is HIGHLY RECOMMENDED.
+
+For the purpose of this course we will be using projects and highly recommend you do the same for all your projects.
+
+## How to create a project
+
+![](project_new.png)
+
+## New Project
+
+![](new_project.png){width="415"}
+
+## Project Options
+
+![](new_project_options.png)

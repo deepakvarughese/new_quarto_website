@@ -1,0 +1,30 @@
+---
+title: "The Verbs of the Tidyverse"
+format: revealjs
+---
+
+## dplyr::filter()
+
+Filter out only **rows** that meet a particular condition
+
+## dplyr::select()
+
+Select only columns that meet a particular conditions
+
+## dplyr::distinct()
+
+Deduplicate rows
+
+## janitor::clean_names()
+
+Replace white spaces with "\_" . Remove capitalizations
+
+## dplyr::mutate
+
+Recode values into a new column or same column.
+
+If the name of an existing column is used then it recodes into the same column. If a new column name is used it will create a new variable.
+
+## case_when() 
+
+recode values into new columns using complex criteria

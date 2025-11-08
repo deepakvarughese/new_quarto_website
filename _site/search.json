@@ -535,8 +535,8 @@
     "objectID": "posts4/intro_to_gis.html#epidemiology",
     "href": "posts4/intro_to_gis.html#epidemiology",
     "title": "Intro to GIS for Public Health",
-    "section": "Epidemiology",
-    "text": "Epidemiology\nThe study of the distribution of Disease and Disease Related States\n\nBy Person\nBy Place\nBy Time"
+    "section": "",
+    "text": "The study of the distribution of Disease and Disease Related States\n\nBy Person\nBy Place\nBy Time"
   },
   {
     "objectID": "posts4/intro_to_gis.html#by-person",
@@ -691,5 +691,26 @@
     "title": "An Introduction to the tidyverse",
     "section": "What is the tidyverse",
     "text": "What is the tidyverse\n\nwww.tidyverse.com"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html",
+    "href": "posts4/intro_to_gis.html",
+    "title": "Intro to GIS for Public Health",
+    "section": "",
+    "text": "The study of the distribution of Disease and Disease Related States\n\nBy Person\nBy Place\nBy Time"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#real-world-to-gis-layers",
+    "href": "posts4/intro_to_gis.html#real-world-to-gis-layers",
+    "title": "Intro to GIS for Public Health",
+    "section": "Real World to GIS Layers",
+    "text": "Real World to GIS Layers"
+  },
+  {
+    "objectID": "posts3/General Syntax in R.html",
+    "href": "posts3/General Syntax in R.html",
+    "title": "Basic Syntax in R",
+    "section": "",
+    "text": "Symbol\nShortcut\nFormal Name\nRead as\n\n\n\n\n&lt;-\nAlt + (Wiindows)\nOption + (Mac)\nAssignment Operator\nAssign whatever is on the right to the variable on the left.\n\n\n%&gt;%\nCtrl + Shift + M\nPipe (Tidyverse)\nTake this (dataset), and then do this operation\n\n\n” ….”\n\nString\ntext inside quotation marks are usually character or string data type. This is not a rule but a general guideline."
   }
 ]

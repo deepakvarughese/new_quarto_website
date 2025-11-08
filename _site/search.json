@@ -712,5 +712,47 @@
     "title": "Basic Syntax in R",
     "section": "",
     "text": "Symbol\nShortcut\nFormal Name\nRead as\n\n\n\n\n&lt;-\nAlt + (Wiindows)\nOption + (Mac)\nAssignment Operator\nAssign whatever is on the right to the variable on the left.\n\n\n%&gt;%\nCtrl + Shift + M\nPipe (Tidyverse)\nTake this (dataset), and then do this operation\n\n\n” ….”\n\nString\ntext inside quotation marks are usually character or string data type. This is not a rule but a general guideline."
+  },
+  {
+    "objectID": "posts3/verbs_of_the_tidyverse.html#dplyrfilter",
+    "href": "posts3/verbs_of_the_tidyverse.html#dplyrfilter",
+    "title": "The Verbs of the Tidyverse",
+    "section": "dplyr::filter()",
+    "text": "dplyr::filter()\nFilter out only rows that meet a particular condition"
+  },
+  {
+    "objectID": "posts3/verbs_of_the_tidyverse.html#dplyrselect",
+    "href": "posts3/verbs_of_the_tidyverse.html#dplyrselect",
+    "title": "The Verbs of the Tidyverse",
+    "section": "dplyr::select()",
+    "text": "dplyr::select()\nSelect only columns that meet a particular conditions"
+  },
+  {
+    "objectID": "posts3/verbs_of_the_tidyverse.html#dplyrdistinct",
+    "href": "posts3/verbs_of_the_tidyverse.html#dplyrdistinct",
+    "title": "The Verbs of the Tidyverse",
+    "section": "dplyr::distinct()",
+    "text": "dplyr::distinct()\nDeduplicate rows"
+  },
+  {
+    "objectID": "posts3/verbs_of_the_tidyverse.html#janitorclean_names",
+    "href": "posts3/verbs_of_the_tidyverse.html#janitorclean_names",
+    "title": "The Verbs of the Tidyverse",
+    "section": "janitor::clean_names()",
+    "text": "janitor::clean_names()\nReplace white spaces with “_” . Remove capitalizations"
+  },
+  {
+    "objectID": "posts3/verbs_of_the_tidyverse.html#dplyrmutate",
+    "href": "posts3/verbs_of_the_tidyverse.html#dplyrmutate",
+    "title": "The Verbs of the Tidyverse",
+    "section": "dplyr::mutate",
+    "text": "dplyr::mutate\nRecode values into a new column or same column.\nIf the name of an existing column is used then it recodes into the same column. If a new column name is used it will create a new variable."
+  },
+  {
+    "objectID": "posts3/verbs_of_the_tidyverse.html#case_when",
+    "href": "posts3/verbs_of_the_tidyverse.html#case_when",
+    "title": "The Verbs of the Tidyverse",
+    "section": "case_when()",
+    "text": "case_when()\nrecode values into new columns using complex criteria"
   }
 ]

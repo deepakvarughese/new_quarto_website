@@ -758,42 +758,42 @@
   {
     "objectID": "posts3/Loading packages.html#what-are-packages",
     "href": "posts3/Loading packages.html#what-are-packages",
-    "title": "Deepak Varughese",
+    "title": "Loading Packages",
     "section": "What are packages",
     "text": "What are packages\nPackages are pre-written pieces of code that help make coding efficient.\nContain a variety of functions that can be used .\nThink of it as a kind of “app” for your phone. Your base phone may have a texting service. But sometimes you add an extra app to make it a bit more efficient.\nThese are similar to plugins or extensions in other pieces of software."
   },
   {
     "objectID": "posts3/Loading packages.html#cran",
     "href": "posts3/Loading packages.html#cran",
-    "title": "Deepak Varughese",
+    "title": "Loading Packages",
     "section": "CRAN",
     "text": "CRAN\nCRAN is a popular place to download packages\nComprehensive R Archive Network\nOfficial Central Repository for the R Language\nAnyone can submit a package to be hosted in CRAN but packages need to adhere to rigorous quality checks and have structured documentation before they are hosted on CRAN.\nPackages are sometimes available from distribtion systems other than CRAN as well."
   },
   {
     "objectID": "posts3/Loading packages.html#using-packages-in-r",
     "href": "posts3/Loading packages.html#using-packages-in-r",
-    "title": "Deepak Varughese",
+    "title": "Loading Packages",
     "section": "Using packages in R",
     "text": "Using packages in R\nBefore package can be run in R , it needs to be\n\nInstalled on your computer (One time activity)\nLoaded onto the environment (Has to happen everytime)"
   },
   {
     "objectID": "posts3/Loading packages.html#installing-packages",
     "href": "posts3/Loading packages.html#installing-packages",
-    "title": "Deepak Varughese",
+    "title": "Loading Packages",
     "section": "Installing Packages",
     "text": "Installing Packages\nPackages can be directly downloaded using the command"
   },
   {
     "objectID": "posts3/Loading packages.html#loading-packages",
     "href": "posts3/Loading packages.html#loading-packages",
-    "title": "Deepak Varughese",
+    "title": "Loading Packages",
     "section": "Loading Packages",
     "text": "Loading Packages"
   },
   {
     "objectID": "posts3/Loading packages.html#recommended-way-of-loading-packages",
     "href": "posts3/Loading packages.html#recommended-way-of-loading-packages",
-    "title": "Deepak Varughese",
+    "title": "Loading Packages",
     "section": "Recommended way of loading packages",
     "text": "Recommended way of loading packages\nHere we have loaded 3 packages.\nThe “pacman” library helps in managing libraries.\nIt does 2 things\n\nChecks if the package is previously installed AND\nInstalls if needed\nLoads the library\n\nHence it can be a more efficient way to handle packages."
   }

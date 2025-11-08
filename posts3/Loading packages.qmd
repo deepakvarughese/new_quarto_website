@@ -1,7 +1,6 @@
 ---
-
-title: "Loading Libraries into your R Session"
-author: "Dr Deepak Thomas Varughese"
+title: "Loading Packages"
+author: "Dr Deepak Varughese"
 format: revealjs
 ---
 

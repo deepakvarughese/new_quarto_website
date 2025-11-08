@@ -649,5 +649,47 @@
     "title": "Basic Syntax in R",
     "section": "Where do Functions come from?",
     "text": "Where do Functions come from?\nFunctions can belong to either base R or to packages.\n\nIf you want to specify which package to call a function\n\npacman::p_load(tidyverse)"
+  },
+  {
+    "objectID": "posts3/Introduction to the tidyverse.html#origin-story",
+    "href": "posts3/Introduction to the tidyverse.html#origin-story",
+    "title": "An Introduction to the tidyverse",
+    "section": "Origin Story",
+    "text": "Origin Story\n\n\n\n\n\n\nOrigin\n\n\n“The hardest part of collaborative data analysis is not finding the correct statistical model, but getting the data into a form that you can actually work with. This challenge led to the creation of the reshape package which made it easier to work with a variety of input datasets by first converting to a “molten” form which you could then “cast” into the desired form.”\n\nHadley Wickham\n\n\n\n\nhttps://hadley.github.io/25-tidyverse-history/?trk=feed_main-feed-card_feed-article-content"
+  },
+  {
+    "objectID": "posts3/Introduction to the tidyverse.html#the-data-science-process",
+    "href": "posts3/Introduction to the tidyverse.html#the-data-science-process",
+    "title": "An Introduction to the tidyverse",
+    "section": "The Data Science Process",
+    "text": "The Data Science Process\n\nhttps://hadley.github.io/25-tidyverse-history/?trk=feed_main-feed-card_feed-article-content"
+  },
+  {
+    "objectID": "posts3/Introduction to the tidyverse.html#principles-of-tidy-data",
+    "href": "posts3/Introduction to the tidyverse.html#principles-of-tidy-data",
+    "title": "An Introduction to the tidyverse",
+    "section": "Principles of Tidy Data",
+    "text": "Principles of Tidy Data\n\nEach variable must have its own column\nEach observation must have its own row\nEach value must have its own cell\n\n\nSource : https://r4ds.had.co.nz/tidy-data.html"
+  },
+  {
+    "objectID": "posts3/Introduction to the tidyverse.html#number-of-cases-of-fictional-disease-in-the-us-and-india",
+    "href": "posts3/Introduction to the tidyverse.html#number-of-cases-of-fictional-disease-in-the-us-and-india",
+    "title": "An Introduction to the tidyverse",
+    "section": "Number of Cases of Fictional Disease in the US and India",
+    "text": "Number of Cases of Fictional Disease in the US and India\n\n\n\nCountry\n2023\n2024\n2025\n\n\n\n\nIndia\n600\n400\n500\n\n\nUS\n500\n200\n400"
+  },
+  {
+    "objectID": "posts3/Introduction to the tidyverse.html#number-of-cases-of-fictional-disease-in-the-us-and-india-1",
+    "href": "posts3/Introduction to the tidyverse.html#number-of-cases-of-fictional-disease-in-the-us-and-india-1",
+    "title": "An Introduction to the tidyverse",
+    "section": "Number of Cases of Fictional Disease in the US and India",
+    "text": "Number of Cases of Fictional Disease in the US and India\n\n\n\nCountry\nYear\nNumber of Cases\n\n\n\n\nIndia\n2023\n600\n\n\nIndia\n2024\n400\n\n\nIndia\n2025\n500\n\n\nUS\n2023\n500\n\n\nUS\n2024\n200\n\n\nUS\n2025\n400\n\n\n\nLong Format vs Wide Format"
+  },
+  {
+    "objectID": "posts3/Introduction to the tidyverse.html#what-is-the-tidyverse",
+    "href": "posts3/Introduction to the tidyverse.html#what-is-the-tidyverse",
+    "title": "An Introduction to the tidyverse",
+    "section": "What is the tidyverse",
+    "text": "What is the tidyverse\n\nwww.tidyverse.com"
   }
 ]

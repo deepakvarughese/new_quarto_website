@@ -1,0 +1,77 @@
+---
+
+title: "Loading Libraries into your R Session"
+author: "Dr Deepak Thomas Varughese"
+format: revealjs
+---
+
+## What are packages
+
+Packages are pre-written pieces of code that help make coding efficient.
+
+Contain a variety of functions that can be used .
+
+Think of it as a kind of "app" for your phone. Your base phone may have a texting service. But sometimes you add an extra app to make it a bit more efficient.
+
+These are similar to plugins or extensions in other pieces of software.
+
+## CRAN
+
+CRAN is a popular place to download packages
+
+Comprehensive R Archive Network
+
+Official Central Repository for the R Language
+
+Anyone can submit a package to be hosted in CRAN but packages need to adhere to rigorous quality checks and have structured documentation before they are hosted on CRAN.
+
+Packages are sometimes available from distribtion systems other than CRAN as well.
+
+## Using packages in R
+
+Before package can be run in R , it needs to be
+
+-   Installed on your computer (One time activity)
+
+-   Loaded onto the environment (Has to happen everytime)
+
+## Installing Packages
+
+Packages can be directly downloaded using the command
+
+```{r}
+
+# install.packages("packagename")
+```
+
+## Loading Packages
+
+```{r}
+
+# library(packagename)
+```
+
+## Recommended way of loading packages
+
+```{r}
+
+pacman::p_load(
+  janitor, 
+  rio,
+  here
+)
+```
+
+Here we have loaded 3 packages.
+
+The "pacman" library helps in managing libraries.
+
+It does 2 things
+
+-   Checks if the package is previously installed AND
+
+-   Installs if needed
+
+-   Loads the library
+
+Hence it can be a more efficient way to handle packages.

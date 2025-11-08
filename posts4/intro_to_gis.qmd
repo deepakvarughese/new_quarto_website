@@ -1,0 +1,149 @@
+---
+title: "Intro to GIS for Public Health"
+author: "Dr Deepak Varughese"
+format: revealjs
+---
+
+## Epidemiology
+
+The study of the distribution of Disease and Disease Related States
+
+-   By Person
+
+-   By Place
+
+-   By Time
+
+## By Person
+
+Who is likely to get the disease? What are the risk factors
+
+-   Case Control Studies
+
+-   Cohort Studies
+
+-   Randomized Control Trials
+
+-   Quasi-Experimental Designs
+
+## By Time
+
+How is the disease changing over time?
+
+-   Time Series Analysis
+
+-   Cohort Studies
+
+-   Repeated Cross Sectional Studies
+
+## By Place
+
+-   Ecological Studies
+
+-   Case Control Studies
+
+-   Difference in Difference Designs
+
+## Who? Where? When?
+
+GIS Provides the "where" in the traditional "who, where, when triad" in epidemiology
+
+It can also be clubbed with the when - to provide "Spatio-Temporal" Insights.
+
+## GIS
+
+-   Geographical Information Systems
+
+-   Geospatial Information Systems
+
+-   Spatial Data Science
+
+## Is Mapping in Public Health New?
+
+![](john_snow_map.jpg)
+
+## Advantages of Hand- Drawn Paper Maps?
+
+-   Local Knowledge?
+
+<!-- -->
+
+-   "The Map is not the territory" - In-Depth knowledge of intricacies that may not be captured on the map.
+
+-   Accessibility - Do not need special training or tools
+
+-   "Fail Safe" - Do not depend on technology / power requirements etc
+
+## **Disadvantages of Hand Drawn Paper Maps**
+
+-   Not to scale?
+
+-   Precision in distance , etc
+
+-   Difficult to stack maps on top of each other
+
+-   Static and Difficult to Update
+
+-   Limited by size and scale
+
+## So what then is GIS anyway? Is it just a digital map?
+
+A GIS system has 2 main components
+
+-   A geography or shape (eg - Points, Polygons, Boundaries, Rasters) - WHERE
+
+-   A table storing information - WHAT
+
+## GIS vs Static Maps
+
+Creating Maps is one of the many possibilities of GIS
+
+GIS is not about simply displaying static information but allowing the users to ask questions of the data
+
+-   What is the shortest distance from Point A to Point B
+
+-   What is an ideal catchment area for my services
+
+-   How is the distribution of air-pollution related to the distribution of COPD
+
+## Tools used for GIS
+
+A wide combination of software solutions can be used for GIS related work.
+
+-   ArcGIS - Commercial , Proprietary - Licences are approximately (Prices could vary from USD100 to USD3800 per Year depending on licence types)
+
+-   QGIS  - Free and Open Source.
+
+Other Useful Programming Languages handy for GIS
+
+-   Python
+
+-   R
+
+-   SQL / PostGIS
+
+## Types of Data in GIS
+
+-   Vector Data
+
+    -   Points
+
+    -   Lines
+
+    -   Polygons
+
+-   Raster Data
+
+    -   A type of Digital photograph that represents Continuous Data where values change gradually over space
+
+        -   Population
+
+        -   Elevation
+
+        -   Land Use / Land Cover
+
+        -   Temperature
+
+## Real World to GIS Layers
+
+![](gis_to_realworld.png)

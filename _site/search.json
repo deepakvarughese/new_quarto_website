@@ -509,5 +509,145 @@
     "title": "Getting Organized with Projects",
     "section": "Project Options",
     "text": "Project Options"
+  },
+  {
+    "objectID": "posts3/rstudio_interface.html#exercise",
+    "href": "posts3/rstudio_interface.html#exercise",
+    "title": "The R Studio Interface",
+    "section": "Exercise",
+    "text": "Exercise\n\nInstall R and then identify all the panels correctly."
+  },
+  {
+    "objectID": "posts4.html",
+    "href": "posts4.html",
+    "title": "GIS Training Material",
+    "section": "",
+    "text": "This page has slides for GIS."
+  },
+  {
+    "objectID": "posts4.html#gis-training-material",
+    "href": "posts4.html#gis-training-material",
+    "title": "GIS Training Material",
+    "section": "",
+    "text": "This page has slides for GIS."
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#epidemiology",
+    "href": "posts4/intro_to_gis.html#epidemiology",
+    "title": "Intro to GIS for Public Health",
+    "section": "Epidemiology",
+    "text": "Epidemiology\nThe study of the distribution of Disease and Disease Related States\n\nBy Person\nBy Place\nBy Time"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#by-person",
+    "href": "posts4/intro_to_gis.html#by-person",
+    "title": "Intro to GIS for Public Health",
+    "section": "By Person",
+    "text": "By Person\nWho is likely to get the disease? What are the risk factors\n\nCase Control Studies\nCohort Studies\nRandomized Control Trials\nQuasi-Experimental Designs"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#by-time",
+    "href": "posts4/intro_to_gis.html#by-time",
+    "title": "Intro to GIS for Public Health",
+    "section": "By Time",
+    "text": "By Time\nHow is the disease changing over time?\n\nTime Series Analysis\nCohort Studies\nRepeated Cross Sectional Studies"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#by-place",
+    "href": "posts4/intro_to_gis.html#by-place",
+    "title": "Intro to GIS for Public Health",
+    "section": "By Place",
+    "text": "By Place\n\nEcological Studies\nCase Control Studies\nDifference in Difference Designs"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#who-where-when",
+    "href": "posts4/intro_to_gis.html#who-where-when",
+    "title": "Intro to GIS for Public Health",
+    "section": "Who? Where? When?",
+    "text": "Who? Where? When?\nGIS Provides the “where” in the traditional “who, where, when triad” in epidemiology\nIt can also be clubbed with the when - to provide “Spatio-Temporal” Insights."
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#gis",
+    "href": "posts4/intro_to_gis.html#gis",
+    "title": "Intro to GIS for Public Health",
+    "section": "GIS",
+    "text": "GIS\n\nGeographical Information Systems\nGeospatial Information Systems\nSpatial Data Science"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#is-mapping-in-public-health-new",
+    "href": "posts4/intro_to_gis.html#is-mapping-in-public-health-new",
+    "title": "Intro to GIS for Public Health",
+    "section": "Is Mapping in Public Health New?",
+    "text": "Is Mapping in Public Health New?"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#advantages-of-hand--drawn-paper-maps",
+    "href": "posts4/intro_to_gis.html#advantages-of-hand--drawn-paper-maps",
+    "title": "Intro to GIS for Public Health",
+    "section": "Advantages of Hand- Drawn Paper Maps?",
+    "text": "Advantages of Hand- Drawn Paper Maps?\n\nLocal Knowledge?\n\n\n\n“The Map is not the territory” - In-Depth knowledge of intricacies that may not be captured on the map.\nAccessibility - Do not need special training or tools\n“Fail Safe” - Do not depend on technology / power requirements etc"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#disadvantages-of-hand-drawn-paper-maps",
+    "href": "posts4/intro_to_gis.html#disadvantages-of-hand-drawn-paper-maps",
+    "title": "Intro to GIS for Public Health",
+    "section": "Disadvantages of Hand Drawn Paper Maps",
+    "text": "Disadvantages of Hand Drawn Paper Maps\n\nNot to scale?\nPrecision in distance , etc\nDifficult to stack maps on top of each other\nStatic and Difficult to Update\nLimited by size and scale"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#so-what-then-is-gis-anyway-is-it-just-a-digital-map",
+    "href": "posts4/intro_to_gis.html#so-what-then-is-gis-anyway-is-it-just-a-digital-map",
+    "title": "Intro to GIS for Public Health",
+    "section": "So what then is GIS anyway? Is it just a digital map?",
+    "text": "So what then is GIS anyway? Is it just a digital map?\nA GIS system has 2 main components\n\nA geography or shape (eg - Points, Polygons, Boundaries, Rasters) - WHERE\nA table storing information - WHAT"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#section",
+    "href": "posts4/intro_to_gis.html#section",
+    "title": "Intro to GIS for Public Health",
+    "section": "",
+    "text": "A GIS system has 2 main components\n\nA geography or shape (eg - Points, Polygons, Boundaries, Rasters) - WHERE\nA table storing information - WHAT"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#gis-vs-static-maps",
+    "href": "posts4/intro_to_gis.html#gis-vs-static-maps",
+    "title": "Intro to GIS for Public Health",
+    "section": "GIS vs Static Maps",
+    "text": "GIS vs Static Maps\nCreating Maps is one of the many possibilities of GIS\nGIS is not about simply displaying static information but allowing the users to ask questions of the data\n\nWhat is the shortest distance from Point A to Point B\nWhat is an ideal catchment area for my services\nHow is the distribution of air-pollution related to the distribution of COPD"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#tools-used-for-gis",
+    "href": "posts4/intro_to_gis.html#tools-used-for-gis",
+    "title": "Intro to GIS for Public Health",
+    "section": "Tools used for GIS",
+    "text": "Tools used for GIS\nA wide combination of software solutions can be used for GIS related work.\n\nArcGIS - Commercial , Proprietary - Licences are approximately (Prices could vary from USD100 to USD3800 per Year depending on licence types)\nQGIS - Free and Open Source.\n\nOther Useful Programming Languages handy for GIS\n\nPython\nR\nSQL / PostGIS"
+  },
+  {
+    "objectID": "posts4/intro_to_gis.html#types-of-data-in-gis",
+    "href": "posts4/intro_to_gis.html#types-of-data-in-gis",
+    "title": "Intro to GIS for Public Health",
+    "section": "Types of Data in GIS",
+    "text": "Types of Data in GIS\n\nVector Data\n\nPoints\nLines\nPolygons\n\nRaster Data\n\nA type of Digital photograph that represents Continuous Data where values change gradually over space\n\nPopulation\nElevation\nLand Use / Land Cover\nTemperature"
+  },
+  {
+    "objectID": "posts3/General Syntax in R.html#functions-in-r",
+    "href": "posts3/General Syntax in R.html#functions-in-r",
+    "title": "Basic Syntax in R",
+    "section": "Functions in R",
+    "text": "Functions in R\nFictional function from the Epi R Handbook\n\nSource : https://www.epirhandbook.com/en/new_pages/basics.html"
+  },
+  {
+    "objectID": "posts3/General Syntax in R.html#functions",
+    "href": "posts3/General Syntax in R.html#functions",
+    "title": "Basic Syntax in R",
+    "section": "Functions",
+    "text": "Functions\n\nSource : https://www.epirhandbook.com/en/new_pages/basics.html"
+  },
+  {
+    "objectID": "posts3/General Syntax in R.html#where-do-functions-come-from",
+    "href": "posts3/General Syntax in R.html#where-do-functions-come-from",
+    "title": "Basic Syntax in R",
+    "section": "Where do Functions come from?",
+    "text": "Where do Functions come from?\nFunctions can belong to either base R or to packages.\n\nIf you want to specify which package to call a function\n\npacman::p_load(tidyverse)"
   }
 ]

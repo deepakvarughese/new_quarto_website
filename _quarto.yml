@@ -13,6 +13,8 @@ website:
         text: Epidemiology and Research Methods
       - href: posts3.qmd
         text: R Training Materials
+      - href: posts4.qmd
+        text: GIS Training Materials
       
 
 format:

@@ -16,11 +16,18 @@
   {
     "listing": "/posts3.html",
     "items": [
+      "/posts3/General Syntax in R.html",
       "/posts3/Installing R on your System.html",
       "/posts3/rstudio_interface.html",
       "/posts3/Setting Up R Studio.html",
       "/posts3/staying_organized_with_projects.html",
       "/posts3/What is R.html"
+    ]
+  },
+  {
+    "listing": "/posts4.html",
+    "items": [
+      "/posts4/intro_to_gis.html"
     ]
   }
 ]

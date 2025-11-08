@@ -51,6 +51,3 @@ pacman::p_load(tidyverse)
 | ==                        |  Equal to |                                     |
 | \|                        |  Or       |  See Key above Shift                |
 | c(value1, value2, value3) | Combine   | Combine values into a single vector |
-
-\
-\

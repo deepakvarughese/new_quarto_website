@@ -1,0 +1,56 @@
+---
+title: "Basic Syntax in R"
+format: revealjs
+---
+
++---------+-------------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
+| Symbol  | Shortcut          | Formal Name         | Read as                                                                                                            |
++=========+===================+=====================+====================================================================================================================+
+| \<-     | Alt + (Wiindows)\ | Assignment Operator | Assign whatever is on the right to the variable on the left.                                                       |
+|         | Option + (Mac)    |                     |                                                                                                                    |
++---------+-------------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
+| %\>%    | Ctrl + Shift + M  | Pipe (Tidyverse)    | Take this (dataset), and then do this operation                                                                    |
++---------+-------------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
+| " ...." |                   | String              | text inside quotation marks are usually character or string data type. This is not a rule but a general guideline. |
++---------+-------------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
+
+## Functions in R
+
+Fictional function from the Epi R Handbook
+
+![](images/clipboard-36494091.png)
+
+**Source** : <https://www.epirhandbook.com/en/new_pages/basics.html>
+
+## Functions
+
+![](images/clipboard-87410981.png)
+
+**Source** : <https://www.epirhandbook.com/en/new_pages/basics.html>
+
+## Where do Functions come from? 
+
+Functions can belong to either base R or to packages. \
+\
+If you want to specify which package to call a function
+
+```{r}
+#| echo: true
+
+pacman::p_load(tidyverse)
+```
+
+# Math Operators
+
+| Operator                  | Function  | Comments                            |
+|---------------------------|-----------|-------------------------------------|
+| \+                        | Add       |                                     |
+| \-                        | Subtract  |                                     |
+| \*                        | Multiply  |                                     |
+| /                         | Divide    |                                     |
+| ==                        |  Equal to |                                     |
+| \|                        |  Or       |  See Key above Shift                |
+| c(value1, value2, value3) | Combine   | Combine values into a single vector |
+
+\
+\

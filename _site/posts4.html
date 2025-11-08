@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Deepak Varughese">
 
-<title>What is Evidence Based Medicine? Why Study Research Methods? – Deepak Varughese</title>
+<title>GIS Training Material – Deepak Varughese</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,22 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,9 +68,67 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="../styles.css">
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -79,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Deepak Varughese</span>
     </a>
   </div>
@@ -90,23 +149,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts.html"> 
+    <a class="nav-link" href="./posts.html"> 
 <span class="menu-text">MapChallengeGallery</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts2.html"> 
+    <a class="nav-link" href="./posts2.html"> 
 <span class="menu-text">Epidemiology and Research Methods</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts3.html"> 
+    <a class="nav-link" href="./posts3.html"> 
 <span class="menu-text">R Training Materials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts4.html"> 
+    <a class="nav-link active" href="./posts4.html" aria-current="page"> 
 <span class="menu-text">GIS Training Materials</span></a>
   </li>  
 </ul>
@@ -125,29 +184,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#evidence-based-medicine" id="toc-evidence-based-medicine" class="nav-link active" data-scroll-target="#evidence-based-medicine">Evidence Based Medicine</a></li>
-  <li><a href="#why-study-research-methods" id="toc-why-study-research-methods" class="nav-link" data-scroll-target="#why-study-research-methods">Why Study Research Methods?</a></li>
+  <li><a href="#gis-training-material" id="toc-gis-training-material" class="nav-link active" data-scroll-target="#gis-training-material">GIS Training Material</a></li>
   </ul>
 </nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">What is Evidence Based Medicine? Why Study Research Methods?</h1>
+<h1 class="title">GIS Training Material</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Deepak Varughese </p>
-          </div>
-  </div>
     
   
     
@@ -158,22 +210,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Modern Medicine is Evidence Based Medicine. Medical Practitioners have used research data to critically evaluate the best way forward. Best practices change with time depending on new evidence. Yet EBM is not ONLY about data. It is equally about clinical experience as well as Patient Values and Expectations.</p>
-<section id="evidence-based-medicine" class="level2">
-<h2 class="anchored" data-anchor-id="evidence-based-medicine">Evidence Based Medicine</h2>
-<p>Evidence-based medicine&nbsp;(EBM) uses the scientific method to organize&nbsp;and apply current data to&nbsp;improve healthcare&nbsp;decisions. Thus, the&nbsp;best available&nbsp;science is combined with the healthcare professional’s clinical experience and the patient’s values to arrive at the best medical decision for the patient.&nbsp;</p>
-<p><img src="https://www.aapmr.org/images/default-source/quality-practice-images/ebm-triad.png?sfvrsn=a8fe507c_2" class="img-fluid" width="300"></p>
-<p>Sackett described Evidence Based Medicine as ” the conscienctious, explicit and judicial use of current best evidence in making decisions about the care of the patient. ”</p>
-<p>Note how by this definition EBM does not mean throwing common sense of the clinician out of the window. EBM values Clinical Expertise. It values Patient Values. Yet , it is rooted in science and all decisions need to be backed by solid research data.</p>
-</section>
-<section id="why-study-research-methods" class="level2">
-<h2 class="anchored" data-anchor-id="why-study-research-methods">Why Study Research Methods?</h2>
-<p>So why should medical students and those in health care choose to learn good research methods? Is it only to publish papers or do research? Not necessarily. All Health Care Workers may not be very interested in carrying out research but ALL will be consumers of research. Understanding good research methods helps us to critically evaluate “research findings” that are presented to us. According to the EBM model evaluating the best available research is not optional but necessary to be better at health care.</p>
+<section id="gis-training-material" class="level2">
+<h2 class="anchored" data-anchor-id="gis-training-material">GIS Training Material</h2>
+<p>This page has slides for GIS.</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1758476319852" data-listing-reading-time-sort="3" data-listing-word-count-sort="520">
+<a href="./posts4/intro_to_gis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Intro to GIS for Public Health
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Dr Deepak Varughese
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

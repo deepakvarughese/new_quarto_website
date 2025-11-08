@@ -1,0 +1,61 @@
+---
+title: "An Introduction to the tidyverse"
+author: "Dr Deepak Varughese"
+format: revealjs
+---
+
+## What is the tidyverse
+
+![](tidyverse_intro.jpg)
+
+[www.tidyverse.com](www.tidyverse.com)
+
+## Origin Story
+
+::: callout-note
+## Origin
+
+"The hardest part of collaborative data analysis is not finding the correct statistical model, but getting the data into a form that you can actually work with. This challenge led to the creation of the [reshape package](http://had.co.nz/reshape/) which made it easier to work with a variety of input datasets by first converting to a “molten” form which you could then “cast” into the desired form."
+
+-   Hadley Wickham
+:::
+
+<https://hadley.github.io/25-tidyverse-history/?trk=feed_main-feed-card_feed-article-content>
+
+## The Data Science Process
+
+![](ds_project.png)
+
+<https://hadley.github.io/25-tidyverse-history/?trk=feed_main-feed-card_feed-article-content>
+
+## Principles of Tidy Data
+
+-   Each variable must have its own column
+
+-   Each observation must have its own row
+
+-   Each value must have its own cell
+
+![](tidy_data_principles.png)
+
+**Source** : <https://r4ds.had.co.nz/tidy-data.html>
+
+## Number of Cases of Fictional Disease in the US and India
+
+| Country | 2023 | 2024 | 2025 |
+|---------|------|------|------|
+| India   | 600  | 400  | 500  |
+| US      | 500  | 200  | 400  |
+
+## Number of Cases of Fictional Disease in the US and India
+
+| Country | Year | Number of Cases |
+|---------|------|-----------------|
+| India   | 2023 | 600             |
+| India   | 2024 | 400             |
+| India   | 2025 | 500             |
+| US      | 2023 | 500             |
+| US      | 2024 | 200             |
+| US      | 2025 | 400             |
+
+#### Long Format vs Wide Format

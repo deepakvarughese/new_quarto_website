@@ -1,0 +1,300 @@
+---
+title: "Exploring Continuous Variables"
+author: "Deepak Varughese"
+format: html
+editor: visual
+---
+
+## Objectives
+
+-   In these slides we will understand how to describe numeric variables in your dataset.
+
+-   We will explore the ideas of the 4 moments of a dataset
+
+    -   Measures of Centrality
+
+    -   Measures of Spread
+
+    -   Skewness
+
+    -   Kortusis
+
+## The Dataset
+
+For this we will use a clean version of the data present on <https://www.kaggle.com/datasets/datasetengineer/public-health-dataset>
+
+This is a fictional public health dataset and is being used only for educational purposes.
+
+Note that the data has already been pre-processed and cleaned. Since data cleaning and processing is not the aim of this tutorial we will skip these steps.
+
+## Loading the libraries and importing data.
+
+```{r}
+pacman::p_load(
+  tidyverse,
+  here, 
+  rio,
+  janitor,
+  skimr,
+  flextable,
+  moments
+)
+
+data <- import(here("posts5","exercise_data_1.csv"))
+
+data_clean <- data %>%
+  mutate(across(
+    c(vaccination_status, compliance_with_health_guidelines),
+    ~ factor(
+      case_when(
+        .x == 1 ~ "Yes",
+        .x == 0 ~ "No"
+      ), 
+      levels = c("No", "Yes") 
+    )))
+
+
+```
+
+In the above steps we can see that we have imported the dataset and then fixed some of the variables so as to be in the correct data types. We now have a new object called `data_clean` that contains the clean dataset that is ready for analysis. Let us have a look at the dataset
+
+```{r}
+
+head(data_clean) %>% 
+  flextable()
+```
+
+We can now see that the dataset has 16 variables. 12 of these are categorical and 4 of them are numeric. We have explored this in the last tutorial.\
+
+## Exploring Numeric/ Continuous Variables
+
+A dataset with a continuous variables has rows and rows of data. How do we summarize this data in order for it to make sense to us? In order to describe that variable we need to find a way to collapse all the 43000 rows into some meaningful summary that would make sense to people. Only then can we transform these rows into some meaningful insight that can benefit people.\
+
+We usually do this with the following
+
+-   Measures of Centrality and Location
+
+-   Measures of Variability
+
+-   Measures of Shape of the data
+
+    ## Measures of Centrality: Finding the "Heart" of Your Data
+
+    When we have 43,000 rows of data, we need a single value that represents the "typical" observation. This is the **Measure of Centrality**.
+
+    ### The Mean
+
+    -   **What is it?** It is the sum of all values divided by the total number of observations ($n$). It represents the mathematical "balance point" of your data.
+
+    -   **When to use it:** Use the mean when your data is **symmetric** and has no extreme outliers (e.g., adult height or blood pressure in a healthy population).
+
+    -   **The "Why" :** Most clinical trials report the mean because it is mathematically powerful—it allows for advanced hypothesis testing (like t-tests).
+
+    -   **The Limitation:** It is not "robust."
+
+        > **Example:** You create a 7-minute health education video. If the **Mean View Time** is 3 minutes, it doesn’t necessarily mean most people watched half the video. It could mean 90% of people clicked away in 5 seconds, but 10% watched it 10 times over. The mean is "dragged" by those few enthusiasts.
+
+    ### The Median
+
+    -   **What is it?** The middle value when all observations are ranked from lowest to highest. It splits your dataset exactly in half.
+
+    -   **When to use it:** Use the median when your data is **skewed** or contains **outliers**.
+
+    -   **The "Why" (Biomedical Context):** In medicine, we often look at "Median Survival Time" or "Length of Stay."
+
+        > **Example:** In a hospital ward, 10 patients stay for 3 days, but one patient with complications stays for 90 days.
+        >
+        > -   **Mean:** \~11 days (misleading; suggests the ward is inefficient).
+        >
+        > -   **Median:** 3 days (accurate; reflects the experience of the "average" patient).
+
+    ### The Trimmed Mean
+
+    -   **What is it?** A mean calculated after discarding a small percentage (usually 5% or 10%) of the lowest and highest values.
+
+    -   **When to use it:** Use it when you want to utilize more data than the median provides, but you want to protect the result from being skewed by "freak" occurrences or measurement errors.
+
+    -   **The "Why" (Biomedical Context):** It is used in situations where "bias" or "noise" is expected at the extremes.
+
+        > **Example:** In Olympic diving or gymnastics, the highest and lowest scores are dropped before averaging. In a lab setting, if you run a blood test 10 times and one result is wildly different due to a technical glitch, a trimmed mean ensures that one "glitch" doesn't ruin your entire average.
+
+    ### Summary Table
+
+    |  |  |  |
+    |------------------------|------------------------|------------------------|
+    | **Measure** | **Sensitive to Outliers?** | **Best Used For...** |
+    | **Mean** | Yes (Highly) | Normal, bell-shaped data. |
+    | **Median** | No (Robust) | Skewed data (Income, Recovery time). |
+    | **Trimmed Mean** | No (Limited) | Removing "noise" or bias from the extremes. |
+
+    <div>
+
+    ## 2. Measures of Variability: How Spread Out is the Data?
+
+    </div>
+
+    If centrality tells us where the middle is, variability tells us how much the individual patients differ from that middle. High variability means the "average" is less representative of any single patient.
+
+    How do we now calculate the "Average distance of each value from the mean"?
+
+    Can we simply add all the distances of each point from the mean and then dividing by the number of observations? That would be the logical way to calculate "Average distance from the mean"?\
+    \
+    Actually no. Let us consider the following scenario.
+
+    ```{r}
+    # 1. Create the dataset
+    example_data <- data.frame(
+      patient_id = as.character(1:10),
+      value = c(2, 3, 4, 4, 5, 5, 6, 6, 7, 8)
+    )
+
+    # 2. Calculate deviations and squared deviations
+    table_df <- example_data %>%
+      mutate(
+        mean = mean(value),
+        distance_from_mean = value - mean
+      ) %>% 
+      flextable()
+
+    table_df
+    ```
+
+    If we add all the `distance from the mean` and now take and average we will actually get "Zero"!
+
+    This is because for every positive difference from the mean we now have a negative value from the mean. This would keep our net difference as zero simply because that is how addition and algebra work.\
+    \
+    To counter this we now need a strategy to remove the negative sign for the values below zero.\
+    \
+    To do this we can use two mathematical approaches
+
+-   Square the values - Variance and Standard Deviation
+
+-   Take the absolute values and remove the negative sign - Mean Absolute Deviation / Median Absolute Deviation
+
+-   Use a location based estimate similar to the median (Interquartile Range)
+
+    ### Variance ($s^2$) and Standard Deviation
+
+    -   **What is it?**
+
+        Take the square of each value for distance from the mean. This will automatically remove the negative sign. Now divide this number by the number of observations. This is your variance. This is however difficult to interpret as the scale and units are now in "square units". To convert it back to the original scale we now take the square root of the variance. This is our Standard Deviation.
+
+    -   **When to use it:** Variance is rarely reported directly. However it powers many statistical tests. The more commonly used statistic is the standard deviation. Whenever the mean is reported, it must always be accompanied by a report of standard deviation.
+
+    -   **"Why":** Standard Deviation is much more sensitive to values that are far away from the mean. Because you are **squaring** the distances, a point that is 4 units away contributes **16** to the variance, while a point 2 units away only contributes **4**. This can be important in cases where small fluctuations are important.
+
+        > **Example:** Imagine you are monitoring a patient's heart rate. If the rate fluctuates slightly, it’s fine. But if it occasionally spikes wildly, you want a metric that "screams" when those spikes happen. **SD** screams louder than **MAD** because it squares those extreme gaps, alerting the researcher to high instability.
+
+        ### Mean Absolute Deviation (MAD) or Median Absolute Deviation (MedAD)
+
+        -   **What is it?**
+
+            These measures use another approach to get rid of the negative sign. They simply use the absolute values ignoring the negative sign. They look at the absolute distance of each point from the center (Mean or Median) without squaring them.
+
+        -   **The "Why" and When**
+
+            Squaring the differences (as in Variance/SD) gives massive weight to outliers. MAD does not do this and gives a more even estimate. When to use what will depend on how important the outliers are to the dataset.\
+            \
+            MAD were traditionally not used much in statistics because their use in inferential statistics etc can be computationally intensive. Since traditional statistics were done using calculus , pen and paper the standard deviation was always used. However MAD can be a more intuitive measure and is quickly gaining importance in data science especially in finance and other domains.
+
+    ### Interquartile Range (IQR)
+
+    -   **What is it?**
+
+        Suppose we were to list out all the values in the dataset in ascending order and divide them into 4 equal groups. The first group is from 0 to 25% of the values. The second from 25 to 50% of values. The third is the 50th to 75th percent of values and the last from 75th to 100 percent of values. These are called the 4 quartiles of the variable. The Interquartile range is the difference between where the 2nd Quartile Starts and the 3rd Quartile ends. Essentially it would contain 50% of the values.
+
+    -   **When to use it:** Always use this when you are reporting a **Median**. It is the "robust" partner to the median.
+
+    -   **The "Why":** Like the median, the IQR is not affected by extreme outliers.
+
+        ```{r}
+
+
+        patient_data <- data.frame(
+          Value = c(2, 3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 15, 18, 22, 30)
+        ) %>% 
+          arrange(Value) %>%
+          mutate(Patient_ID = row_number())
+
+
+        patient_data <- patient_data %>%
+          mutate(
+            Quartile = case_when(
+              Patient_ID <= 4  ~ "Q1 (0-25%)",
+              Patient_ID <= 8  ~ "Q2 (25-50%)",
+              Patient_ID <= 12 ~ "Q3 (50-75%)",
+              TRUE             ~ "Q4 (75-100%)"
+            )
+          )
+
+        # 3. Create the table
+        patient_data %>%
+          select(Patient_ID, Value, Quartile) %>%
+          flextable() %>%
+          set_header_labels(
+            Patient_ID = "Patient Rank",
+            Value = "Recovery Days",
+            Quartile = "Quartile Group"
+          ) %>%
+          # Color-code the quartiles to show the 4 distinct groups
+          bg(i = 1:4, bg = "#E1F5FE", part = "body") %>%
+          bg(i = 5:8, bg = "#B3E5FC", part = "body") %>%
+          bg(i = 9:12, bg = "#81D4FA", part = "body") %>%
+          bg(i = 13:16, bg = "#4FC3F7", part = "body") %>%
+          # Highlight the boundaries for IQR (Q1 and Q3)
+          bold(i = c(4, 12), j = 2) %>%
+          add_footer_lines("The IQR is the range between the end of Q1 (4 days) and the end of Q3 (12 days).") %>%
+          autofit()
+        ```
+
+        > **Example:**
+        >
+        > Consider the above example which looks at days of recovery for In-Patients at a ward. Notice how the IQR of 4-12 was calculated.
+
+    ### Coefficient of Variation (CV)
+
+    -   **What is it?**
+
+        The Coefficient of Variance is a bit different from everything we discussed. It is not measure of variability in the way the other variables here have been discussed. It is he ratio of the Standard Deviation to the Mean $(SD / Mean)$, often expressed as a percentage.
+
+    -   **When to use it:**
+
+        The CV is used to **compare the variability** of two different variables that have different units or wildly different scales. The standard deviations of 2 different variables cannot be directly compared as they may be measured on different scales and units. We now need a way to normalize this. This is done by dividing by mean and therefore removing the scale from the equation.
+
+    -   **The "Why":** It provides a "normalized" measure of spread.
+
+        > Suppose you want to know if a patient's **Cholesterol** is more unstable than their **Body Weight**. You can't compare "mg/dL" to "kg" directly.
+        >
+        > -   **Weight:** Mean = 80kg, SD = 2kg $\rightarrow$ **CV = 2.5%**
+        >
+        > -   **Cholesterol:** Mean = 200mg/dL, SD = 20mg/dL $\rightarrow$ **CV = 10%**
+        >
+        > **Interpretation:** Even though the SD for cholesterol (20) looks much bigger than the SD for weight (2), the cholesterol is actually **four times more variable** relative to its average.
+
+        ```{r}
+
+        # Comparing Weight vs Cholesterol Variability
+        comparison <- data.frame(
+          Metric = c("Body Weight (kg)", "Cholesterol (mg/dL)"),
+          Mean = c(80, 200),
+          SD = c(2, 20)
+        ) %>%
+          mutate(CV = (SD / Mean) * 100)
+
+        comparison %>%
+          flextable() %>%
+          set_header_labels(CV = "CV (%)") %>%
+          colformat_double(digits = 1) %>%
+          set_caption("Table: Using CV to Compare Variability Across Different Scales")
+        ```
+
+    ### Summary Table for Students
+
+    |  |  |  |  |
+    |------------------|------------------|------------------|------------------|
+    | **Measure** | **Pair it with** | **Unit of Measure** | **Best for...** |
+    | **Standard Deviation** | Mean | Same as data (e.g., mmHg) | Normal distributions. |
+    | **IQR** | Median | Same as data (e.g., days) | Skewed data/Clinical stay. |
+    | **CV** | N/A | Percentage (%) | Comparing consistency across different scales. |
+
+    We will look at measures of the spread of the data in the next tutorial

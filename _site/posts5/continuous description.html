@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Deepak Varughese">
+
+<title>Exploring Continuous Variables – Deepak Varughese</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+
+<script src="../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Deepak Varughese</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html"> 
+<span class="menu-text">Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts2.html"> 
+<span class="menu-text">Epidemiology and Research Methods</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts3.html"> 
+<span class="menu-text">R Training Materials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts4.html"> 
+<span class="menu-text">GIS Training Materials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts5.html"> 
+<span class="menu-text">Statistics for Data Science</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link" data-scroll-target="#the-dataset">The Dataset</a></li>
+  <li><a href="#loading-the-libraries-and-importing-data." id="toc-loading-the-libraries-and-importing-data." class="nav-link" data-scroll-target="#loading-the-libraries-and-importing-data.">Loading the libraries and importing data.</a></li>
+  <li><a href="#exploring-numeric-continuous-variables" id="toc-exploring-numeric-continuous-variables" class="nav-link" data-scroll-target="#exploring-numeric-continuous-variables">Exploring Numeric/ Continuous Variables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exploring Continuous Variables</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Deepak Varughese </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li><p>In these slides we will understand how to describe numeric variables in your dataset.</p></li>
+<li><p>We will explore the ideas of the 4 moments of a dataset</p>
+<ul>
+<li><p>Measures of Centrality</p></li>
+<li><p>Measures of Spread</p></li>
+<li><p>Skewness</p></li>
+<li><p>Kortusis</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset">The Dataset</h2>
+<p>For this we will use a clean version of the data present on <a href="https://www.kaggle.com/datasets/datasetengineer/public-health-dataset" class="uri">https://www.kaggle.com/datasets/datasetengineer/public-health-dataset</a></p>
+<p>This is a fictional public health dataset and is being used only for educational purposes.</p>
+<p>Note that the data has already been pre-processed and cleaned. Since data cleaning and processing is not the aim of this tutorial we will skip these steps.</p>
+</section>
+<section id="loading-the-libraries-and-importing-data." class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-libraries-and-importing-data.">Loading the libraries and importing data.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  tidyverse,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  here, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  rio,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  janitor,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  skimr,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  flextable,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  moments</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="fu">here</span>(<span class="st">"posts5"</span>,<span class="st">"exercise_data_1.csv"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(vaccination_status, compliance_with_health_guidelines),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> <span class="fu">factor</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        .x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Yes"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        .x <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"No"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      ), </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>) </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    )))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the above steps we can see that we have imported the dataset and then fixed some of the variables so as to be in the correct data types. We now have a new object called <code>data_clean</code> that contains the clean dataset that is ready for analysis. Let us have a look at the dataset</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_clean) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-22915f34{}.cl-2283880a{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2289bf18{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2289bf22{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2289ebfa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2289ec04{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2289ec05{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2289ec0e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2289ec0f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2289ec18{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-22915f34"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2289ebfa"><p class="cl-2289bf18"><span class="cl-2283880a">age</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">gender</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">location</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">ethnicity</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">ses</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">vaccination_status</span></p></th><th class="cl-2289ebfa"><p class="cl-2289bf18"><span class="cl-2283880a">temperature</span></p></th><th class="cl-2289ebfa"><p class="cl-2289bf18"><span class="cl-2283880a">aqi</span></p></th><th class="cl-2289ebfa"><p class="cl-2289bf18"><span class="cl-2283880a">humidity</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">travel_history</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">social_activity</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">compliance_with_health_guidelines</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">reported_symptoms</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">testing_results</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">disease_severity</span></p></th><th class="cl-2289ec04"><p class="cl-2289bf22"><span class="cl-2283880a">hospitalization_requirement</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">51</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Male</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Urban</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Ethnicity3</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">29.31228</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">133</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">31.51287</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Travel</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Yes</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Mild</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Negative</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Mild</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Requires Hospitalization</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">92</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Male</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Urban</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Ethnicity2</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">35.98183</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">121</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">76.88069</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Travel</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Medium</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Yes</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Severe</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Negative</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Mild</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Requires Hospitalization</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">14</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Male</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Urban</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Ethnicity3</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Yes</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">28.17669</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">42</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">86.36421</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Travel</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">None</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Negative</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Moderate</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Hospitalization</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">71</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Female</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Urban</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Ethnicity2</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">18.59550</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">142</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">28.82366</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Travel</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Medium</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Moderate</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Negative</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Severe</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Hospitalization</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">60</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Female</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Urban</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Ethnicity1</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">38.27969</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">231</span></p></td><td class="cl-2289ec05"><p class="cl-2289bf18"><span class="cl-2283880a">39.47306</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Travel</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Medium</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Yes</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Mild</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Negative</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">Mild</span></p></td><td class="cl-2289ec0e"><p class="cl-2289bf22"><span class="cl-2283880a">No Hospitalization</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2289ec0f"><p class="cl-2289bf18"><span class="cl-2283880a">20</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Female</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Urban</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Ethnicity1</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Yes</span></p></td><td class="cl-2289ec0f"><p class="cl-2289bf18"><span class="cl-2283880a">10.86268</span></p></td><td class="cl-2289ec0f"><p class="cl-2289bf18"><span class="cl-2283880a">10</span></p></td><td class="cl-2289ec0f"><p class="cl-2289bf18"><span class="cl-2283880a">85.72899</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">International</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Low</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Yes</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Mild</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Negative</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">Mild</span></p></td><td class="cl-2289ec18"><p class="cl-2289bf22"><span class="cl-2283880a">No Hospitalization</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>We can now see that the dataset has 16 variables. 12 of these are categorical and 4 of them are numeric. We have explored this in the last tutorial.<br>
+</p>
+</section>
+<section id="exploring-numeric-continuous-variables" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-numeric-continuous-variables">Exploring Numeric/ Continuous Variables</h2>
+<p>A dataset with a continuous variables has rows and rows of data. How do we summarize this data in order for it to make sense to us? In order to describe that variable we need to find a way to collapse all the 43000 rows into some meaningful summary that would make sense to people. Only then can we transform these rows into some meaningful insight that can benefit people.<br>
+</p>
+<p>We usually do this with the following</p>
+<ul>
+<li><p>Measures of Centrality and Location</p></li>
+<li><p>Measures of Variability</p></li>
+<li><p>Measures of Shape of the data</p>
+<h2 id="measures-of-centrality-finding-the-heart-of-your-data" class="anchored">Measures of Centrality: Finding the “Heart” of Your Data</h2>
+<p>When we have 43,000 rows of data, we need a single value that represents the “typical” observation. This is the <strong>Measure of Centrality</strong>.</p>
+<h3 id="the-mean" class="anchored">The Mean</h3>
+<ul>
+<li><p><strong>What is it?</strong> It is the sum of all values divided by the total number of observations (<span class="math inline">\(n\)</span>). It represents the mathematical “balance point” of your data.</p></li>
+<li><p><strong>When to use it:</strong> Use the mean when your data is <strong>symmetric</strong> and has no extreme outliers (e.g., adult height or blood pressure in a healthy population).</p></li>
+<li><p><strong>The “Why” :</strong> Most clinical trials report the mean because it is mathematically powerful—it allows for advanced hypothesis testing (like t-tests).</p></li>
+<li><p><strong>The Limitation:</strong> It is not “robust.”</p>
+<blockquote class="blockquote">
+<p><strong>Example:</strong> You create a 7-minute health education video. If the <strong>Mean View Time</strong> is 3 minutes, it doesn’t necessarily mean most people watched half the video. It could mean 90% of people clicked away in 5 seconds, but 10% watched it 10 times over. The mean is “dragged” by those few enthusiasts.</p>
+</blockquote></li>
+</ul>
+<h3 id="the-median" class="anchored">The Median</h3>
+<ul>
+<li><p><strong>What is it?</strong> The middle value when all observations are ranked from lowest to highest. It splits your dataset exactly in half.</p></li>
+<li><p><strong>When to use it:</strong> Use the median when your data is <strong>skewed</strong> or contains <strong>outliers</strong>.</p></li>
+<li><p><strong>The “Why” (Biomedical Context):</strong> In medicine, we often look at “Median Survival Time” or “Length of Stay.”</p>
+<blockquote class="blockquote">
+<p><strong>Example:</strong> In a hospital ward, 10 patients stay for 3 days, but one patient with complications stays for 90 days.</p>
+<ul>
+<li><p><strong>Mean:</strong> ~11 days (misleading; suggests the ward is inefficient).</p></li>
+<li><p><strong>Median:</strong> 3 days (accurate; reflects the experience of the “average” patient).</p></li>
+</ul>
+</blockquote></li>
+</ul>
+<h3 id="the-trimmed-mean" class="anchored">The Trimmed Mean</h3>
+<ul>
+<li><p><strong>What is it?</strong> A mean calculated after discarding a small percentage (usually 5% or 10%) of the lowest and highest values.</p></li>
+<li><p><strong>When to use it:</strong> Use it when you want to utilize more data than the median provides, but you want to protect the result from being skewed by “freak” occurrences or measurement errors.</p></li>
+<li><p><strong>The “Why” (Biomedical Context):</strong> It is used in situations where “bias” or “noise” is expected at the extremes.</p>
+<blockquote class="blockquote">
+<p><strong>Example:</strong> In Olympic diving or gymnastics, the highest and lowest scores are dropped before averaging. In a lab setting, if you run a blood test 10 times and one result is wildly different due to a technical glitch, a trimmed mean ensures that one “glitch” doesn’t ruin your entire average.</p>
+</blockquote></li>
+</ul>
+<h3 id="summary-table" class="anchored">Summary Table</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Measure</strong></td>
+<td><strong>Sensitive to Outliers?</strong></td>
+<td><strong>Best Used For…</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Mean</strong></td>
+<td>Yes (Highly)</td>
+<td>Normal, bell-shaped data.</td>
+</tr>
+<tr class="odd">
+<td><strong>Median</strong></td>
+<td>No (Robust)</td>
+<td>Skewed data (Income, Recovery time).</td>
+</tr>
+<tr class="even">
+<td><strong>Trimmed Mean</strong></td>
+<td>No (Limited)</td>
+<td>Removing “noise” or bias from the extremes.</td>
+</tr>
+</tbody>
+</table>
+<div>
+<h2 id="measures-of-variability-how-spread-out-is-the-data" class="anchored">2. Measures of Variability: How Spread Out is the Data?</h2>
+</div>
+<p>If centrality tells us where the middle is, variability tells us how much the individual patients differ from that middle. High variability means the “average” is less representative of any single patient.</p>
+<p>How do we now calculate the “Average distance of each value from the mean”?</p>
+<p>Can we simply add all the distances of each point from the mean and then dividing by the number of observations? That would be the logical way to calculate “Average distance from the mean”?<br>
+<br>
+Actually no. Let us consider the following scenario.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create the dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>example_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient_id =</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Calculate deviations and squared deviations</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>table_df <span class="ot">&lt;-</span> example_data <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(value),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">distance_from_mean =</span> value <span class="sc">-</span> mean</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>table_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-22de4a92{}.cl-22cf9e66{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-22d69b76{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-22d69b80{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-22d6c6d2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-22d6c6dc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-22d6c6e6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-22d6c6e7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-22d6c6f0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-22d6c6fa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-22de4a92"><thead><tr style="overflow-wrap:break-word;"><th class="cl-22d6c6d2"><p class="cl-22d69b76"><span class="cl-22cf9e66">patient_id</span></p></th><th class="cl-22d6c6dc"><p class="cl-22d69b80"><span class="cl-22cf9e66">value</span></p></th><th class="cl-22d6c6dc"><p class="cl-22d69b80"><span class="cl-22cf9e66">mean</span></p></th><th class="cl-22d6c6dc"><p class="cl-22d69b80"><span class="cl-22cf9e66">distance_from_mean</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">1</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">2</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">-3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">2</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">3</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">-2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">3</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">4</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">-1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">4</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">4</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">-1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">6</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">7</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">6</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">8</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">6</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6e6"><p class="cl-22d69b76"><span class="cl-22cf9e66">9</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">7</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6e7"><p class="cl-22d69b80"><span class="cl-22cf9e66">2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-22d6c6f0"><p class="cl-22d69b76"><span class="cl-22cf9e66">10</span></p></td><td class="cl-22d6c6fa"><p class="cl-22d69b80"><span class="cl-22cf9e66">8</span></p></td><td class="cl-22d6c6fa"><p class="cl-22d69b80"><span class="cl-22cf9e66">5</span></p></td><td class="cl-22d6c6fa"><p class="cl-22d69b80"><span class="cl-22cf9e66">3</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>If we add all the <code>distance from the mean</code> and now take and average we will actually get “Zero”!</p>
+<p>This is because for every positive difference from the mean we now have a negative value from the mean. This would keep our net difference as zero simply because that is how addition and algebra work.<br>
+<br>
+To counter this we now need a strategy to remove the negative sign for the values below zero.<br>
+<br>
+To do this we can use two mathematical approaches</p></li>
+<li><p>Square the values - Variance and Standard Deviation</p></li>
+<li><p>Take the absolute values and remove the negative sign - Mean Absolute Deviation / Median Absolute Deviation</p></li>
+<li><p>Use a location based estimate similar to the median (Interquartile Range)</p>
+<h3 id="variance-s2-and-standard-deviation" class="anchored">Variance (<span class="math inline">\(s^2\)</span>) and Standard Deviation</h3>
+<ul>
+<li><p><strong>What is it?</strong></p>
+<p>Take the square of each value for distance from the mean. This will automatically remove the negative sign. Now divide this number by the number of observations. This is your variance. This is however difficult to interpret as the scale and units are now in “square units”. To convert it back to the original scale we now take the square root of the variance. This is our Standard Deviation.</p></li>
+<li><p><strong>When to use it:</strong> Variance is rarely reported directly. However it powers many statistical tests. The more commonly used statistic is the standard deviation. Whenever the mean is reported, it must always be accompanied by a report of standard deviation.</p></li>
+<li><p><strong>“Why”:</strong> Standard Deviation is much more sensitive to values that are far away from the mean. Because you are <strong>squaring</strong> the distances, a point that is 4 units away contributes <strong>16</strong> to the variance, while a point 2 units away only contributes <strong>4</strong>. This can be important in cases where small fluctuations are important.</p>
+<blockquote class="blockquote">
+<p><strong>Example:</strong> Imagine you are monitoring a patient’s heart rate. If the rate fluctuates slightly, it’s fine. But if it occasionally spikes wildly, you want a metric that “screams” when those spikes happen. <strong>SD</strong> screams louder than <strong>MAD</strong> because it squares those extreme gaps, alerting the researcher to high instability.</p>
+</blockquote>
+<h3 id="mean-absolute-deviation-mad-or-median-absolute-deviation-medad" class="anchored">Mean Absolute Deviation (MAD) or Median Absolute Deviation (MedAD)</h3>
+<ul>
+<li><p><strong>What is it?</strong></p>
+<p>These measures use another approach to get rid of the negative sign. They simply use the absolute values ignoring the negative sign. They look at the absolute distance of each point from the center (Mean or Median) without squaring them.</p></li>
+<li><p><strong>The “Why” and When</strong></p>
+<p>Squaring the differences (as in Variance/SD) gives massive weight to outliers. MAD does not do this and gives a more even estimate. When to use what will depend on how important the outliers are to the dataset.<br>
+<br>
+MAD were traditionally not used much in statistics because their use in inferential statistics etc can be computationally intensive. Since traditional statistics were done using calculus , pen and paper the standard deviation was always used. However MAD can be a more intuitive measure and is quickly gaining importance in data science especially in finance and other domains.</p></li>
+</ul></li>
+</ul>
+<h3 id="interquartile-range-iqr" class="anchored">Interquartile Range (IQR)</h3>
+<ul>
+<li><p><strong>What is it?</strong></p>
+<p>Suppose we were to list out all the values in the dataset in ascending order and divide them into 4 equal groups. The first group is from 0 to 25% of the values. The second from 25 to 50% of values. The third is the 50th to 75th percent of values and the last from 75th to 100 percent of values. These are called the 4 quartiles of the variable. The Interquartile range is the difference between where the 2nd Quartile Starts and the 3rd Quartile ends. Essentially it would contain 50% of the values.</p></li>
+<li><p><strong>When to use it:</strong> Always use this when you are reporting a <strong>Median</strong>. It is the “robust” partner to the median.</p></li>
+<li><p><strong>The “Why”:</strong> Like the median, the IQR is not affected by extreme outliers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>patient_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">30</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Value) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Patient_ID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>patient_data <span class="ot">&lt;-</span> patient_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Quartile =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      Patient_ID <span class="sc">&lt;=</span> <span class="dv">4</span>  <span class="sc">~</span> <span class="st">"Q1 (0-25%)"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      Patient_ID <span class="sc">&lt;=</span> <span class="dv">8</span>  <span class="sc">~</span> <span class="st">"Q2 (25-50%)"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      Patient_ID <span class="sc">&lt;=</span> <span class="dv">12</span> <span class="sc">~</span> <span class="st">"Q3 (50-75%)"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>             <span class="sc">~</span> <span class="st">"Q4 (75-100%)"</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Create the table</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>patient_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Patient_ID, Value, Quartile) <span class="sc">%&gt;%</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_header_labels</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Patient_ID =</span> <span class="st">"Patient Rank"</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Value =</span> <span class="st">"Recovery Days"</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">Quartile =</span> <span class="st">"Quartile Group"</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Color-code the quartiles to show the 4 distinct groups</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bg</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">bg =</span> <span class="st">"#E1F5FE"</span>, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bg</span>(<span class="at">i =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">bg =</span> <span class="st">"#B3E5FC"</span>, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bg</span>(<span class="at">i =</span> <span class="dv">9</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">bg =</span> <span class="st">"#81D4FA"</span>, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bg</span>(<span class="at">i =</span> <span class="dv">13</span><span class="sc">:</span><span class="dv">16</span>, <span class="at">bg =</span> <span class="st">"#4FC3F7"</span>, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Highlight the boundaries for IQR (Q1 and Q3)</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold</span>(<span class="at">i =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>), <span class="at">j =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_footer_lines</span>(<span class="st">"The IQR is the range between the end of Q1 (4 days) and the end of Q3 (12 days)."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autofit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-2327f070{}.cl-231aee16{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-231aee34{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-23214766{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-23214770{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-23217bd2{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217bdc{width:1.321in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217be6{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217be7{width:1.16in;background-color:rgba(225, 245, 254, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217bf0{width:1.321in;background-color:rgba(225, 245, 254, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217bf1{width:1.287in;background-color:rgba(225, 245, 254, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217bfa{width:1.16in;background-color:rgba(179, 229, 252, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217bfb{width:1.321in;background-color:rgba(179, 229, 252, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c04{width:1.287in;background-color:rgba(179, 229, 252, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c05{width:1.16in;background-color:rgba(129, 212, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c06{width:1.321in;background-color:rgba(129, 212, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c0e{width:1.287in;background-color:rgba(129, 212, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c0f{width:1.16in;background-color:rgba(79, 195, 247, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c10{width:1.321in;background-color:rgba(79, 195, 247, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c18{width:1.287in;background-color:rgba(79, 195, 247, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c19{width:1.16in;background-color:rgba(79, 195, 247, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c22{width:1.321in;background-color:rgba(79, 195, 247, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c23{width:1.287in;background-color:rgba(79, 195, 247, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c24{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c2c{width:1.321in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23217c2d{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2327f070"><thead><tr style="overflow-wrap:break-word;"><th class="cl-23217bd2"><p class="cl-23214766"><span class="cl-231aee16">Patient Rank</span></p></th><th class="cl-23217bdc"><p class="cl-23214766"><span class="cl-231aee16">Recovery Days</span></p></th><th class="cl-23217be6"><p class="cl-23214770"><span class="cl-231aee16">Quartile Group</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-23217be7"><p class="cl-23214766"><span class="cl-231aee16">1</span></p></td><td class="cl-23217bf0"><p class="cl-23214766"><span class="cl-231aee16">2</span></p></td><td class="cl-23217bf1"><p class="cl-23214770"><span class="cl-231aee16">Q1 (0-25%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217be7"><p class="cl-23214766"><span class="cl-231aee16">2</span></p></td><td class="cl-23217bf0"><p class="cl-23214766"><span class="cl-231aee16">3</span></p></td><td class="cl-23217bf1"><p class="cl-23214770"><span class="cl-231aee16">Q1 (0-25%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217be7"><p class="cl-23214766"><span class="cl-231aee16">3</span></p></td><td class="cl-23217bf0"><p class="cl-23214766"><span class="cl-231aee16">3</span></p></td><td class="cl-23217bf1"><p class="cl-23214770"><span class="cl-231aee16">Q1 (0-25%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217be7"><p class="cl-23214766"><span class="cl-231aee16">4</span></p></td><td class="cl-23217bf0"><p class="cl-23214766"><span class="cl-231aee34">4</span></p></td><td class="cl-23217bf1"><p class="cl-23214770"><span class="cl-231aee16">Q1 (0-25%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217bfa"><p class="cl-23214766"><span class="cl-231aee16">5</span></p></td><td class="cl-23217bfb"><p class="cl-23214766"><span class="cl-231aee16">5</span></p></td><td class="cl-23217c04"><p class="cl-23214770"><span class="cl-231aee16">Q2 (25-50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217bfa"><p class="cl-23214766"><span class="cl-231aee16">6</span></p></td><td class="cl-23217bfb"><p class="cl-23214766"><span class="cl-231aee16">5</span></p></td><td class="cl-23217c04"><p class="cl-23214770"><span class="cl-231aee16">Q2 (25-50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217bfa"><p class="cl-23214766"><span class="cl-231aee16">7</span></p></td><td class="cl-23217bfb"><p class="cl-23214766"><span class="cl-231aee16">6</span></p></td><td class="cl-23217c04"><p class="cl-23214770"><span class="cl-231aee16">Q2 (25-50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217bfa"><p class="cl-23214766"><span class="cl-231aee16">8</span></p></td><td class="cl-23217bfb"><p class="cl-23214766"><span class="cl-231aee16">7</span></p></td><td class="cl-23217c04"><p class="cl-23214770"><span class="cl-231aee16">Q2 (25-50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c05"><p class="cl-23214766"><span class="cl-231aee16">9</span></p></td><td class="cl-23217c06"><p class="cl-23214766"><span class="cl-231aee16">8</span></p></td><td class="cl-23217c0e"><p class="cl-23214770"><span class="cl-231aee16">Q3 (50-75%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c05"><p class="cl-23214766"><span class="cl-231aee16">10</span></p></td><td class="cl-23217c06"><p class="cl-23214766"><span class="cl-231aee16">9</span></p></td><td class="cl-23217c0e"><p class="cl-23214770"><span class="cl-231aee16">Q3 (50-75%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c05"><p class="cl-23214766"><span class="cl-231aee16">11</span></p></td><td class="cl-23217c06"><p class="cl-23214766"><span class="cl-231aee16">10</span></p></td><td class="cl-23217c0e"><p class="cl-23214770"><span class="cl-231aee16">Q3 (50-75%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c05"><p class="cl-23214766"><span class="cl-231aee16">12</span></p></td><td class="cl-23217c06"><p class="cl-23214766"><span class="cl-231aee34">12</span></p></td><td class="cl-23217c0e"><p class="cl-23214770"><span class="cl-231aee16">Q3 (50-75%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c0f"><p class="cl-23214766"><span class="cl-231aee16">13</span></p></td><td class="cl-23217c10"><p class="cl-23214766"><span class="cl-231aee16">15</span></p></td><td class="cl-23217c18"><p class="cl-23214770"><span class="cl-231aee16">Q4 (75-100%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c0f"><p class="cl-23214766"><span class="cl-231aee16">14</span></p></td><td class="cl-23217c10"><p class="cl-23214766"><span class="cl-231aee16">18</span></p></td><td class="cl-23217c18"><p class="cl-23214770"><span class="cl-231aee16">Q4 (75-100%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c0f"><p class="cl-23214766"><span class="cl-231aee16">15</span></p></td><td class="cl-23217c10"><p class="cl-23214766"><span class="cl-231aee16">22</span></p></td><td class="cl-23217c18"><p class="cl-23214770"><span class="cl-231aee16">Q4 (75-100%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23217c19"><p class="cl-23214766"><span class="cl-231aee16">16</span></p></td><td class="cl-23217c22"><p class="cl-23214766"><span class="cl-231aee16">30</span></p></td><td class="cl-23217c23"><p class="cl-23214770"><span class="cl-231aee16">Q4 (75-100%)</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td colspan="3" class="cl-23217c24"><p class="cl-23214770"><span class="cl-231aee16">The IQR is the range between the end of Q1 (4 days) and the end of Q3 (12 days).</span></p></td></tr></tfoot></table></div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Example:</strong></p>
+<p>Consider the above example which looks at days of recovery for In-Patients at a ward. Notice how the IQR of 4-12 was calculated.</p>
+</blockquote></li>
+</ul>
+<h3 id="coefficient-of-variation-cv" class="anchored">Coefficient of Variation (CV)</h3>
+<ul>
+<li><p><strong>What is it?</strong></p>
+<p>The Coefficient of Variance is a bit different from everything we discussed. It is not measure of variability in the way the other variables here have been discussed. It is he ratio of the Standard Deviation to the Mean <span class="math inline">\((SD / Mean)\)</span>, often expressed as a percentage.</p></li>
+<li><p><strong>When to use it:</strong></p>
+<p>The CV is used to <strong>compare the variability</strong> of two different variables that have different units or wildly different scales. The standard deviations of 2 different variables cannot be directly compared as they may be measured on different scales and units. We now need a way to normalize this. This is done by dividing by mean and therefore removing the scale from the equation.</p></li>
+<li><p><strong>The “Why”:</strong> It provides a “normalized” measure of spread.</p>
+<blockquote class="blockquote">
+<p>Suppose you want to know if a patient’s <strong>Cholesterol</strong> is more unstable than their <strong>Body Weight</strong>. You can’t compare “mg/dL” to “kg” directly.</p>
+<ul>
+<li><p><strong>Weight:</strong> Mean = 80kg, SD = 2kg <span class="math inline">\(\rightarrow\)</span> <strong>CV = 2.5%</strong></p></li>
+<li><p><strong>Cholesterol:</strong> Mean = 200mg/dL, SD = 20mg/dL <span class="math inline">\(\rightarrow\)</span> <strong>CV = 10%</strong></p></li>
+</ul>
+<p><strong>Interpretation:</strong> Even though the SD for cholesterol (20) looks much bigger than the SD for weight (2), the cholesterol is actually <strong>four times more variable</strong> relative to its average.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparing Weight vs Cholesterol Variability</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Metric =</span> <span class="fu">c</span>(<span class="st">"Body Weight (kg)"</span>, <span class="st">"Cholesterol (mg/dL)"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">200</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">20</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CV =</span> (SD <span class="sc">/</span> Mean) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>comparison <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_header_labels</span>(<span class="at">CV =</span> <span class="st">"CV (%)"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colformat_double</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_caption</span>(<span class="st">"Table: Using CV to Compare Variability Across Different Scales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-234817d8{}.cl-233cb0a0{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-23417cfc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-23417d06{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2341c0a4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2341c0b8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2341c0c2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2341c0cc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2341c0cd{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2341c0d6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-234817d8"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2341c0a4"><p class="cl-23417cfc"><span class="cl-233cb0a0">Metric</span></p></th><th class="cl-2341c0b8"><p class="cl-23417d06"><span class="cl-233cb0a0">Mean</span></p></th><th class="cl-2341c0b8"><p class="cl-23417d06"><span class="cl-233cb0a0">SD</span></p></th><th class="cl-2341c0b8"><p class="cl-23417d06"><span class="cl-233cb0a0">CV (%)</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2341c0c2"><p class="cl-23417cfc"><span class="cl-233cb0a0">Body Weight (kg)</span></p></td><td class="cl-2341c0cc"><p class="cl-23417d06"><span class="cl-233cb0a0">80.0</span></p></td><td class="cl-2341c0cc"><p class="cl-23417d06"><span class="cl-233cb0a0">2.0</span></p></td><td class="cl-2341c0cc"><p class="cl-23417d06"><span class="cl-233cb0a0">2.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2341c0cd"><p class="cl-23417cfc"><span class="cl-233cb0a0">Cholesterol (mg/dL)</span></p></td><td class="cl-2341c0d6"><p class="cl-23417d06"><span class="cl-233cb0a0">200.0</span></p></td><td class="cl-2341c0d6"><p class="cl-23417d06"><span class="cl-233cb0a0">20.0</span></p></td><td class="cl-2341c0d6"><p class="cl-23417d06"><span class="cl-233cb0a0">10.0</span></p></td></tr></tbody></table></div>
+</div>
+</div></li>
+</ul>
+<h3 id="summary-table-for-students" class="anchored">Summary Table for Students</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Measure</strong></td>
+<td><strong>Pair it with</strong></td>
+<td><strong>Unit of Measure</strong></td>
+<td><strong>Best for…</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Standard Deviation</strong></td>
+<td>Mean</td>
+<td>Same as data (e.g., mmHg)</td>
+<td>Normal distributions.</td>
+</tr>
+<tr class="odd">
+<td><strong>IQR</strong></td>
+<td>Median</td>
+<td>Same as data (e.g., days)</td>
+<td>Skewed data/Clinical stay.</td>
+</tr>
+<tr class="even">
+<td><strong>CV</strong></td>
+<td>N/A</td>
+<td>Percentage (%)</td>
+<td>Comparing consistency across different scales.</td>
+</tr>
+</tbody>
+</table>
+<p>We will look at measures of the spread of the data in the next tutorial</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -9,4 +9,4 @@ listing:
 
 ## Epidemiology
 
-This is a quick page to display blogs and teaching resources regarding Epidemiology, Research Methods and Data Science. 
+This is a quick page to display blogs and teaching resources regarding Epidemiology, Research Methods and Data Science.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Training Material – Deepak Varughese</title>
+<title>Data Types – Deepak Varughese</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,67 +66,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -138,7 +78,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Deepak Varughese</span>
     </a>
   </div>
@@ -149,33 +89,28 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html"> 
+    <a class="nav-link" href="../posts.html"> 
 <span class="menu-text">Gallery</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts2.html"> 
+    <a class="nav-link" href="../posts2.html"> 
 <span class="menu-text">Epidemiology and Research Methods</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./posts3.html" aria-current="page"> 
+    <a class="nav-link" href="../posts3.html"> 
 <span class="menu-text">R Training Materials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts4.html"> 
+    <a class="nav-link" href="../posts4.html"> 
 <span class="menu-text">GIS Training Materials</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="./posts5.qmd"> 
-<span class="menu-text"></span></a>
-  </li>  
   <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Statistics for Data Science</span>
-    </span>
+    <a class="nav-link" href="../posts5.html"> 
+<span class="menu-text">Statistics for Data Science</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -188,21 +123,15 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#r-training-material" id="toc-r-training-material" class="nav-link active" data-scroll-target="#r-training-material">R Training Material</a></li>
-  </ul>
-</nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div></div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R Training Material</h1>
+<h1 class="title">Data Types</h1>
 </div>
 
 
@@ -219,201 +148,82 @@ window.Quarto = {
 </header>
 
 
-<section id="r-training-material" class="level2">
-<h2 class="anchored" data-anchor-id="r-training-material">R Training Material</h2>
-<p>This page has slides for R Training.</p>
+<p><strong>The Landscape of Data in Data Science</strong></p>
+<p>In the broadest sense, <strong>data</strong> is any input that can be structured to provide information and drive action. However, “anything” is too broad for practical work. To navigate data science effectively, we categorize data based on its format and how it can be analyzed.</p>
+<p><strong>1. Unstructured Data</strong></p>
+<p>Unstructured data is increasingly vital in modern science. While we often think of it as simple “string” or “character” fields—such as a “Name” column or an “Other, please describe” box—it encompasses much more.</p>
+<p>Modern Machine Learning allows us to extract value from complex unstructured sources, including:</p>
+<ul>
+<li><p><strong>Visuals:</strong> X-rays and fundoscopy images.</p></li>
+<li><p><strong>Audio:</strong> Cough recordings or voice patterns.</p></li>
+<li><p><strong>Sensors:</strong> Real-time data from wearables.</p></li>
+</ul>
+<p>While it may seem like magic, it follows a systematic method of converting these “raw” formats into structured data that models can interpret.</p>
+<p><strong>2. Structured Data</strong></p>
+<p>Structured data is a more formal entity, typically stored in a “rectangular” format with variables in <strong>columns</strong> and cases (or observations) in <strong>rows</strong>. This data is generally split into two types:</p>
+<p><strong>Categorical</strong></p>
+<ul>
+<li><p><strong>Nominal/ Categorical :</strong> Data that presents as a category with no inherent rank (e.g., Hair Color or “Diseased/Non-Diseased”). These are typically expressed as counts and percentages.</p></li>
+<li><p><strong>Ordinal:</strong> A special type of categorical data where there is a logical order (e.g., Mild, Moderate, Severe). When visualizing this data, maintaining that specific sequence is crucial.</p></li>
+</ul>
+<p><strong>Numeric (Quantitative)</strong></p>
+<ul>
+<li><p><strong>Continuous:</strong> Variables that can take on decimal values (e.g., weight or blood glucose). These are typically represented by a <strong>mean</strong> or <strong>median</strong>.</p></li>
+<li><p><strong>Discrete:</strong> Variables that cannot take on decimal places (e.g., Number of Children). Since you cannot have 1.5 children, it only makes logical sense to treat these as whole integers.</p></li>
+</ul>
+<p><strong>Software-Specific Nomenclature</strong></p>
+<p>While the principles remain constant, the “names” change depending on the tool you use.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Concept</strong></td>
+<td><strong>Idea</strong></td>
+<td><strong>R Term</strong></td>
+<td><strong>Other Terms</strong></td>
+</tr>
+<tr class="even">
+<td>Free Text</td>
+<td>Any Text that is typed out in an unstructured way</td>
+<td>Character</td>
+<td>String</td>
+</tr>
+<tr class="odd">
+<td>Categorical</td>
+<td>Data that can only take a specific set of values (Structured)</td>
+<td>Character</td>
+<td>String</td>
+</tr>
+<tr class="even">
+<td>Ordinal</td>
+<td>Categorical Data that can take a predefined order - example Mild, Moderate, Severe</td>
+<td>Factor</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Continuous</td>
+<td>Numeric Data that can take decimal places</td>
+<td>Numeric</td>
+<td>Double, Float</td>
+</tr>
+<tr class="even">
+<td>Discrete</td>
+<td>Numeric Data that cannot take decimal places</td>
+<td>Integer</td>
+<td>Int</td>
+</tr>
+</tbody>
+</table>
+<p>In database systems like SQL, terminology becomes even more intricate, with specific types based on <strong>precision</strong> (total digits) and <strong>scale</strong> (digits after the decimal).</p>
 
 
 
-</section>
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1762586919436" data-listing-reading-time-sort="6" data-listing-word-count-sort="1017">
-<a href="./posts3/General Syntax in R.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts3\images\clipboard-36494091.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Basic Syntax in R
-</h5>
-<div class="card-text listing-description">
-Fictional function from the Epi R Handbook
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1755837510395" data-listing-reading-time-sort="1" data-listing-word-count-sort="164">
-<a href="./posts3/Installing R on your System.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Installing R on your System
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Dr Deepak Varughese, MBBS, MD, PGDFM
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1762599417827" data-listing-reading-time-sort="2" data-listing-word-count-sort="311">
-<a href="./posts3/Introduction to the tidyverse.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-An Introduction to the tidyverse
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Dr Deepak Varughese
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1762631758093" data-listing-reading-time-sort="2" data-listing-word-count-sort="222">
-<a href="./posts3/Loading packages.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Loading Packages
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Dr Deepak Varughese
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-listing-file-modified-sort="1756115273428" data-listing-reading-time-sort="2" data-listing-word-count-sort="236">
-<a href="./posts3/rstudio_interface.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts3\r_studio_interface.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-The R Studio Interface
-</h5>
-<div class="card-text listing-description">
-This is your workhorse. This is where you actually write code.
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Dr Deepak Varughese
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-listing-file-modified-sort="1756118332471" data-listing-reading-time-sort="1" data-listing-word-count-sort="68">
-<a href="./posts3/Setting Up R Studio.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Initial Setup of RStudio
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Dr Deepak Varughese
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-listing-file-modified-sort="1756120836414" data-listing-reading-time-sort="1" data-listing-word-count-sort="85">
-<a href="./posts3/staying_organized_with_projects.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Getting Organized with Projects
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Deepak Varughese
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-listing-file-modified-sort="1762627722759" data-listing-reading-time-sort="1" data-listing-word-count-sort="73">
-<a href="./posts3/verbs_of_the_tidyverse.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-The Verbs of the Tidyverse
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="8" data-listing-file-modified-sort="1755672172371" data-listing-reading-time-sort="4" data-listing-word-count-sort="698">
-<a href="./posts3/What is R.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-An Introduction to Programming and R for Academics
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Dr Deepak Thomas Varughese , MBBS, MD , PGDFM
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

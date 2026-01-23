@@ -8,13 +8,15 @@ website:
       - href: index.qmd
         text: About
       - href: posts.qmd
-        text: MapChallengeGallery
+        text: Gallery
       - href: posts2.qmd
         text: Epidemiology and Research Methods
       - href: posts3.qmd
         text: R Training Materials
       - href: posts4.qmd
         text: GIS Training Materials
+      - href: posts5.qmd
+        text: Statistics for Data Science
       
 
 format:

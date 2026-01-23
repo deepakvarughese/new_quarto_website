@@ -7,6 +7,6 @@ listing:
   categories: true # allows you to sort posts by assigned categories 
 ---
 
-## 30 Day Map Challenge
+## Gallery
 
-This is a quick page to display all the maps I made as part of #30DayMapChallenge in November 2023. This is a challenge across the mapping community as a way to display better mapping practices. Through this I hope to bring together my love for GIS and Data Viz in order to create better and more compelling visualizations.
+This is a brief gallery for some Data Visualization .

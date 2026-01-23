@@ -1,0 +1,52 @@
+---
+title: "Data Types"
+---
+
+In the broadest sense, **data** is any input that can be structured to provide information and drive action. However, "anything" is too broad for practical work. To navigate data science effectively, we categorize data based on its format and how it can be analyzed.
+
+**1. Unstructured Data**
+
+Unstructured data is increasingly vital in modern science. While we often think of it as simple "string" or "character" fields—such as a "Name" column or an "Other, please describe" box—it encompasses much more.
+
+Modern Machine Learning allows us to extract value from complex unstructured sources, including:
+
+-   **Visuals:** X-rays and fundoscopy images.
+
+-   **Audio:** Cough recordings or voice patterns.
+
+-   **Sensors:** Real-time data from wearables.
+
+While it may seem like magic, it follows a systematic method of converting these "raw" formats into structured data that models can interpret.
+
+**2. Structured Data**
+
+Structured data is a more formal entity, typically stored in a "rectangular" format with variables in **columns** and cases (or observations) in **rows**. This data is generally split into two types:
+
+**Categorical**
+
+-   **Nominal/ Categorical :** Data that presents as a category with no inherent rank (e.g., Hair Color or "Diseased/Non-Diseased"). These are typically expressed as counts and percentages.
+
+-   **Ordinal:** A special type of categorical data where there is a logical order (e.g., Mild, Moderate, Severe). When visualizing this data, maintaining that specific sequence is crucial.
+
+**Numeric (Quantitative)**
+
+-   **Continuous:** Variables that can take on decimal values (e.g., weight or blood glucose). These are typically represented by a **mean** or **median**.
+
+-   **Discrete:** Variables that cannot take on decimal places (e.g., Number of Children). Since you cannot have 1.5 children, it only makes logical sense to treat these as whole integers.
+
+**Software-Specific Nomenclature**
+
+While the principles remain constant, the "names" change depending on the tool you use.
+
+|  |  |  |  |
+|----|----|----|----|
+| **Concept** | **Idea** | **R Term** | **Other Terms** |
+| Free Text | Any Text that is typed out in an unstructured way | Character | String |
+| Categorical | Data that can only take a specific set of values (Structured) | Character | String |
+| Ordinal | Categorical Data that can take a predefined order - example Mild, Moderate, Severe | Factor |  |
+|   Continuous | Numeric Data that can take decimal places | Numeric | Double, Float |
+|   Discrete | Numeric Data that cannot take decimal places | Integer | Int |
+
+In database systems like SQL, terminology becomes even more intricate, with specific types based on **precision** (total digits) and **scale** (digits after the decimal). Databases use even more precise datatypes like varchar(50), float(50) etc.
+
+The bottom line is that it makes sense to understand how your software processes data and then select the correct data type. This is helpful while cleaning, visualizing or modelling your data and saves you a lot of frustration later in the process.

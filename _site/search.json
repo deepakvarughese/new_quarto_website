@@ -4,21 +4,21 @@
     "href": "index.html",
     "title": "Dr Deepak Varughese, MD",
     "section": "",
-    "text": "I am a primary care physician and epidemiologist with experience in rural, tribal and urban settings. I have experience in research design , methodology, data analysis and visualization.\nI believe primary care and family medicine is a powerful piece in the health system. High Quality Primary Care can improve access to care and ensure effective follow up. My areas of clinical interest include chronic disease care, palliative medicine and rehabilitation.\nI love Data!! I believe that my experience in clinical medicine along with skills in epidemiology, biostatistics and programming give me a unique combination of skills to ask relevant questions, collect relevant data and convert that data into meaningful information and present it in the most engaging way. This could include dashboards , maps and other fun methods.\nThese skills have led me to a very interesting crossroad between traditional epidemiology and newer data science techniques - with endless emerging possibilities.\n\n\n\n\n\n\nNote\n\n\n\nThis website was made using Quarto and the R Programming Language with some additional html and css scripts."
+    "text": "I am a primary care physician and epidemiologist with experience in rural, tribal and urban settings. I have experience in research design , methodology, data analysis and visualization.\nI believe primary care and family medicine is a powerful piece in the health system. High Quality Primary Care can improve access to care and ensure effective follow up. My areas of clinical interest include chronic disease care, palliative medicine and rehabilitation.\nI believe that my experience in clinical medicine along with skills in epidemiology, biostatistics and programming give me a unique combination of skills to ask relevant questions, collect relevant data and convert that data into meaningful information and present it in the most engaging way. This could include dashboards , maps and other fun methods.\nThese skills have led me to a very interesting crossroad between traditional epidemiology and newer data science techniques - with endless emerging possibilities.\n\n\n\n\n\n\nNote\n\n\n\nThis website was made using Quarto and the R Programming Language with some additional html and css scripts."
   },
   {
     "objectID": "index.html#primary-care-epidemiology-data-science-data-visualization-geographical-information-systems",
     "href": "index.html#primary-care-epidemiology-data-science-data-visualization-geographical-information-systems",
     "title": "Dr Deepak Varughese, MD",
     "section": "",
-    "text": "I am a primary care physician and epidemiologist with experience in rural, tribal and urban settings. I have experience in research design , methodology, data analysis and visualization.\nI believe primary care and family medicine is a powerful piece in the health system. High Quality Primary Care can improve access to care and ensure effective follow up. My areas of clinical interest include chronic disease care, palliative medicine and rehabilitation.\nI love Data!! I believe that my experience in clinical medicine along with skills in epidemiology, biostatistics and programming give me a unique combination of skills to ask relevant questions, collect relevant data and convert that data into meaningful information and present it in the most engaging way. This could include dashboards , maps and other fun methods.\nThese skills have led me to a very interesting crossroad between traditional epidemiology and newer data science techniques - with endless emerging possibilities.\n\n\n\n\n\n\nNote\n\n\n\nThis website was made using Quarto and the R Programming Language with some additional html and css scripts."
+    "text": "I am a primary care physician and epidemiologist with experience in rural, tribal and urban settings. I have experience in research design , methodology, data analysis and visualization.\nI believe primary care and family medicine is a powerful piece in the health system. High Quality Primary Care can improve access to care and ensure effective follow up. My areas of clinical interest include chronic disease care, palliative medicine and rehabilitation.\nI believe that my experience in clinical medicine along with skills in epidemiology, biostatistics and programming give me a unique combination of skills to ask relevant questions, collect relevant data and convert that data into meaningful information and present it in the most engaging way. This could include dashboards , maps and other fun methods.\nThese skills have led me to a very interesting crossroad between traditional epidemiology and newer data science techniques - with endless emerging possibilities.\n\n\n\n\n\n\nNote\n\n\n\nThis website was made using Quarto and the R Programming Language with some additional html and css scripts."
   },
   {
     "objectID": "posts.html",
     "href": "posts.html",
     "title": "#30DaysMapChallenge",
     "section": "",
-    "text": "This is a quick page to display all the maps I made as part of #30DayMapChallenge in November 2023. This is a challenge across the mapping community as a way to display better mapping practices. Through this I hope to bring together my love for GIS and Data Viz in order to create better and more compelling visualizations."
+    "text": "This is a brief gallery for some Data Visualization ."
   },
   {
     "objectID": "posts.html#day-map-challenge",
@@ -796,5 +796,19 @@
     "title": "Loading Packages",
     "section": "Recommended way of loading packages",
     "text": "Recommended way of loading packages\nHere we have loaded 3 packages.\nThe “pacman” library helps in managing libraries.\nIt does 2 things\n\nChecks if the package is previously installed AND\nInstalls if needed\nLoads the library\n\nHence it can be a more efficient way to handle packages."
+  },
+  {
+    "objectID": "posts.html#gallery",
+    "href": "posts.html#gallery",
+    "title": "#30DaysMapChallenge",
+    "section": "",
+    "text": "This is a brief gallery for some Data Visualization ."
+  },
+  {
+    "objectID": "posts5/datatypes.html",
+    "href": "posts5/datatypes.html",
+    "title": "Data Types",
+    "section": "",
+    "text": "The Landscape of Data in Data Science\nIn the broadest sense, data is any input that can be structured to provide information and drive action. However, “anything” is too broad for practical work. To navigate data science effectively, we categorize data based on its format and how it can be analyzed.\n1. Unstructured Data\nUnstructured data is increasingly vital in modern science. While we often think of it as simple “string” or “character” fields—such as a “Name” column or an “Other, please describe” box—it encompasses much more.\nModern Machine Learning allows us to extract value from complex unstructured sources, including:\n\nVisuals: X-rays and fundoscopy images.\nAudio: Cough recordings or voice patterns.\nSensors: Real-time data from wearables.\n\nWhile it may seem like magic, it follows a systematic method of converting these “raw” formats into structured data that models can interpret.\n2. Structured Data\nStructured data is a more formal entity, typically stored in a “rectangular” format with variables in columns and cases (or observations) in rows. This data is generally split into two types:\nCategorical\n\nNominal/ Categorical : Data that presents as a category with no inherent rank (e.g., Hair Color or “Diseased/Non-Diseased”). These are typically expressed as counts and percentages.\nOrdinal: A special type of categorical data where there is a logical order (e.g., Mild, Moderate, Severe). When visualizing this data, maintaining that specific sequence is crucial.\n\nNumeric (Quantitative)\n\nContinuous: Variables that can take on decimal values (e.g., weight or blood glucose). These are typically represented by a mean or median.\nDiscrete: Variables that cannot take on decimal places (e.g., Number of Children). Since you cannot have 1.5 children, it only makes logical sense to treat these as whole integers.\n\nSoftware-Specific Nomenclature\nWhile the principles remain constant, the “names” change depending on the tool you use.\n\n\n\n\n\n\n\n\n\nConcept\nIdea\nR Term\nOther Terms\n\n\nFree Text\nAny Text that is typed out in an unstructured way\nCharacter\nString\n\n\nCategorical\nData that can only take a specific set of values (Structured)\nCharacter\nString\n\n\nOrdinal\nCategorical Data that can take a predefined order - example Mild, Moderate, Severe\nFactor\n\n\n\nContinuous\nNumeric Data that can take decimal places\nNumeric\nDouble, Float\n\n\nDiscrete\nNumeric Data that cannot take decimal places\nInteger\nInt\n\n\n\nIn database systems like SQL, terminology becomes even more intricate, with specific types based on precision (total digits) and scale (digits after the decimal)."
   }
 ]

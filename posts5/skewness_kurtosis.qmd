@@ -1,0 +1,198 @@
+---
+title: "Skewness and Kurtosis"
+author: "Deepak Varughese"
+---
+
+## Objectives
+
+In this tutorial we will
+
+-   Analyze how to understand Skewness and Kurtosis
+
+## Introduction
+
+In the last tutorial we talked about measures of centrality and dispersion. Often we are tempted to stop at that. However to truely understand our continuous variable we also have to understand the skewness and kurtosis of our dataset. A dataset in which a mean = median may not always be normally distributed unless we can verify the skew and kurtosis of the data. So let us try to understand what this measures mean
+
+## Skew
+
+The skew of a distribution is a measure of its assymetry. Variables that have a few extreme values are skewed distributions.
+
+If there are a few extremely **large** values the data is called right skewed. The mean will shift to a larger value on account of the few large values. Visually on a histogram this looks like the histogram stretching to the right (hence the name "Right Skew). A quick way to suspect a right skewed distribution is when the mean is larger than the median.
+
+Conversely if there a few extremely **small** values. The data is **left skewed**. The mean will be less than the median. \
+\
+Mathematically skew is represented as either a positive or negative number. Positive numbers indicates a left skew and negative numbers indicate a left skew. There is no universal standard while interpreting the strength of the skew. However values from 0 to plus or minus 0.5 are not necessarily considered skew. Less than -0.5 or more than +0.5 are moderate skewed. Less than -1 or more than +1 are considered extremely skewed. \
+
+## Example
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| paged-print: false
+library(e1071)
+library(sn)
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+library(flextable)
+
+set.seed(42)
+n <- 100000
+
+custom_order <- c("Normal", "High_Kurt", "Low_Kurt", "Right_Skew", "Left_Skew")
+
+# Generating distributions
+dist_data <- data.frame(
+  Normal     = rnorm(n, mean = 50, sd = 10),
+  Right_Skew = rsn(n, xi = 30, omega = 10, alpha = 10),
+  Left_Skew  = rsn(n, xi = 70, omega = 10, alpha = -10),
+  # Using a higher df (5) to keep it heavy-tailed but more stable
+  High_Kurt  = (rt(n, df = 5) * 10) + 50, 
+  Low_Kurt   = runif(n, 20, 80)
+)
+
+# Tidy Summary
+summary_stats <- dist_data %>%
+  pivot_longer(cols = everything(), names_to = "Type", values_to = "Val") %>%
+  mutate(Type = factor(Type, levels = custom_order)) %>%
+  group_by(Type) %>%
+  summarise(
+    Mean     = mean(Val),
+    Median   = median(Val),
+    SD       = sd(Val),
+    Variance = var(Val),
+    Skew     = skewness(Val),
+    # e1071::kurtosis already computes excess kurtosis (Normal ≈ 0)
+    # We remove the "- 3" to avoid your -3.07 result
+    Excess_Kurt = kurtosis(Val) 
+  ) %>%
+  mutate(across(where(is.numeric), \(x) round(x, 1)))
+
+
+
+final_table <- summary_stats %>%
+  # Replace the 'Type' column with Variable labels
+  mutate(Type = paste("Variable", row_number())) %>%
+  # Rename the column header to something more formal
+  rename(Variable = Type) %>%
+  # Create the flextable
+  flextable() %>%
+  # Add professional formatting
+  set_caption(caption = "Table 1: Statistical Moments and Summary Statistics") %>%
+  autofit() %>%
+  theme_vanilla() %>%
+  # Optional: Bold the 'Variable' column
+  bold(j = 1, part = "body")
+
+# Display the table
+final_table
+
+```
+
+Consider the above table. Focus on just the mean and the median. By just looking at these two values, we can judge skew. But its hard to quantify it mathematically and decide how much skew is present but its easy to spot a positive or negative skew by simply looking at the difference between the mean and median. This should alert us to the possibility of a skew in case we do not routinely look for it. \
+\
+Variables 1 to 3 all have a similar mean. A common mistake is to now assume that all 3 of them are normally distributed. Afterall mean = median is a property of a normal distribution. However if you look at the table again you will notice that Variable 2 has a Kurtosis of 6 and Variable 3 has a Kurtosis of -1.2. Variable 1 has a Kurtosis of 0.
+
+To understand this let us now actually plot the distributions and see.
+
+```         
+```
+
+```{r}
+#| echo: false
+# 1. Order the data as requested
+plot_df <- dist_data %>%
+  pivot_longer(cols = everything(), names_to = "Type", values_to = "Val") %>%
+  mutate(Type = factor(Type, levels = c("Normal", "Right_Skew", "Left_Skew", "High_Kurt", "Low_Kurt")))
+
+# 2. Calculate SD marks for each group
+sd_marks <- summary_stats %>%
+  mutate(Type = factor(Type, levels = c("Normal", "Right_Skew", "Left_Skew", "High_Kurt", "Low_Kurt"))) %>%
+  mutate(
+    minus1 = Mean - SD,
+    plus1  = Mean + SD,
+    minus2 = Mean - (2 * SD),
+    plus2  = Mean + (2 * SD)
+  )
+
+# 3. Generate the Plot
+ggplot(plot_df, aes(x = Val, fill = Type)) +
+  geom_density(alpha = 0.5, color = "white") +
+  # Mean (Solid Black) and Median (Dashed White for contrast)
+  geom_vline(data = sd_marks, aes(xintercept = Mean), color = "black", linewidth = 0.8) +
+  geom_vline(data = sd_marks, aes(xintercept = Median), color = "white", linetype = "dashed", linewidth = 0.8) +
+  # 1 SD Marks (Dotted Blue)
+  geom_vline(data = sd_marks, aes(xintercept = minus1), color = "blue", linetype = "dotted", alpha = 0.7) +
+  geom_vline(data = sd_marks, aes(xintercept = plus1), color = "blue", linetype = "dotted", alpha = 0.7) +
+  # 2 SD Marks (Dotted Red)
+  geom_vline(data = sd_marks, aes(xintercept = minus2), color = "red", linetype = "dotted", alpha = 0.7) +
+  geom_vline(data = sd_marks, aes(xintercept = plus2), color = "red", linetype = "dotted", alpha = 0.7) +
+  facet_wrap(~Type, scales = "free", ncol = 3) +
+  scale_fill_brewer(palette = "Pastel1") +
+  labs(
+    title = "Visualizing Skewness and Kurtosis",
+    subtitle = "Solid = Mean | Dash = Median | Blue Dot = 1 SD | Red Dot = 2 SD",
+    caption = "Dr Deepak Varughese",
+    x = "Value",
+    y = "Density"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 11),
+    plot.caption = element_text(face = "italic", size = 10, hjust = 1)
+  )
+```
+
+## Kurtosis
+
+Look at the variables titled High Kurtosis and Low Kurtosis.
+
+Kurtosis refers to how much data is present in the "tails" of the data. For the next part of the passage on how much of the data is present outside the 2 red lines in the figure that signify the 2 \* SD mark.
+
+In a normal distribution 95% of the values lie between 2 standard deviation from the mean. 2.5 % lie below -2SD and 2.5% lie above +2SD. (A total of 5% of values lie in the "tails").
+
+However in distributions with high kurtosis you will find a high peak in the centre and more than 5% of values lying in the tails. This is known as the "heavy tails". These distributions are referred to as "leptokutotic" distributions.
+
+In distributions with low kurtosis you find an almost flat distribution with all the values getting over even before reaching the 2SD. This is called the platykurtotic distribution. These distributions have "thin tails".
+
+**In summary - skewness gives you information on the asymettry of the data and kurtosis gives you information on how much information is present in the tails of the data.** \
+\
+Why this becomes important is because a skewed or kurtotic distribution needs to be handled differently in analysis.
+
+In a flat platykurtotic distribution for example , even though there is technically a mean you dont really see much clustering around the mean. In fact the example that we see in our figure is that of a flat distribution that has very different properties from that of a normal distribution.
+
+In a platykurtotic distribution , most values are tightly clustered around each other. But extreme events can happen far more frequently than a normal curve would predict. These are often called "Black Swan" events.
+
+Example
+
+To understand a bit better let us use a sporting example. In cricket , a batter who has a career average of 25 would consistently score between 25 and 45. In this scenario a normal curve would predict a score of 100 or 0 to be a very rare event. However we know that this is not how it works out in the real world. 100s and 0s do happen.
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+# Simulated career scores: High frequency of low scores + rare massive scores
+scores <- c(rep(0:20, 5), 35, 42, 55, 68, 110, 150, 210, 319)
+
+
+
+# Calculate Kurtosis
+# A normal distribution has a kurtosis of 3. 
+# Anything significantly higher is Leptokurtic.
+kurt_val <- kurtosis(scores)
+cat("The Kurtosis of these scores is:", round(kurt_val, 2))
+
+# Plotting the distribution
+ggplot(data.frame(scores), aes(x = scores)) +
+  geom_density(fill = "skyblue", alpha = 0.5) +
+  geom_vline(aes(xintercept = mean(scores)), color = "red", linetype = "dashed") +
+  annotate("text", x = mean(scores) + 40, y = 0.02, label = "Mean Score", color = "red") +
+  labs(title = "Batting scores per game scored by a batter across a career",
+       subtitle = paste("Excessive 'Fat' Tail reaching toward 300+ runs"),
+       x = "Runs Scored", y = "Density") +
+  theme_minimal()
+```
+
+This is an example of a variable that is both skewed and leptokurtotic. This does happen in real life. Unlike the neat example given in the initial set of figures you know have a combination of skew and kurtosis all coming together.

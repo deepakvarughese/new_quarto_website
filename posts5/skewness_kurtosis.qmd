@@ -165,11 +165,12 @@ In a flat platykurtotic distribution for example , even though there is technica
 
 In a platykurtotic distribution , most values are tightly clustered around each other. But extreme events can happen far more frequently than a normal curve would predict. These are often called "Black Swan" events.
 
-Example
+## Example
 
 To understand a bit better let us use a sporting example. In cricket , a batter who has a career average of 25 would consistently score between 25 and 45. In this scenario a normal curve would predict a score of 100 or 0 to be a very rare event. However we know that this is not how it works out in the real world. 100s and 0s do happen.
 
 ```{r}
+#| echo: false
 #| message: false
 #| warning: false
 #| paged-print: false

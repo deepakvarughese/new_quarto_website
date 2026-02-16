@@ -1,0 +1,15 @@
+---
+title: "Sampling"
+---
+
+Data Collection in epidemiology can mean different things to different people. \
+\
+Classically Epidemiology very often involves door to door surveys, phone calls and extensive field work. In today's day and age , data collection could also mean pulling in data from different sources - registries, metadata, API keys and more. The last decade may have generated more data than any period ever before in human history. \
+\
+In both cases, data collection involves similar over-arching principles. It is often resource intensive and expensive at some level. A population in epidemiology refers to all the people in a defined study area who meet a certain eligibility criteria. (example all men aged 18 to 35 who live in a certain city). Obtaining data for every single person in the defined population is usually very hard. It is far more easier to obtain a sample of the population and then use some sort of "inferential" statistics to estimate what the measure in the population is. \
+
+A "sample" is a subset of data from a larger population. A population in statistics is a large , defined (but sometimes theoretical or imaginary) set of data.
+
+Random Sampling is a process in which each available member of the population being sampled has an equal chance of being chosen for the sample at each draw. The sample that results is called a "simple random sample". The population can also be divided into "strata" based on common characteristics and then sampling from each strata. This is called "Stratified Random Sampling".
+
+Data Quality can matter more than Data Quality while making an estimate based on a sample. Data Quality refers to the completeness, consistency of format, cleanliness , accuracy and representativeness of the data. A sample has to be representative of the population it comes from. Only then can

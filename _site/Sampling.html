@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistics for Data Science – Deepak Varughese</title>
+<title>Sampling – Deepak Varughese</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,65 +66,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -169,7 +109,7 @@ window.Quarto = {
 <span class="menu-text">GIS Training Materials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./posts5.html" aria-current="page"> 
+    <a class="nav-link" href="./posts5.html"> 
 <span class="menu-text">Statistics for Data Science</span></a>
   </li>  
 </ul>
@@ -183,15 +123,15 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Statistics for Data Science</h1>
+<h1 class="title">Sampling</h1>
 </div>
 
 
@@ -208,97 +148,19 @@ window.Quarto = {
 </header>
 
 
+<p>Data Collection in epidemiology can mean different things to different people.<br>
+<br>
+Classically Epidemiology very often involves door to door surveys, phone calls and extensive field work. In today’s day and age , data collection could also mean pulling in data from different sources - registries, metadata, API keys and more. The last decade may have generated more data than any period ever before in human history.<br>
+<br>
+In both cases, data collection involves similar over-arching principles. It is often resource intensive and expensive at some level. A population in epidemiology refers to all the people in a defined study area who meet a certain eligibility criteria. (example all men aged 18 to 35 who live in a certain city). Obtaining data for every single person in the defined population is usually very hard. It is far more easier to obtain a sample of the population and then use some sort of “inferential” statistics to estimate what the measure in the population is.<br>
+</p>
+<p>A “sample” is a subset of data from a larger population. A population in statistics is a large , defined (but sometimes theoretical or imaginary) set of data.</p>
+<p>Random Sampling is a process in which each available member of the population being sampled has an equal chance of being chosen for the sample at each draw. The sample that results is called a “simple random sample”. The population can also be divided into “strata” based on common characteristics and then sampling from each strata. This is called “Stratified Random Sampling”.</p>
+<p>Data Quality can matter more than Data Quality while making an estimate based on a sample. Data Quality refers to the completeness, consistency of format, cleanliness , accuracy and representativeness of the data. A sample has to be representative of the population it comes from. Only then can</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1769496911724" data-listing-reading-time-sort="16" data-listing-word-count-sort="3175">
-<a href="./posts5/continuous description.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Exploring Continuous Variables
-</h5>
-<div class="card-text listing-description">
-In these slides we will understand how to describe numeric variables in your dataset.
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Deepak Varughese
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1769169739320" data-listing-reading-time-sort="3" data-listing-word-count-sort="475">
-<a href="./posts5/datatypes.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Data Types
-</h5>
-<div class="card-text listing-description">
-In the broadest sense, <strong>data</strong> is any input that can be structured to provide information and drive action. However, “anything” is too broad for practical work. To navigate…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1770991236900" data-listing-reading-time-sort="11" data-listing-word-count-sort="2127">
-<a href="./posts5/Sampling.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts5\Sampling_files\figure-html\unnamed-chunk-6-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Sampling Distribution of the Mean
-</h5>
-<div class="card-text listing-description">
-<strong>Objective</strong> : To estimate the mean height of a population using a sample.
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1769760716933" data-listing-reading-time-sort="9" data-listing-word-count-sort="1618">
-<a href="./posts5/skewness_kurtosis.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts5\skewness_kurtosis_files\figure-html\unnamed-chunk-2-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Skewness and Kurtosis
-</h5>
-<div class="card-text listing-description">
-In this tutorial we will
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Deepak Varughese
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

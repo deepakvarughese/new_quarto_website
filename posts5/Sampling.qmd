@@ -1,0 +1,295 @@
+---
+title: "Sampling Distribution of the Mean"
+---
+
+## Experiment 1 
+
+**Objective** : To estimate the mean height of a population using a sample.
+
+Assume we have a scenario where we want to know the height of all males from age 20 to 30 in a particular city. The country has more than 800 males in that age group. We only have resources to measure the height of 40 people.\
+\
+*Can we use the height of these 40 people to somehow estimate what the average height of the 800 people could be?* This is the question that inferential statistics tries to answer.\
+
+A "sample" is a subset of data from a larger population. A population in statistics is a large , defined (but sometimes theoretical or imaginary) set of data.
+
+When we sample data and try to infer the properties of a population we are faced with 2 key considerations?
+
+1.  Who do we sample? Can we ask the first 40 people we meet? Should we use some sort of criteria? How do we find the "right" 40 people to ask? - To answer this we need to delve into the idea of "**Sampling methods**". We need to use the correct sampling method so that we have a sample that is representative of the population.
+2.  If we do measure the height of 40 people , how does the mean of this sample compare with the true mean of the whole population? How can we use the height of 40 people to estimate the height of 800? To answer this we need to delve into the idea of Inferential Statistics.
+
+Random Sampling is a process in which each available member of the population being sampled has an equal chance of being chosen for the sample at each draw. The sample that results is called a "simple random sample". The population can also be divided into "strata" based on common characteristics and then sampling from each strata. This is called "Stratified Random Sampling".
+
+Data Quality can matter more than Data Quanity while making an estimate based on a sample. Data Quality refers to the completeness, consistency of format, cleanliness , accuracy and representativeness of the data. A sample has to be representative of the population it comes from. Only then can any inferences drawn from a sample be useful.
+
+```{r}
+#| echo: false
+pacman::p_load(
+  tidyverse,
+  janitor,
+  flextable
+)
+
+# Set seed for consistency
+set.seed(123)
+
+# 1. Create the Population (The "Truth")
+population_heights <- rnorm(50000, mean = 175.5, sd = 7.4)
+
+# 2. Take ONE Clinical Sample (n = 40)
+clinical_sample <- sample(population_heights, 40)
+
+# Display the first few heights in our sample (in cm)
+# We'll create IDs like 'P-001', 'P-002', etc.
+clinical_df <- data.frame(
+  ID_Number = paste0("P-", sprintf("%03d", 1:40)),
+  Height_cm = round(clinical_sample, 1)
+)
+
+clinical_df %>% 
+  flextable()
+```
+
+Let us try to calculate the average height in the group.
+
+```{r}
+#| echo: false
+##Calculate the Sample Mean (x-bar)
+
+x_bar <- mean(clinical_sample)
+
+# Calculate the Sample Standard Deviation (s)
+s <- sd(clinical_sample)
+
+cat("Sample Mean height:", round(x_bar, 2), "cm\n")
+cat("Sample SD:", round(s, 2), "cm")
+```
+
+Now that we can see that the average height of people in this sample is 176.49
+
+Are we sure that the true mean in the population (the value we really want to know) will be exactly this number? Unlikely? Can it be close to this number? How do we resolve this?
+
+### Experiment 2 
+
+-   repeat the same experiment.
+
+-   Take another 40 people.
+
+-   Calculate the mean of the second sample
+
+-   These are the results you find
+
+    ```{r}
+    #| echo: false
+    # Set seed for consistency
+    set.seed(321)
+
+    # 1. Create the Population (The "Truth")
+    population_heights <- rnorm(50000, mean = 175.5, sd = 7.4)
+
+    # 2. Take ONE Clinical Sample (n = 40)
+    clinical_sample_2 <- sample(population_heights, 40)
+
+    # Display the first few heights in our sample (in cm)
+    # We'll create IDs like 'P-001', 'P-002', etc.
+    clinical_df_2 <- data.frame(
+      ID_Number = paste0("P-", sprintf("%03d", 41:80)),
+      Height_cm = round(clinical_sample, 1)
+    )
+
+    clinical_df_2 %>% 
+      flextable()
+    ```
+
+    ```{r}
+    #| echo: false
+    ##Calculate the Sample Mean (x-bar)
+
+    x_bar <- mean(clinical_sample_2)
+
+    # Calculate the Sample Standard Deviation (s)
+    s <- sd(clinical_sample_2)
+
+    cat("Sample Mean height of second set of values:", round(x_bar, 2), "cm\n")
+    cat("Sample SD:", round(s, 2), "cm")
+    ```
+
+Now we see when we repeat the experiment we got a value of 173.71 which is different from the 176.49 in the first example. Now how do we interpret this? Is the mean of the population likely to be higher? or lower? Let us repeat one more time.
+
+### Experiment 3
+
+-   Repeat the same experiment a third time.
+
+-   Measure the height of another 40 people.
+
+-   Calculate the mean of the third sample
+
+```{r}
+#| echo: false
+
+#| echo: false
+# Set seed for consistency
+set.seed(421)
+
+# 1. Create the Population (The "Truth")
+population_heights <- rnorm(50000, mean = 175.5, sd = 7.4)
+
+# 2. Take ONE Clinical Sample (n = 40)
+clinical_sample_3 <- sample(population_heights, 40)
+
+# Display the first few heights in our sample (in cm)
+# We'll create IDs like 'P-001', 'P-002', etc.
+clinical_df_3 <- data.frame(
+  ID_Number = paste0("P-", sprintf("%03d", 81:120)),
+  Height_cm = round(clinical_sample_3, 1)
+)
+
+clinical_df_3 %>% 
+  flextable()
+
+##Calculate the Sample Mean (x-bar)
+
+x_bar <- mean(clinical_sample_3)
+
+# Calculate the Sample Standard Deviation (s)
+s <- sd(clinical_sample_3)
+
+cat("Sample Mean height of third set of values:", round(x_bar, 2), "cm\n")
+cat("Sample SD:", round(s, 2), "cm")
+```
+
+Now we have repeated the experiment a third time and got a third mean. This is also a similar number but different. What can we do to solve this.\
+\
+The solution we often apply in statistics is to create a new dataset that contains the means of each of these experiments. This would look something like this.
+
+### Table containing the mean from each repetition of the experiment.
+
+| Experiment     | Mean Height   |
+|----------------|---------------|
+| Experiment 1   | 176.71        |
+| Experiment 2   | 173.71        |
+| Experiment 3   | 175.33        |
+| ...........    | ............. |
+| Experiment "n" | 173.55        |
+
+A genuine drawback of this method would be a very practical one. One would usually not have the money and resources to repeat the experiment any number of times.
+
+**However, if one were to do it, and repeat the experiment "n" number of times then plot the means of each experiment as a histogram , you would likely get a figure like this.**
+
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#Load the library
+library(ggplot2)
+
+# --- 1. Data Prep ---
+set.seed(123)
+population_heights <- rnorm(50000, mean = 175.5, sd = 7.4)
+mu_truth <- mean(population_heights)
+
+# The Sampling Distribution
+sampling_dist <- replicate(10000, {
+  mean(sample(population_heights, size = 40))
+})
+
+# Define se_val and x_bar
+se_val <- sd(sampling_dist)
+x_bar <- 176.49
+
+# Convert sampling_dist to a data frame for ggplot
+plot_data <- data.frame(means = sampling_dist)
+
+# Define Economist-style colors
+econ_blue <- "#00aedb"
+econ_red  <- "#ed1c24"
+econ_bg   <- "#f1f1f1"
+econ_grid <- "white"
+
+# --- 2. The Plot ---
+ggplot(plot_data, aes(x = means)) +
+  # Draw the histogram
+  geom_histogram(breaks = seq(172, 180, by = 0.2),
+                 fill = econ_blue, 
+                 color = "white") +
+  
+  # Standard Error Lines (Fixed syntax)
+  geom_vline(xintercept = c(mu_truth - 2 * se_val, mu_truth + 2 * se_val), 
+             linetype = "dotted", color = "gray70", size = 0.5) + 
+  
+  # Population Mean Line
+  geom_vline(xintercept = mu_truth, color = "gray30", size = 1) +
+  
+  # Study Mean Line
+  geom_vline(xintercept = x_bar, color = econ_red, size = 1) +
+  
+  # Annotations (Fixed multiplication syntax)
+  annotate("text", x = mu_truth, y = 600, label = "Population Mean",
+           hjust = 1.1, size = 2.5, color = "gray30") +
+  annotate("text", x = x_bar, y = 500, label = "Mean of Experiment 1",
+           hjust = -0.1, size = 2.5, color = econ_red) +
+  annotate("text", x = mu_truth + (2 * se_val), y = 150, label = "+2 SE",
+           hjust = -0.2, size = 2.5, color = "gray70") +
+  annotate("text", x = mu_truth - (2 * se_val), y = 150, label = "-2 SE",
+           hjust = 1.2, size = 2.5, color = "gray70") +
+  
+  # X-axis scale
+  scale_x_continuous(breaks = 172:180, limits = c(172, 180)) +
+  
+  # Title and Labels
+  # Title, Labels, and Credit
+labs(title = "Sampling Distribution of the Mean",
+     subtitle = "Simulated height outcomes \nVisualization: Deepak Varughese",
+     x = "Possible Sample Means (cm)",
+     y = "Frequency",
+     caption = "Source: Simulated Population Data") +
+
+# Theme Adjustments
+theme_minimal() +
+theme(
+  panel.background = element_rect(fill = econ_bg, color = NA),
+  plot.background  = element_rect(fill = econ_bg, color = NA),
+  panel.grid.major.x = element_blank(),
+  panel.grid.minor.x = element_blank(),
+  panel.grid.major.y = element_line(color = econ_grid),
+  axis.line.x = element_line(color = "gray40"),
+  plot.title = element_text(face = "bold", size = 14),
+  plot.subtitle = element_text(size = 10, color = "gray30", lineheight = 1.2),
+  plot.caption = element_text(size = 8, color = "gray50", hjust = 0),
+  axis.title = element_text(size = 9, color = "gray30")
+)
+```
+
+This brings us to an important concept of the **SAMPLING DISTRIBUTION.\
+**\
+: Note that the Sampling Distribution is very different from the "Sample Distribution". It does not refer to the data in the sample. It refers to the mean of a collection of means if that same experiment was repeated n number of times. A "Mean of Means". This is an important distinction to make.\
+
+### What is the Sampling Distribution of the Mean.
+
+**Sampling Distribution of the mean**\
+Distribution from when the same experiment is (hypothetically) repeated n number of times and the mean is collected from each experiment and then plotted as a histogram.
+
+We have to now make a very important distinction, with another similar sounding entity which is the "Sample Distribution" .
+
+\
+**Sample Distribution**
+
+Distribution of the individual data points present in a single sample taken from the population .
+
+:   Please make the clear distinction that the "Sampling Distribution of the Mean" is a very different entity from a "Sample Distribution".
+
+In Data Science we generally consider that the mean of the sampling distribution will be the true mean of the distribution from which the sample was taken. Hence it is called the *Population Mean.*
+
+**Some Observations from the above figure**
+
+-   Notice how the value of our first experiment is near to the population mean but not exactly the population mean.
+-   Notice that the distribution of the means (sampling distribution) is also normally distributed. This property of the sampling distribution (*provided the right condition*s) to take a normal distribution as the number of sample means increase, even if the underlying data distribution of the sample is not normal is called the "Central Limit Theorem". It is often described when the number of sample means is greater than 30.
+-   Notice the lines analogous to the standard deviation in this sampling distribution. While the dispersion in a sample distribution of data is measured in standard deviation, a similar entity for the Sampling Distribution is called the Standard Error.
+-   The distance between -2 and +2 Standard Errors is sometimes referred to as a 95% Confindence Interval.
+
+Some Caveats
+
+:   It is often assumed that data points in large samples are "normally distributed". This is infact not true. Most data points from samples are not necessarily normally distributed. Other distributions like the t-distribution are far more common. It is infact the Sampling Distribution that is often (but not always) normally distributed. The Central Limit Theorem is built on many assumptions that are often violated in the real world. Hence the applicability of the CLT is not universal. We can discuss this further in future tutorials.
+
+The above scenario is obviously hypothetical. In the real world we cannot afford to do our experiment \>30 times to derive the population mean, standard error and confidence intervals. In the next tutorial we will see how we can estimate the values using just one sample and the power of statistics.

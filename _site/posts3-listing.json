@@ -1,0 +1,14 @@
+{
+  "listing": "/posts3.html",
+  "items": [
+    "/posts3/General Syntax in R.html",
+    "/posts3/Installing R on your System.html",
+    "/posts3/Introduction to the tidyverse.html",
+    "/posts3/Loading packages.html",
+    "/posts3/rstudio_interface.html",
+    "/posts3/Setting Up R Studio.html",
+    "/posts3/staying_organized_with_projects.html",
+    "/posts3/verbs_of_the_tidyverse.html",
+    "/posts3/What is R.html"
+  ]
+}

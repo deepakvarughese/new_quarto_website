@@ -1,0 +1,1385 @@
+---
+title: "Data Visualization - Picking the right chart types"
+author: "Deepak Varughese, MD"
+format: revealjs
+editor: visual
+---
+
+## What is Data Visualization
+
+Data visualization is the graphical representation of information and data. '
+
+The use of visual elements like graphs to provide an accessible way to see and understand patterns in data.
+
+Additionally, it provides an excellent way to present data to non-technical audiences,
+
+## Exploratory Charts vs Explanatory Charts
+
+```{r}
+library(tidyverse)
+
+# 1. Define quadrant label positions
+quadrant_data <- data.frame(
+  label = c("Idea illustration", "Everyday dataviz", 
+            "Idea generation", "Visual discovery"),
+  x = c(-0.5, 0.5, -0.5, 0.5),
+  y = c(0.5, 0.5, -0.5, -0.5)
+)
+
+# 2. Build the Matrix
+ggplot() +
+  # Central Quadrant Labels
+  geom_text(data = quadrant_data, aes(x, y, label = label), 
+            size = 5, fontface = "plain", color = "grey40") +
+  
+  # Vertical Axis Line (stops at +/- 0.9, labels are at +/- 1.05)
+  geom_segment(aes(x = 0, y = -0.9, xend = 0, yend = 0.9), 
+               arrow = arrow(length = unit(0.15, "cm"), ends = "both"), 
+               color = "grey30", size = 0.6) +
+  
+  # Horizontal Axis Line (stops at +/- 0.85, labels are at +/- 1.15)
+  geom_segment(aes(x = -0.85, y = 0, xend = 0.85, yend = 0), 
+               arrow = arrow(length = unit(0.15, "cm"), ends = "both"), 
+               color = "grey30", size = 0.6) +
+  
+  # Axis Labels (Positioned outside the line segments)
+  annotate("text", x = 0, y = 1.05, label = "DECLARATIVE", fontface = "bold", size = 4.5) +
+  annotate("text", x = 0, y = -1.05, label = "EXPLORATORY", fontface = "bold", size = 4.5) +
+  annotate("text", x = -1.15, y = 0, label = "CONCEPTUAL", fontface = "bold", size = 4.5) +
+  annotate("text", x = 1.15, y = 0, label = "DATA-DRIVEN", fontface = "bold", size = 4.5) +
+  
+  # Titles and Theme
+  labs(
+    title = "THE FOUR TYPES",
+    subtitle = "From Good Charts by Scott Berinato"
+  ) +
+  coord_cartesian(xlim = c(-1.5, 1.5), ylim = c(-1.2, 1.2)) +
+  theme_void() +
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    plot.title = element_text(face = "bold", size = 18, hjust = 0, margin = margin(b = 5)),
+    plot.subtitle = element_text(size = 11, color = "grey40", hjust = 0, margin = margin(b = 20)),
+    plot.margin = margin(30, 30, 30, 30)
+  )
+```
+
+## The Dataset
+
+-   The Palmer Penguins Dataset
+
+-   Collection of morphological measurements for three penguin species observed in the Palmer Archipelago, Antarctica.
+
+-   It was introduced by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) program.
+
+-   It is a high-quality, popular dataset for data science and visualization.
+
+-   Out of Comfort Zone - Truely Exploratory
+
+## Key Variables
+
+-   Type of Species (Categorical)
+-   Name of Island (Categorical / Spatial)
+-   Sex (Categorical)
+-   Bill Length (Continuous Variable)
+-   Bill Depth (Continuous Variable)
+-   Body Mass Index (Continuous Variable)
+-   Year (Time)
+
+## Table of data
+
+```{r}
+#| echo: false
+#| message: false
+#| 
+library(palmerpenguins)
+library(flextable)
+library(tidyverse)
+library(officer)
+library(skimr)
+library(hrbrthemes)
+
+penguins_head <- penguins %>% 
+  drop_na()
+
+penguins_head
+#penguins_head <- head(penguins, 10) %>% 
+#  drop_na()
+
+#ft <- flextable(penguins_head) %>%
+#  font(fontname = "sans", part = "all") %>%
+#  fontsize(size = 11, part = "all") %>% 
+  
+  # Align text: Species left, numbers right
+#  align(j = 1, align = "left", part = "all") %>%
+#  align(j = 2:5, align = "right", part = "all") %>%
+  
+  # Styling the Header
+#  bold(part = "header") %>%
+ # bg(bg = "#f8f9fa", part = "header") %>%
+  #color(color = "#333333", part = "header") %>%
+  
+  # Add subtle borders (Editorial Style)
+  #border_remove() %>%
+  #hline_top(border = fp_border(color = "black", width = 2), part = "header") %#>%
+  #hline_bottom(border = fp_border(color = "black", width = 1), part = "header"#) %>%
+  #hline_bottom(border = fp_border(color = "black", width = 2), part = "body") %>%
+  
+  # Formatting numbers
+#  colformat_double(digits = 1) %>%
+  
+  # Finishing touches
+ # set_caption("Raw Data: Morphological Summary of Palmer Archipelago Penguins") %>%
+  #autofit()
+
+#ft
+```
+
+## Outline
+
+-   Visualizing a single categorical variable
+
+-   Visualizing multiple categorical variables
+
+-   Visualizing a single continuous variable
+
+-   Visualizing a continuous variable with a categorical variable
+
+-   Visualizing multiple continuous variables
+
+-   Visualizing changes over time
+
+## Visualizing a single categorical variable
+
+```{r}
+penguins_head <- head(penguins, 20) %>% 
+  drop_na() %>% 
+  select(species)
+
+penguins_head
+
+
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+
+penguins_clean <- penguins %>% 
+  drop_na()
+
+## Categorical Variables alone
+
+ggplot(data = penguins) +
+  aes(
+    x = fct_rev(fct_infreq(species)),
+    fill = (species == "Adelie")
+  ) + 
+  geom_bar(alpha = 0.6, width = 0.7) +
+  geom_text(
+    stat = "count", 
+    aes(label = after_stat(paste0(count, " (", scales::percent(after_stat(prop), accuracy = 1), ")")),
+        group = 1
+        ),
+    hjust = 1.2,                   
+    fontface = "bold",
+    size = 3,
+    color = "#2c3e50"
+  )+
+  scale_y_continuous(
+    name = "Number of Penguins",
+    limits = c(0, 175),
+    breaks = seq(0, 150, by = 25),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_discrete(
+    name = "",
+    labels = c("Adelie" = "Adélie", 
+               "Chinstrap" = "Chinstrap", 
+               "Gentoo" = "Gentoo")
+  ) +
+  # Assign specific colors: TRUE = Highlight, FALSE = Standard
+  scale_fill_manual(
+    values = c("TRUE" = "#e63946", "FALSE" = "#2c3e50"), 
+    guide = "none" 
+  ) +
+  coord_flip() +
+  labs(
+    title = "Adélie Penguins Comprise the Largest Population Share",
+    subtitle = "Distribution of penguin species across Palmer Archipelago (n=344)",
+    caption = "Source: palmerpenguins R package | Analysis by Deepak Varughese",
+    alt = "Horizontal bar chart showing Adélie penguins at 44%, Gentoo at 36%, and Chinstrap at 20%."
+  ) +
+  theme_ipsum()
+  
+```
+
+## 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(gtsummary)
+library(hrbrthemes)
+
+
+penguins_clean <- penguins %>% 
+  drop_na()
+
+ggplot(data = penguins) +
+  aes(
+    x = fct_rev(fct_infreq(species)),
+    # We use both fill (for the bar) and color (for the point)
+    fill = (species == "Adelie"),
+    color = (species == "Adelie")
+  ) + 
+  # 1. The "Stick" (Just a very thin bar)
+  geom_bar(stat = "count", width = 0.05, alpha = 0.8) + 
+  
+  # 2. The "Candy" (Placed at the count)
+  geom_point(stat = "count", size = 5) + 
+  
+  # 3. The Text (Nudged outside the dot)
+  geom_text(
+    stat = "count", 
+    aes(label = after_stat(paste0(count, " (", scales::percent(count / sum(count), accuracy = 1), ")"))),
+    hjust = -0.3, # Nudges text to the right
+    fontface = "bold",
+    size = 3.5,
+    color = "#2c3e50" # Dark color since it's on the white background now
+  ) +
+  scale_y_continuous(
+    name = "Number of Penguins",
+    limits = c(0, 200), # Extra room for the labels
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_discrete(
+    name = "",
+    labels = c("Adelie" = "Adélie", 
+               "Chinstrap" = "Chinstrap", 
+               "Gentoo" = "Gentoo")
+  ) +
+  # Match both fill and color so the stick and dot are the same color
+  scale_fill_manual(values = c("TRUE" = "#e63946", "FALSE" = "#2c3e50"), guide = "none") +
+  scale_color_manual(values = c("TRUE" = "#e63946", "FALSE" = "#2c3e50"), guide = "none") +
+  coord_flip() +
+  labs(
+    title = "Adélie Penguins Comprise the Largest Population Share",
+    subtitle = "Distribution of penguin species across Palmer Archipelago (n=344)",
+    caption = "Source: palmerpenguins R package | Analysis by Deepak Varughese"
+  ) +
+  theme_ipsum()
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+
+library(dplyr)
+library(ggplot2)
+
+# 1. Prepare summarized data
+penguin_summary <- penguins %>%
+  count(species) %>%
+  mutate(perc = n / sum(n))
+
+# 2. Build the chart
+ggplot(penguin_summary, aes(x = 2, y = n, fill = (species == "Adelie"))) +
+  geom_bar(stat = "identity", color = "white", size = 1) +
+  # Use coord_polar to turn the bar into a circle
+  coord_polar(theta = "y", start = 0) +
+  # Create the "doughnut" hole
+  xlim(0.5, 2.5) +
+  # Add labels inside the segments
+  geom_text(aes(label = paste0(n, "\n(", scales::percent(perc, accuracy = 1), ")")), 
+            position = position_stack(vjust = 0.5), 
+            color = "white", 
+            fontface = "bold", 
+            size = 4) +
+  scale_fill_manual(
+    values = c("TRUE" = "#e63946", "FALSE" = "#2c3e50"), 
+    guide = "none"
+  ) +
+  labs(
+    title = "Adélie Penguins Comprise the Largest Population Share",
+    subtitle = "Doughnut chart of species distribution (n=344)",
+    caption = "Source: palmerpenguins R package | Analysis by Deepak Varughese"
+  ) +
+  theme_ipsum(base_family = "sans") +
+  # Clean up the chart by removing axes and gridlines
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+library(tidyverse)
+library(palmerpenguins)
+library(gtsummary)
+library(hrbrthemes)
+library(treemapify)
+
+
+penguins_clean <- penguins %>% 
+  drop_na()
+
+penguin_counts <- penguins %>%
+  count(species) %>%
+  mutate(perc = n / sum(n))
+
+
+ggplot(penguin_counts, aes(area = n, fill = (species == "Adelie"), label = species)) +
+  geom_treemap(alpha = 0.8, color = "white", size = 2) +
+  geom_treemap_text(
+    aes(label = paste0(species, "\n", n, " (", scales::percent(perc, accuracy = 1), ")")),
+    colour = "white",
+    place = "centre",
+    fontface = "bold",
+    grow = FALSE # Setting grow = TRUE makes the text fill the box
+  ) +
+  scale_fill_manual(
+    values = c("TRUE" = "#e63946", "FALSE" = "#2c3e50"), 
+    guide = "none"
+  ) +
+  labs(
+    title = "Adélie Penguins Comprise the Largest Population Share",
+    subtitle = "Treemap visualization of species distribution (n=344)",
+    caption = "Source: palmerpenguins R package | Analysis by Deepak Varughese"
+  ) +
+  theme_ipsum(base_family = "sans") +
+  theme(axis.text.x = element_blank(), axis.text.y = element_blank()) # Remove axes
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+library(dplyr)
+library(ggplot2)
+
+# 1. Summarize data
+penguin_summary <- penguins %>%
+  count(species) %>%
+  mutate(perc = n / sum(n))
+
+# 2. Build the Pie
+ggplot(penguin_summary, aes(x = "", y = n, fill = (species == "Adelie"))) +
+  # The bar width must be 1 to fill the circle
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  
+  # Bend the bar into a circle
+  coord_polar(theta = "y", start = 0) +
+  
+  # Add labels (Calculated to sit in the middle of slices)
+  geom_text(aes(label = paste0(species, "\n", n, "\n(", scales::percent(perc, accuracy = 1), ")")), 
+            position = position_stack(vjust = 0.5), 
+            color = "white", 
+            fontface = "bold", 
+            size = 3.5) +
+  
+  scale_fill_manual(
+    values = c("TRUE" = "#e63946", "FALSE" = "#2c3e50"), 
+    guide = "none"
+  ) +
+  labs(
+    title = "Adélie Penguins Comprise the Largest Population Share",
+    subtitle = "Pie chart visualization of species distribution (n=344)",
+    caption = "Source: palmerpenguins R package | Analysis by Deepak Varughese"
+  ) +
+  theme_ipsum() +
+  # Clean up the "Chart" look to make it a pure "Graphic"
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank()
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(palmerpenguins)
+library(ggwaffle) # The ggplot2 extension for waffles
+library(hrbrthemes)
+
+# 1. Prepare data: ggwaffle needs a "grid" format
+# The waffle_iron function transforms your raw data into X/Y coordinates
+waffle_data <- waffle_iron(penguins %>% drop_na(), aes_d(group = species), rows = 12)
+
+# 2. Plot using standard ggplot syntax
+library(tidyverse)
+library(palmerpenguins)
+library(ggwaffle)
+library(hrbrthemes)
+
+# 1. Calculate percentages so they sum to 100
+penguin_perc <- penguins %>%
+  drop_na() %>%
+  count(species) %>%
+  mutate(percent = round(n / sum(n) * 100))
+
+# 2. Expand the data to exactly 100 rows (1 row per 1%)
+# uncount() is a handy tidyverse function that replicates rows based on a value
+waffle_perc_data <- penguin_perc %>%
+  uncount(percent) %>%
+  waffle_iron(aes_d(group = species), rows = 10)
+
+# 3. Plot the 10x10 grid
+ggplot(waffle_perc_data, aes(x, y, fill = group)) +
+  geom_waffle(color = "white", size = 0.5) +
+  coord_equal() +
+  scale_fill_manual(
+    values = c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc"),
+    name = NULL
+  ) +
+  labs(
+    title = "Penguin Population Distribution",
+    subtitle = "Each square represents 1% of the total population (n=333)",
+    caption = "Source: palmerpenguins | Analysis by Deepak Varughese"
+  ) +
+  theme_ipsum(base_family = "sans") +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    legend.position = "bottom"
+  )
+```
+
+## Two or more categorical variables
+
+```{r}
+penguins_head <- head(penguins, 20) %>% 
+  drop_na() %>% 
+  select(species, island)
+
+penguins_head
+
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+library(tidyverse)
+library(palmerpenguins)
+library(hrbrthemes)
+library(ggtext) # Required for HTML styling in labels
+
+# Prepare the data
+island_summary <- penguins %>%
+  drop_na() %>%
+  count(island, species)
+
+# Define our colors as variables for easy reuse in the HTML subtitle
+color_adelie <- "#e63946"
+color_chinstrap <- "#2c3e50"
+color_gentoo <- "#a8dadc"
+
+# Create the HTML subtitle string
+subtitle_text <- paste0(
+  "Distribution of <span style='color:", color_adelie, ";'>**Adélie**</span>, ",
+  "<span style='color:", color_chinstrap, ";'>**Chinstrap**</span>, and ",
+  "<span style='color:", color_gentoo, ";'>**Gentoo**</span> penguins across islands"
+)
+
+# Plot
+ggplot(island_summary, aes(x = island, y = n, fill = species)) +
+  geom_bar(stat = "identity", position = "fill", width = 0.7) + 
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip()+
+  scale_fill_manual(
+    values = c("Adelie" = color_adelie, "Chinstrap" = color_chinstrap, "Gentoo" = color_gentoo),
+    guide = "none" # This removes the standard legend
+  ) +
+  labs(
+    title = "Island Species Composition",
+    subtitle = subtitle_text,
+    x = NULL, # Island names on X are self-explanatory
+    y = "Percentage of Population",
+    caption = "Source: palmerpenguins | Analysis by Deepak Varughese"
+  ) +
+  theme_ipsum(base_family = "sans") +
+  theme(
+    # This line tells ggplot to interpret the subtitle as HTML
+    plot.subtitle = element_markdown(size = 12, lineheight = 1.2),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+```
+
+## 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(hrbrthemes)
+library(ggtext) # Required for HTML styling in labels
+
+# Prepare the data
+island_summary <- penguins %>%
+  drop_na() %>%
+  count(island, species)
+
+# Define our colors as variables for easy reuse in the HTML subtitle
+color_adelie <- "#e63946"
+color_chinstrap <- "#2c3e50"
+color_gentoo <- "#a8dadc"
+
+# Create the HTML subtitle string
+subtitle_text <- paste0(
+  "Distribution of <span style='color:", color_adelie, ";'>**Adélie**</span>, ",
+  "<span style='color:", color_chinstrap, ";'>**Chinstrap**</span>, and ",
+  "<span style='color:", color_gentoo, ";'>**Gentoo**</span> penguins across islands"
+)
+
+# Plot
+ggplot(island_summary, aes(x = island, y = n, fill = species)) +
+  geom_bar(stat = "identity", position = "stack", width = 0.7) + 
+  coord_flip()+
+  #scale_y_continuous(labels = scales::percent) +
+  scale_fill_manual(
+    values = c("Adelie" = color_adelie, "Chinstrap" = color_chinstrap, "Gentoo" = color_gentoo),
+    guide = "none" # This removes the standard legend
+  ) +
+  labs(
+    title = "Island Species Composition",
+    subtitle = subtitle_text,
+    x = NULL, # Island names on X are self-explanatory
+    y = "Number of Penguins",
+    caption = "Source: palmerpenguins | Analysis by Deepak Varughese"
+  ) +
+  theme_ipsum(base_family = "sans") +
+  theme(
+    # This line tells ggplot to interpret the subtitle as HTML
+    plot.subtitle = element_markdown(size = 12, lineheight = 1.2),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+library(tidyverse)
+library(palmerpenguins)
+library(plotly)
+
+# 1. Setup consistent colors
+color_adelie <- "#e63946"
+color_chinstrap <- "#2c3e50"
+color_gentoo <- "#a8dadc"
+island_grays <- c("Biscoe" = "#888888", "Dream" = "#AAAAAA", "Torgersen" = "#CCCCCC")
+
+# 2. Prepare Data
+data_clean <- penguins %>% drop_na()
+
+df_islands <- data_clean %>%
+  count(island) %>%
+  mutate(
+    ids = as.character(island),
+    labels = as.character(island),
+    parents = "",
+    values = n,
+    color = island_grays[as.character(island)]
+  )
+
+df_species <- data_clean %>%
+  count(island, species) %>%
+  mutate(
+    ids = paste0(island, "-", species),
+    labels = as.character(species),
+    parents = as.character(island),
+    values = n,
+    color = case_when(
+      species == "Adelie" ~ color_adelie,
+      species == "Chinstrap" ~ color_chinstrap,
+      species == "Gentoo" ~ color_gentoo
+    )
+  )
+
+sunburst_df <- bind_rows(df_islands, df_species)
+
+# 3. Create Plot with Caption
+plot_ly(
+  data = sunburst_df,
+  ids = ~ids,
+  labels = ~labels,
+  parents = ~parents,
+  values = ~values,
+  type = 'sunburst',
+  branchvalues = 'total',
+  insidetextorientation = 'radial',
+  marker = list(colors = ~color)
+) %>%
+  layout(
+    title = list(
+      text = "<b>Composition of Species on each Island</b><br><sup>Sunburst Chart</sup>",
+      x = 0.5,
+      font = list(family = "Arial", size = 18)
+    ),
+    # The Caption Line
+    annotations = list(
+      list(
+        x = 1, y = -0.1, # Positions text at the bottom right
+        text = "Source: PalmarPenguins. Viz: Deepak Varughese",
+        showarrow = F,
+        xref = 'paper', yref = 'paper',
+        xanchor = 'right', yanchor = 'auto',
+        font = list(size = 10, color = "gray")
+      )
+    ),
+    margin = list(t = 80, l = 0, r = 0, b = 40) # Extra bottom margin for the caption
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(palmerpenguins)
+library(treemapify)
+
+plot_data <- penguins %>%
+  drop_na() %>%
+  count(island, species)
+
+# Branding colors
+color_palette <- c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc")
+
+ggplot(plot_data, aes(area = n, fill = species, subgroup = island)) +
+  # 1. Main tiles with thin, subtle species borders
+  geom_treemap(color = "white", size = 1) +
+  
+  # 2. Heavy-duty subgroup borders to define the Island "containers"
+  geom_treemap_subgroup_border(color = "white", size = 8) + 
+  
+  # 3. Floating Island labels with a background "glow" for readability
+  geom_treemap_subgroup_text(
+    place = "bottomleft", # Moving to the bottom helps separate from species labels
+    grow = FALSE, 
+    alpha = 0.7, 
+    color = "black", 
+    fontface = "bold.italic",
+    size = 24,
+    padding.x = grid::unit(5, "mm"),
+    padding.y = grid::unit(5, "mm")
+  ) +
+  
+  # 4. Species labels
+  geom_treemap_text(
+    aes(label = species),
+    colour = "white",
+    place = "center",
+    fontface = "bold",
+    size = 14
+  ) +
+  scale_fill_manual(values = color_palette, guide = "none") +
+  labs(
+    title = "Composition of Species on each Island",
+    subtitle = "Treemap",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  theme_ipsum() +
+  theme(
+    plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5, margin = margin(b = 20)),
+    plot.caption = element_text(size = 10, color = "darkgray", hjust = 1)
+  )
+```
+
+## Visualizing a single continuous variable
+
+```{r}
+penguins_head <- head(penguins, 20) %>% 
+  drop_na() %>% 
+  select(body_mass_g)
+
+penguins_head
+
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(palmerpenguins)
+
+# 1. Calculate the Stats & Quartiles
+# We need the specific 25th, 50th, and 75th percentiles to define groups
+stats <- penguins %>%
+  drop_na(body_mass_g) %>%
+  summarise(
+    mean_val   = mean(body_mass_g),
+    median_val = median(body_mass_g),
+    sd_val     = sd(body_mass_g),
+    q1         = quantile(body_mass_g, 0.25),
+    q3         = quantile(body_mass_g, 0.75)
+  )
+
+# 2. Prepare Data with Quartile Groups
+plot_data <- penguins %>% 
+  drop_na(body_mass_g) %>% 
+  mutate(quartile = case_when(
+    body_mass_g <= stats$q1 ~ "Q1",
+    body_mass_g <= stats$median_val ~ "Q2",
+    body_mass_g <= stats$q3 ~ "Q3",
+    TRUE ~ "Q4"
+  ))
+
+# 3. Create the Visualization
+ggplot(plot_data, aes(x = body_mass_g, fill = quartile)) +
+  # Using a small binwidth or specific bins to ensure colors align with data points
+  geom_histogram(color = "white", bins = 30, alpha = 0.8) +
+  
+  # Color Palette for Quartiles
+  scale_fill_manual(values = c("Q1" = "#a8dadc", "Q2" = "#457b9d", 
+                               "Q3" = "#1d3557", "Q4" = "#023047")) +
+  
+  labs(
+    title = "Penguin Body Mass: Distribution by Quartiles",
+    x = "Body Mass (g)",
+    y = "Count",
+    fill = "Quartile",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  theme_ipsum() +
+  theme(panel.grid.minor = element_blank(),
+        legend.position = "bottom")
+```
+
+## 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+# 1. Calculate the Stats & Quartiles
+# We need the specific 25th, 50th, and 75th percentiles to define groups
+stats <- penguins %>%
+  drop_na(body_mass_g) %>%
+  summarise(
+    mean_val   = mean(body_mass_g),
+    median_val = median(body_mass_g),
+    sd_val     = sd(body_mass_g),
+    q1         = quantile(body_mass_g, 0.25),
+    q3         = quantile(body_mass_g, 0.75)
+  )
+
+# 2. Prepare Data with Quartile Groups
+plot_data <- penguins %>% 
+  drop_na(body_mass_g) %>% 
+  mutate(quartile = case_when(
+    body_mass_g <= stats$q1 ~ "Q1",
+    body_mass_g <= stats$median_val ~ "Q2",
+    body_mass_g <= stats$q3 ~ "Q3",
+    TRUE ~ "Q4"
+  ))
+
+# 3. Create the Visualization
+ggplot(plot_data, aes(x = body_mass_g, fill = quartile)) +
+  # Using a small binwidth or specific bins to ensure colors align with data points
+  geom_histogram(color = "white", bins = 30, alpha = 0.8) +
+  
+  # Standard Deviation Lines
+  geom_vline(xintercept = c(stats$mean_val - 2*stats$sd_val, 
+                            stats$mean_val + 2*stats$sd_val), 
+             color = "black", linetype = "dotted", size = 0.8) +
+  geom_vline(xintercept = c(stats$mean_val - stats$sd_val, 
+                            stats$mean_val + stats$sd_val), 
+             color = "black", linetype = "dashed", size = 1) +
+  
+  # Mean Line
+  geom_vline(aes(xintercept = stats$mean_val), 
+             color = "black", linetype = "solid", size = 1.2) +
+  
+  # Color Palette for Quartiles
+  scale_fill_manual(values = c("Q1" = "#a8dadc", "Q2" = "#457b9d", 
+                               "Q3" = "#1d3557", "Q4" = "#023047")) +
+  
+  # Annotations
+  annotate("text", x = stats$mean_val - 150, y = 40, label = "Mean", 
+           color = "black", angle = 90, fontface = "bold") +
+  
+  labs(
+    title = "Penguin Body Mass: Distribution by Quartiles",
+    subtitle = "Bars colored by Quartile | Black lines indicate Mean and SD (±1σ, ±2σ)",
+    x = "Body Mass (g)",
+    y = "Count",
+    fill = "Quartile",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank(),
+        legend.position = "bottom")
+```
+
+## 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+# 1. Calculate Stats (Same as before)
+stats <- penguins %>%
+  drop_na(body_mass_g) %>%
+  summarise(
+    mean_val   = mean(body_mass_g),
+    sd_val     = sd(body_mass_g),
+    median_val = median(body_mass_g),
+    q1         = quantile(body_mass_g, 0.25),
+    q3         = quantile(body_mass_g, 0.75),
+    min_val    = min(body_mass_g),
+    max_val    = max(body_mass_g)
+  )
+
+# 2. Compute Density Data
+# We create a density object so we can "shade" specific sections under the curve
+d <- density(penguins$body_mass_g, na.rm = TRUE)
+density_df <- data.frame(x = d$x, y = d$y) %>%
+  mutate(quartile = case_when(
+    x <= stats$q1 ~ "Q1",
+    x <= stats$median_val ~ "Q2",
+    x <= stats$q3 ~ "Q3",
+    TRUE ~ "Q4"
+  ))
+
+# 3. Create the Visualization
+ggplot(density_df, aes(x = x, y = y)) +
+  # Fill the areas by quartile
+  geom_area(aes(fill = quartile), alpha = 0.8) +
+  
+  # Standard Deviation Lines
+  geom_vline(xintercept = c(stats$mean_val - 2*stats$sd_val, 
+                            stats$mean_val + 2*stats$sd_val), 
+             color = "black", linetype = "dotted", size = 0.6) +
+  geom_vline(xintercept = c(stats$mean_val - stats$sd_val, 
+                            stats$mean_val + stats$sd_val), 
+             color = "black", linetype = "dashed", size = 0.8) +
+  
+  # Mean Line
+  geom_vline(aes(xintercept = stats$mean_val), 
+             color = "black", linetype = "solid", size = 1) +
+  
+  # Colors
+  scale_fill_manual(values = c("Q1" = "#a8dadc", "Q2" = "#457b9d", 
+                               "Q3" = "#1d3557", "Q4" = "#023047")) +
+  
+  # Annotations (Adjusted Y position for density scale)
+  annotate("text", x = stats$mean_val - 120, y = 0.0003, label = "Mean", 
+           color = "black", angle = 90, fontface = "bold", size = 3) +
+  
+  labs(
+    title = "Penguin Body Mass: Density Distribution by Quartiles",
+    subtitle = "Shaded by Quartile | Black lines indicate Mean and SD (±1σ, ±2σ)",
+    x = "Body Mass (g)",
+    y = "Density",
+    fill = "Quartile",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
+  )
+```
+
+## Visualizing a continuous variable and a categorical variable
+
+```{r}
+penguins %>% 
+  select(body_mass_g, species) %>% 
+    drop_na() %>% 
+  head(15)
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+library(tidyverse)
+library(palmerpenguins)
+
+# Create the Box Plot
+penguins %>%
+  drop_na(body_mass_g, species) %>%
+  ggplot(aes(x = species, y = body_mass_g, fill = species)) +
+  
+  # 1. Add the Boxplot layer
+  # outlier.color makes it easy to spot data points that are statistically extreme
+  geom_boxplot(
+    width = 0.5, 
+    alpha = 0.7
+  ) +
+  
+  # 2. Add 'jittered' points (Optional but recommended)
+  # This shows the actual distribution of individual penguins behind the summary
+  geom_jitter(width = 0.15, alpha = 0.2, color = "black") +
+  
+  # 3. Aesthetics & Colors
+  scale_fill_manual(values = c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc")) +
+  
+  labs(
+    title = "Comparison of Penguin Body Mass by Species",
+    subtitle = "Box Plot",
+    x = "",
+    y = "Body Mass (g)",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  
+  theme_ipsum() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank() # Clean up the X-axis grid
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+library(tidyverse)
+library(palmerpenguins)
+library(hrbrthemes)
+
+# Create the Violin Plot
+penguins %>%
+  drop_na(body_mass_g, species) %>%
+  ggplot(aes(x = species, y = body_mass_g, fill = species)) +
+  
+  # 1. Add the Violin layer
+  # trim = FALSE shows the full range of the data including the tails
+  geom_violin(trim = FALSE, alpha = 0.5, color = "black") +
+  
+  # 2. Add a narrow Boxplot inside
+  # This provides the exact median and IQR markers within the density shape
+  geom_boxplot(width = 0.1, fill = "white", outlier.shape = NA, alpha = 0.8) +
+  
+  # 3. Add Mean point (Optional - helpful for skewed data)
+  stat_summary(fun = "mean", geom = "point", shape = 23, size = 2, fill = "white") +
+  
+  # 4. Aesthetics & Colors
+  scale_fill_manual(values = c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc")) +
+  
+  labs(
+    title = "Body Mass Distribution: Violin vs. Box Plot",
+    subtitle = "Violin width shows density | Inner box shows IQR | White diamond is the Mean",
+    x = "Species",
+    y = "Body Mass (g)",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  
+  theme_ipsum() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank()
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(palmerpenguins)
+# install.packages("ggridges")
+library(ggridges)
+library(hrbrthemes)
+
+# 1. Prepare and Plot
+penguins %>%
+  drop_na(body_mass_g, species) %>%
+  ggplot(aes(x = body_mass_g, y = species, fill = species)) +
+  
+  # geom_density_ridges creates the overlapping 'mountain' shapes
+  # scale = 1.5 allows the ridges to overlap slightly for that 'mountain range' look
+  geom_density_ridges(
+    alpha = 0.7, 
+    scale = 1.5, 
+    rel_min_height = 0.01, # Cleans up the 'tails' at the ends
+    color = "white",
+    quantile_lines = TRUE, # Adds quartile lines inside the ridges
+    quantiles = 2          # This specifically draws the Median
+  ) +
+  
+  # 2. Aesthetics
+  scale_fill_manual(values = c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc")) +
+  
+  labs(
+    title = "Ridgeline Distribution of Penguin Body Mass",
+    subtitle = "Vertical line indicates the Median | Overlap shows range similarities",
+    x = "Body Mass (g)",
+    y = "Species",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  
+  theme_ipsum() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.y = element_blank(), # Removes horizontal lines for a cleaner look
+    axis.text.y = element_text(vjust = 0)  # Aligns species names with the ridges
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(palmerpenguins)
+library(ggdist) # Specialized for distribution visualizations
+library(hrbrthemes)
+
+penguins %>%
+  drop_na(body_mass_g, species) %>%
+  ggplot(aes(x = species, y = body_mass_g, fill = species)) +
+  
+  # 1. The "Cloud" (Density)
+  stat_halfeye(
+    adjust = 0.5, 
+    width = 0.6, 
+    .width = 0, 
+    justification = -0.3, 
+    point_colour = NA
+  ) +
+  
+  # 2. The "Umbrella" (Boxplot)
+  geom_boxplot(
+    width = 0.12, 
+    outlier.shape = NA, 
+    alpha = 0.5
+  ) +
+  
+  # 3. The "Rain" (Raw Points)
+  stat_dots(
+    side = "left", 
+    justification = 1.1, 
+    binwidth = 40,
+    alpha = 0.5
+  ) +
+  
+  # Aesthetics
+  scale_fill_manual(values = c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc")) +
+  labs(
+    title = "Raincloud Plot: Body Mass Distribution",
+    subtitle = "Combining density, boxplot, and raw data points",
+    x = "",
+    y = "Body Mass (g)",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  coord_flip() + # Rainclouds usually look better horizontally
+  theme_ipsum() +
+  theme(legend.position = "none")
+```
+
+## Visualizing 2 continuous variables
+
+```{r}
+penguins %>%
+  select(flipper_length_mm, body_mass_g) %>% 
+  drop_na()
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(palmerpenguins)
+library(hrbrthemes)
+
+# 1. Simple Scatterplot with Overall Trend
+penguins %>%
+  drop_na(flipper_length_mm, body_mass_g) %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  
+  # Add points with a professional, neutral color
+  geom_point(color = "#2c3e50", alpha = 0.4, size = 2) +
+  
+  # Add a non-linear trend line (LOESS) to see the natural curve of the data
+  geom_smooth(color = "#e63946", method = "loess", size = 1.5) +
+  
+  labs(
+    title = "General Relationship: Flipper Length vs. Body Mass",
+    subtitle = "Aggregated data across all species (n = 342)",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  theme_ipsum() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
+```
+
+## 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+# 2D Filled Density Plot without Legend
+penguins %>%
+  drop_na(flipper_length_mm, body_mass_g) %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  
+  # The original filled contour look
+  geom_density_2d_filled(alpha = 0.85) +
+  
+  # Using a professional palette (Viridis is standard for scientific clarity)
+  scale_fill_viridis_d(option = "plasma") + 
+  
+  labs(
+    title = "Penguin Morphological Density",
+    subtitle = "Relationship between flipper length and body mass across the population",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  
+  theme_minimal() +
+  theme(
+    # This removes the legend completely
+    legend.position = "none", 
+    
+    # Clean up grid lines for a more editorial Reuters/WHO style
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "grey95"),
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(color = "grey30", margin = margin(b = 15))
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+#| paged-print: false
+library(tidyverse)
+library(palmerpenguins)
+library(hrbrthemes)
+
+penguins %>%
+  drop_na(flipper_length_mm, body_mass_g) %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  
+  # 1. Use a more cohesive color scale
+  # color = NA removes the distracting borders entirely
+  geom_hex(bins = 28, color = NA) + 
+  
+  # 2. Viridis 'mako' or 'inferno' provides a smoother gradient
+  scale_fill_viridis_c(option = "mako", direction = -1) +
+  
+  labs(
+    title = "Morphological Clusters: Flipper Length vs. Body Mass",
+    subtitle = "Concentration of penguin measurements using hexagonal binning",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  
+  # 3. Clean Theme adjustments
+  theme_ipsum() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", size = 16, color = "#222222"),
+    plot.subtitle = element_text(size = 11, color = "#555555", margin = margin(b = 20)),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "#f0f0f0"), # Faint grid lines
+    axis.title = element_text(face = "italic", size = 10)
+  )
+```
+
+## 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+# 1. Clean data and create the scatterplot
+penguins %>%
+  drop_na(flipper_length_mm, body_mass_g, species) %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  
+  # Add raw data points with some transparency to handle overlap
+  geom_point(alpha = 0.6, size = 2.5) +
+  
+  # Add linear regression lines for each species to show the trend
+  geom_smooth(method = "lm", se = FALSE, size = 1.2, alpha = 0.8) +
+  
+  # Use the species color palette you've established
+  scale_color_manual(values = c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc")) +
+  
+  # Formatting to WHO/Reuters standards: Clean labels and minimal grid
+  labs(
+    title = "Correlation Between Flipper Length and Body Mass",
+    subtitle = "Positive linear relationship observed across all three penguin species",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    color = "Species",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 10, face = "italic")
+  )
+```
+
+## 
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(palmerpenguins)
+library(hrbrthemes)
+
+# 1. Prepare and clean data
+plot_data <- penguins %>%
+  drop_na(flipper_length_mm, body_mass_g, bill_length_mm)
+
+# 2. Generate Plot with Legend
+ggplot(plot_data, aes(x = flipper_length_mm, y = body_mass_g, size = bill_length_mm)) +
+  
+  # shape = 21 (filled circle) with white border for better overlap visibility
+  geom_point(alpha = 0.5, fill = "#457b9d", shape = 21, color = "white", stroke = 0.3) +
+  
+  # Scale size with a clear range
+  scale_size_continuous(
+    range = c(1, 10),
+    breaks = c(35, 45, 55), # Explicit breaks for clarity
+    labels = c("35 mm", "45 mm", "55 mm"),
+    guide = guide_legend(
+      title = "Bill Length",
+      title.position = "top",
+      override.aes = list(fill = "#457b9d", alpha = 0.8), # Make legend bubbles clearer
+      direction = "horizontal"
+    )
+  ) +
+  
+  labs(
+    title = "Penguin Dimensions: Flipper, Mass, and Bill Length",
+    subtitle = "Larger bubbles indicate longer bill lengths (mm)",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  
+  theme_ipsum() +
+  theme(
+    legend.position = "bottom",
+    legend.box.background = element_rect(color = "#f0f0f0", fill = NA), # Subtle border around legend
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold", size = 16),
+    axis.title = element_text(face = "italic")
+  )
+```
+
+## Changes in categorical data over time
+
+```{r}
+penguins %>%
+  select(year, species) %>%
+  drop_na()
+```
+
+## 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+# 1. Summarize counts by species and year
+yearly_counts <- penguins %>%
+  count(year, species) %>%
+  drop_na()
+
+# 2. Create the Stacked Area Plot
+ggplot(yearly_counts, aes(x = year, y = n, fill = species)) +
+  geom_area(alpha = 0.6, color = "white", size = 0.3) +
+  
+  # Ensure the x-axis only shows the specific years (integers)
+  scale_x_continuous(breaks = c(2007, 2008, 2009)) +
+  
+  # Use your established editorial color palette
+  scale_fill_manual(values = c("Adelie" = "#e63946", "Chinstrap" = "#2c3e50", "Gentoo" = "#a8dadc")) +
+  
+  labs(
+    title = "Sampling Trends: Palmer Archipelago (2007-2009)",
+    subtitle = "Stacked area showing the volume of penguins recorded each year",
+    x = "Observation Year",
+    y = "Number of Penguins",
+    fill = "Species",
+    caption = "Source: PalmarPenguins. Viz: Deepak Varughese"
+  ) +
+  
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold", size = 16),
+    axis.title = element_text(face = "italic")
+  )
+```
+
+## Tools
+
+-   R (ggplot2)
+
+-   D3
+
+-   JavaScript
+
+-   Tableau
+
+-   PowerBi
+
+-   Excel

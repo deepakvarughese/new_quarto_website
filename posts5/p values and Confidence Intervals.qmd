@@ -1,0 +1,17 @@
+---
+title: "p values and Confidence Intervals"
+author: "Deepak Varughese"
+---
+
+For this tutorial we will start from where we left off in our tutorial on Sampling Distributions. If you are have not read that tutorial i will highly recommend doing that [here](https://deepakvarughese.netlify.app/posts5/sampling "Sampling Distribution of the mean").
+
+But for a quick recap let us review this figure\
+\
+![Sampling Distribution](posts5/sampling_distribution.png)
+
+In the last tutorial we started off with a single experiment where we were looking at population height. We took a single sample and got a value of 176.49. We then asked the question "How does this value compare to the "true mean of my population". To answer this question we were introduced to the idea of the "Sampling Distribution of the Mean" from which we saw that our population mean was 175.3. We also discussed the idea of the Standard Error which is kind of analogous to a standard deviation in the sample distribution. \
+\
+At this point I would like to reemphasize that in real life we do not actually know the true population mean (which is why we do the experiment to begin with)., (This is also why the population mean is often denoted with the greek letter "mu" because it represents the unknown.) But let us go ahead with this hypothetical example for the sake of understanding.
+
+\
+\

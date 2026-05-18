@@ -2,7 +2,7 @@
 title: "Sampling Distribution of the Mean"
 ---
 
-## Experiment 1 
+## Experiment 1
 
 **Objective** : To estimate the mean height of a population using a sample.
 
@@ -68,7 +68,7 @@ Now that we can see that the average height of people in this sample is 176.49
 
 Are we sure that the true mean in the population (the value we really want to know) will be exactly this number? Unlikely? Can it be close to this number? How do we resolve this?
 
-### Experiment 2 
+### Experiment 2
 
 -   repeat the same experiment.
 
@@ -174,8 +174,6 @@ The solution we often apply in statistics is to create a new dataset that contai
 A genuine drawback of this method would be a very practical one. One would usually not have the money and resources to repeat the experiment any number of times.
 
 **However, if one were to do it, and repeat the experiment "n" number of times then plot the means of each experiment as a histogram , you would likely get a figure like this.**
-
-
 
 ```{r}
 #| echo: false
